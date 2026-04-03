@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -118,5 +120,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR / "static",  # CORRECT: Points to ecommerce/static
+    BASE_DIR / "static",
 ]
+
+# Media files (User-uploaded product photos)
+# This is where Django will look for images uploaded via the Admin panel
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / "media"

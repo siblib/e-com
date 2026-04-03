@@ -26,5 +26,8 @@ urlpatterns = [
 
 # Serve static files during development
 if settings.DEBUG:
-    # Use BASE_DIR / "static" to match your actual folder location
+    # 1. Serve Static (Theme files, CSS, JS)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.BASE_DIR / "static")
+    
+    # 2. Serve Media (The actual product images you upload)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

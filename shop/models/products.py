@@ -18,7 +18,7 @@ class Category(models.Model):
     name = models.CharField(max_length=255, db_index=True)
     slug = models.SlugField(max_length=255, unique=True)
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
-    image = models.ImageField(upload_to='categories/', null=True, blank=True)
+    image = models.FileField(upload_to='categories/', null=True, blank=True)
     is_featured = models.BooleanField(default=False)
 
     class Meta:

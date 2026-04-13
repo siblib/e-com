@@ -20,9 +20,9 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['name', 'category', 'price', 'in_stock', 'is_active', 'created']
-    list_filter = ['in_stock', 'is_active', 'category', 'store']
-    list_editable = ['price', 'in_stock', 'is_active']
+    list_display = ['name', 'category', 'price', 'in_stock', 'is_active', 'is_trending', 'created']
+    list_filter = ['in_stock', 'is_active', 'is_trending', 'category', 'store']
+    list_editable = ['price', 'in_stock', 'is_active', 'is_trending']
     prepopulated_fields = {'slug': ('name',)}
     
     # 2. Add the images section to the bottom of the Product edit page

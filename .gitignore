@@ -14,3 +14,5 @@ db.sqlite3
 .DS_Store
 new_key_apr42026
 new_key_apr42026.pub
+
+media/

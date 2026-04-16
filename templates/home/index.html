@@ -1857,219 +1857,118 @@
   
           <!-- Nav Tab -->
           <nav class="wix63 w-full inline-flex aqyoh rsdjd lnk45 er6t7 dark:bg-neutral-900 dark:border-neutral-700" aria-label="Tabs" role="tablist" aria-orientation="horizontal">
-            <button type="button" class="hs-tab-active:bg-gray-100 hs-tab-active:focus:bg-gray-100 hs-tab-active:focus:text-gray-800 w-full inline-flex jkwm1 items-center n9hej c9jt8 od5va jxswk yzhap z8qsr w4xo0 pb094 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden dulc0 dark:hs-tab-active:bg-neutral-800 dark:focus:hs-tab-active:bg-neutral-800 dark:focus:hs-tab-active:text-neutral-200 dark:text-neutral-200 dark:focus:text-neutral-400 active" id="hs-pro-tabs-shao-item-men" aria-selected="true" data-hs-tab="#hs-pro-tabs-shao-men" aria-controls="hs-pro-tabs-shao-men" role="tab">
-              Men
+            {% for tab in trending_tabs %}
+            <button type="button" class="hs-tab-active:bg-gray-100 hs-tab-active:focus:bg-gray-100 hs-tab-active:focus:text-gray-800 w-full inline-flex jkwm1 items-center n9hej c9jt8 od5va jxswk yzhap z8qsr w4xo0 pb094 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden dulc0 dark:hs-tab-active:bg-neutral-800 dark:focus:hs-tab-active:bg-neutral-800 dark:focus:hs-tab-active:text-neutral-200 dark:text-neutral-200 dark:focus:text-neutral-400 {% if tab.is_default %}active{% endif %}" id="hs-pro-tabs-shao-item-{{ tab.id }}" aria-selected="{% if tab.is_default %}true{% else %}false{% endif %}" data-hs-tab="#hs-pro-tabs-shao-{{ tab.id }}" aria-controls="hs-pro-tabs-shao-{{ tab.id }}" data-category-slug="{{ tab.slug }}" role="tab">
+              {{ tab.name }}
             </button>
-            <button type="button" class="hs-tab-active:bg-gray-100 hs-tab-active:focus:bg-gray-100 hs-tab-active:focus:text-gray-800 w-full inline-flex jkwm1 items-center n9hej c9jt8 od5va jxswk yzhap z8qsr w4xo0 pb094 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden dulc0 dark:hs-tab-active:bg-neutral-800 dark:focus:hs-tab-active:bg-neutral-800 dark:focus:hs-tab-active:text-neutral-200 dark:text-neutral-200 dark:focus:text-neutral-400" id="hs-pro-tabs-shao-item-women" aria-selected="false" data-hs-tab="#hs-pro-tabs-shao-women" aria-controls="hs-pro-tabs-shao-women" role="tab">
-              Women
-            </button>
+            {% endfor %}
           </nav>
           <!-- End Nav Tab -->
-        </div>
   
-        <!-- Tab Content: Men -->
-        <div id="hs-pro-tabs-shao-men" role="tabpanel" aria-labelledby="hs-pro-tabs-shao-item-men">
-          <!-- Slider -->
-          <div data-hs-carousel='{
-            "loadingClasses": "opacity-0",
-            "slidesQty": {
-              "xs": 2,
-              "sm": 3,
-              "lg": 4
-            },
-            "isDraggable": true
-          }' class="relative init">
-            <div id="trending-men-wrapper" class="hs-carousel w-full overflow-hidden">
-              <div class="hs-carousel w-full">
-                <div id="trending-men-carousel" class="hs-carousel-body flex flex-nowrap g27d7 gbedp oeanj mx4xe tv623 zqex4 ngv94">
-                  {% for product in trending_products %}
-                  <div class="hs-carousel-slide active" style="width: 324px;">
-                    <!-- Card -->
-                    <div class=" group relative">
-                      <div class="relative">
-                        <a class="block er6t7 focus:outline-hidden" href="#">
-                          {% with primary_image=product.images.all|dictsort:'display_order'|first %}
-                            {% if primary_image %}
-                              <img class="f4yn1 er6t7 dark:bg-neutral-800" src="{{ primary_image.image.url }}" alt="{{ product.name }}">
-                            {% else %}
-                              <div class="f4yn1 er6t7 dark:bg-neutral-800 flex items-center justify-center bg-gray-200" style="height: 400px;">No Image</div>
-                            {% endif %}
-                          {% endwith %}
-                        </a>
-  
-                        <!-- Add to Favorites -->
-                        <div class="absolute fuv09 kji94 wzd7f kmove mx6w2">
-                          <button type="button" class="odrp3 flex jkwm1 items-center n6i5x kghwt xs2f2 aqyoh rsdjd azddh c9jt8 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden">
-                            <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </svg>
-                            <span class="et50x">Add to favorites</span>
-                          </button>
+          {% for tab in trending_tabs %}
+          <!-- Tab Content: {{ tab.name }} -->
+          <div id="hs-pro-tabs-shao-{{ tab.id }}" class="{% if not tab.is_default %}hidden{% endif %}" role="tabpanel" aria-labelledby="hs-pro-tabs-shao-item-{{ tab.id }}">
+            <!-- Slider -->
+            <div data-hs-carousel='{
+              "loadingClasses": "opacity-0",
+              "slidesQty": {
+                "xs": 2,
+                "sm": 3,
+                "lg": 4
+              },
+              "hasSnapSpacers": false,
+              "isDraggable": true
+            }' class="relative init">
+              <div id="trending-{{ tab.id }}-wrapper" class="hs-carousel w-full overflow-hidden">
+                <div class="hs-carousel w-full">
+                  <div id="trending-{{ tab.id }}-carousel" class="hs-carousel-body flex flex-nowrap g27d7 gbedp oeanj mx4xe tv623 zqex4 ngv94">
+                    {% for product in tab.products %}
+                    <div class="hs-carousel-slide active" style="width: 324px;">
+                      <!-- Card -->
+                      <div class=" group relative">
+                        <div class="relative">
+                          <a class="block er6t7 focus:outline-hidden" href="#">
+                            {% with primary_image=product.images.all|dictsort:'display_order'|first %}
+                              {% if primary_image %}
+                                <img class="f4yn1 er6t7 dark:bg-neutral-800" src="{{ primary_image.image.url }}" alt="{{ product.name }}">
+                              {% else %}
+                                <div class="f4yn1 er6t7 dark:bg-neutral-800 flex items-center justify-center bg-gray-200" style="height: 400px;">No Image</div>
+                              {% endif %}
+                            {% endwith %}
+                          </a>
+
+                          <!-- Add to Favorites -->
+                          <div class="absolute fuv09 kji94 wzd7f kmove mx6w2">
+                            <button type="button" class="odrp3 flex jkwm1 items-center n6i5x kghwt xs2f2 aqyoh rsdjd azddh c9jt8 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden">
+                              <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+                              </svg>
+                              <span class="et50x">Add to favorites</span>
+                            </button>
+                          </div>
+                          <!-- End Add to Favorites -->
                         </div>
-                        <!-- End Add to Favorites -->
+
+                        <a class="after:z-1 after:absolute after:inset-0" href="#"></a>
+
+                        <div class="f5e2w">
+                          <span class="block w4xo0 cve4m c9jt8 dark:text-neutral-200">
+                            {{ product.name }}
+                          </span>
+                          <p class="ja90s w4xo0 jy5gh dark:text-neutral-400">
+                            {{ product.category.name }}
+                          </p>
+                          <p class="rwavo sikx1 w4xo0 c9jt8 dark:text-neutral-200">
+                            ${{ product.price }}
+                          </p>
+                        </div>
                       </div>
-  
-                      <a class="after:z-1 after:absolute after:inset-0" href="#"></a>
-  
-                      <div class="f5e2w">
-                        <span class="block w4xo0 cve4m c9jt8 dark:text-neutral-200">
-                          {{ product.name }}
-                        </span>
-                        <p class="ja90s w4xo0 jy5gh dark:text-neutral-400">
-                          {{ product.category.name }}
-                        </p>
-                        <p class="rwavo sikx1 w4xo0 c9jt8 dark:text-neutral-200">
-                          ${{ product.price }}
-                        </p>
-                      </div>
+                      <!-- End Card -->
                     </div>
-                    <!-- End Card -->
+                    {% empty %}
+                    <div class="w-full text-center py-8 text-gray-500">
+                        More trending products coming soon!
+                    </div>
+                    {% endfor %}
                   </div>
-                  {% empty %}
-                  <div class="w-full text-center py-8 text-gray-500">
-                      More trending products coming soon!
-                  </div>
-                  {% endfor %}
                 </div>
-              </div> <!-- Missing Closing Tag Added Here -->
-            </div> <!-- Missing Closing Tag Added Here -->
-            
-            <!-- Nav -->
-            <button type="button" data-hs-carousel-prev="#trending-men-wrapper" class="hs-carousel-prev hs-carousel-disabled:opacity-50 hs-carousel-disabled:cursor-default absolute zoyba xviih inline-flex jkwm1 items-center fjwwc aqyoh rsdjd rxmp4 c9jt8 kghwt hj07t d05xb -translate-y-1/2 focus:outline-hidden disabled" disabled="disabled">
-              <span class="f8p8s" aria-hidden="true">
-                <svg class="e731n yhc35" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m15 18-6-6 6-6"></path>
-                </svg>
-              </span>
-              <span class="et50x">Previous</span>
-            </button>
-            <button type="button" data-hs-carousel-next="#trending-men-wrapper" class="hs-carousel-next hs-carousel-disabled:opacity-50 hs-carousel-disabled:cursor-default absolute zoyba tb54y inline-flex jkwm1 items-center fjwwc aqyoh rsdjd rxmp4 c9jt8 kghwt hj07t d05xb -translate-y-1/2 focus:outline-hidden">
-              <span class="et50x">Next</span>
-              <span class="f8p8s" aria-hidden="true">
-                <svg class="e731n yhc35" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              </div>
+
+              <!-- Nav -->
+              <button type="button" data-hs-carousel-prev="#trending-{{ tab.id }}-wrapper" class="hs-carousel-prev hs-carousel-disabled:opacity-50 hs-carousel-disabled:cursor-default absolute zoyba xviih inline-flex jkwm1 items-center fjwwc aqyoh rsdjd rxmp4 c9jt8 kghwt hj07t d05xb -translate-y-1/2 focus:outline-hidden disabled" disabled="disabled">
+                <span class="f8p8s" aria-hidden="true">
+                  <svg class="e731n yhc35" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m15 18-6-6 6-6"></path>
+                  </svg>
+                </span>
+                <span class="et50x">Previous</span>
+              </button>
+              <button type="button" data-hs-carousel-next="#trending-{{ tab.id }}-wrapper" class="hs-carousel-next hs-carousel-disabled:opacity-50 hs-carousel-disabled:cursor-default absolute zoyba tb54y inline-flex jkwm1 items-center fjwwc aqyoh rsdjd rxmp4 c9jt8 kghwt hj07t d05xb -translate-y-1/2 focus:outline-hidden">
+                <span class="et50x">Next</span>
+                <span class="f8p8s" aria-hidden="true">
+                  <svg class="e731n yhc35" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m9 18 6-6-6-6"></path>
+                  </svg>
+                </span>
+              </button>
+              <!-- End Nav -->
+            </div>
+            <!-- End Slider -->
+
+            <!-- Button Group -->
+            <div class="ah7xl dtief">
+              <a class="inline-flex items-center b1nd2 c9jt8 l5oyh povjg iiod0 focus:outline-hidden s6w37 dark:text-neutral-200 dark:hover:text-indigo-400 dark:focus:text-indigo-400" href="{% url 'shop_grid' %}?category={{ tab.slug }}">
+                Shop all {{ tab.name }}
+                <svg class="e731n b9gop" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="m9 18 6-6-6-6"></path>
                 </svg>
-              </span>
-            </button>
-            <!-- End Nav -->
+              </a>
+            </div>
+            <!-- End Button Group -->
           </div>
-          <!-- End Slider -->
-  
-          <!-- Button Group -->
-          <div class="ah7xl dtief">
-            <a class="inline-flex items-center b1nd2 c9jt8 l5oyh povjg iiod0 focus:outline-hidden s6w37 dark:text-neutral-200 dark:hover:text-indigo-400 dark:focus:text-indigo-400" href="#">
-              Shop all men
-              <svg class="e731n b9gop" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="m9 18 6-6-6-6"></path>
-              </svg>
-            </a>
-          </div>
-          <!-- End Button Group -->
-        </div>
-        <!-- End Tab Content: Men -->
-  
-        <!-- Tab Content: Women -->
-        <div id="hs-pro-tabs-shao-women" class="hidden" role="tabpanel" aria-labelledby="hs-pro-tabs-shao-item-women">
-          <!-- Slider -->
-          <div data-hs-carousel='{
-            "loadingClasses": "opacity-0",
-            "slidesQty": {
-              "xs": 2,
-              "sm": 3,
-              "lg": 4
-            },
-            "hasSnapSpacers": false,
-            "isDraggable": true
-          }' class="relative init">
-            <div id="trending-women-wrapper" class="hs-carousel w-full overflow-hidden">
-              <div class="hs-carousel w-full">
-                <div id="trending-women-carousel" class="hs-carousel-body flex flex-nowrap g27d7 gbedp oeanj mx4xe tv623 zqex4 ngv94">
-                  {% for product in trending_products %}
-                  <div class="hs-carousel-slide active" style="width: 324px;">
-                    <!-- Card -->
-                    <div class=" group relative">
-                      <div class="relative">
-                        <a class="block er6t7 focus:outline-hidden" href="#">
-                          {% with primary_image=product.images.all|dictsort:'display_order'|first %}
-                            {% if primary_image %}
-                              <img class="f4yn1 er6t7 dark:bg-neutral-800" src="{{ primary_image.image.url }}" alt="{{ product.name }}">
-                            {% else %}
-                              <div class="f4yn1 er6t7 dark:bg-neutral-800 flex items-center justify-center bg-gray-200" style="height: 400px;">No Image</div>
-                            {% endif %}
-                          {% endwith %}
-                        </a>
-  
-                        <!-- Add to Favorites -->
-                        <div class="absolute fuv09 kji94 wzd7f kmove mx6w2">
-                          <button type="button" class="odrp3 flex jkwm1 items-center n6i5x kghwt xs2f2 aqyoh rsdjd azddh c9jt8 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden">
-                            <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </svg>
-                            <span class="et50x">Add to favorites</span>
-                          </button>
-                        </div>
-                        <!-- End Add to Favorites -->
-                      </div>
-  
-                      <a class="after:z-1 after:absolute after:inset-0" href="#"></a>
-  
-                      <div class="f5e2w">
-                        <span class="block w4xo0 cve4m c9jt8 dark:text-neutral-200">
-                          {{ product.name }}
-                        </span>
-                        <p class="ja90s w4xo0 jy5gh dark:text-neutral-400">
-                          {{ product.category.name }}
-                        </p>
-                        <p class="rwavo sikx1 w4xo0 c9jt8 dark:text-neutral-200">
-                          ${{ product.price }}
-                        </p>
-                      </div>
-                    </div>
-                    <!-- End Card -->
-                  </div>
-                  {% empty %}
-                  <div class="w-full text-center py-8 text-gray-500">
-                      More trending products coming soon!
-                  </div>
-                  {% endfor %}
-                </div>
-              </div> <!-- Missing Closing Tag Added Here -->
-            </div> <!-- Missing Closing Tag Added Here -->
-  
-            <!-- Nav -->
-            <button type="button" data-hs-carousel-prev="#trending-women-wrapper" class="hs-carousel-prev hs-carousel-disabled:opacity-50 hs-carousel-disabled:cursor-default absolute zoyba xviih inline-flex jkwm1 items-center fjwwc aqyoh rsdjd rxmp4 c9jt8 kghwt hj07t d05xb -translate-y-1/2 focus:outline-hidden disabled" disabled="disabled">
-              <span class="f8p8s" aria-hidden="true">
-                <svg class="e731n yhc35" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m15 18-6-6 6-6"></path>
-                </svg>
-              </span>
-              <span class="et50x">Previous</span>
-            </button>
-            <button type="button" data-hs-carousel-next="#trending-women-wrapper" class="hs-carousel-next hs-carousel-disabled:opacity-50 hs-carousel-disabled:cursor-default absolute zoyba tb54y inline-flex jkwm1 items-center fjwwc aqyoh rsdjd rxmp4 c9jt8 kghwt hj07t d05xb -translate-y-1/2 focus:outline-hidden">
-              <span class="et50x">Next</span>
-              <span class="f8p8s" aria-hidden="true">
-                <svg class="e731n yhc35" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m9 18 6-6-6-6"></path>
-                </svg>
-              </span>
-            </button>
-            <!-- End Nav -->
-          </div>
-          <!-- End Slider -->
-  
-          <!-- Button Group -->
-          <div class="ah7xl eu7q9 dtief">
-            <a class="inline-flex items-center b1nd2 c9jt8 l5oyh povjg iiod0 focus:outline-hidden s6w37 dark:text-neutral-200 dark:hover:text-indigo-400 dark:focus:text-indigo-400" href="#">
-              Shop all women
-              <svg class="e731n b9gop" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="m9 18 6-6-6-6"></path>
-              </svg>
-            </a>
-          </div>
-          <!-- End Button Group -->
-        </div>
-        <!-- End Tab Content: Women -->
-      </div>
+          <!-- End Tab Content: {{ tab.name }} -->
+          {% endfor %}
+
       <!-- End Shop Listing with Tab and Slider -->
 
     <!-- Categories -->

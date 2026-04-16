@@ -36,3 +36,29 @@ def product_image_upload_path(instance, filename):
     unique_filename = f"{product_id}_{unique_id}{ext}"
     
     return f"products/{store_slug}/{category_path}/{product_slug}/{unique_filename}"
+
+
+def get_category_descendants(category, include_self=True):
+    """
+    Finds all descendant categories for a given category using a single query
+    to fetch all categories in the store to avoid N+1 queries.
+    """
+    from shop.models.products import Category
+
+    # Fetch all categories in the same store once
+    all_categories = list(Category.objects.filter(store=category.store))
+
+    def build_descendants(parent_id):
+        desc = []
+        children = [c for c in all_categories if c.parent_id == parent_id]
+        for child in children:
+            desc.append(child)
+            desc.extend(build_descendants(child.id))
+        return desc
+
+    descendants = []
+    if include_self:
+        descendants.append(category)
+
+    descendants.extend(build_descendants(category.id))
+    return descendants

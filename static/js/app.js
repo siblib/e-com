@@ -50,4 +50,33 @@ document.addEventListener("DOMContentLoaded", function () {
             () => (window.location = defaults.baseUrl + "/logout")
         );
     });
+
+    // === PRELINE RE-INITIALIZATION FOR DYNAMIC TABS/CAROUSELS ===
+    if (window.HSCore && typeof HSCore.components === 'object') {
+        // Re-initialize tabs
+        document.querySelectorAll('[data-hs-tab]').forEach(el => {
+            if (!el._hsTabInitialized) {
+                try {
+                    HSCore.components.HSTab.init(el);
+                    el._hsTabInitialized = true;
+                } catch (e) {
+                    console.warn('HSTab init failed:', e);
+                }
+            }
+        });
+        
+        // Re-initialize carousels
+        document.querySelectorAll('[data-hs-carousel]').forEach(el => {
+            if (!el._hsCarouselInitialized) {
+                try {
+                    HSCore.components.HSCarousel.init(el);
+                    el._hsCarouselInitialized = true;
+                } catch (e) {
+                    console.warn('HSCarousel init failed:', e);
+                }
+            }
+        });
+    }
+    // === END PRELINE RE-INITIALIZATION ===
+
 });

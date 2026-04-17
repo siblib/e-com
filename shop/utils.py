@@ -36,3 +36,22 @@ def product_image_upload_path(instance, filename):
     unique_filename = f"{product_id}_{unique_id}{ext}"
     
     return f"products/{store_slug}/{category_path}/{product_slug}/{unique_filename}"
+
+# === TRENDING CATEGORY HELPERS ===
+def get_category_descendant_ids(category):
+    """
+    Recursively collect IDs of a category and all its descendants.
+    Works with simple parent ForeignKey hierarchy (no MPTT).
+    
+    Usage:
+        ids = get_category_descendant_ids(accessories_category)
+        Product.objects.filter(category_id__in=ids)
+    """
+    # Local import to avoid circular refs
+    from shop.models.products import Category
+    
+    ids = [category.id]
+    children = Category.objects.filter(parent=category)
+    for child in children:
+        ids.extend(get_category_descendant_ids(child))
+    return ids

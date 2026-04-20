@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models.products import Product, Category, ProductImage, Store
+from django.utils.html import mark_safe
+from .models.products import Product, Category, ProductImage, Store, Brand
 
 # 1. This allows you to add images directly inside the Product page
 class ProductImageInline(admin.TabularInline):
@@ -27,3 +28,20 @@ class ProductAdmin(admin.ModelAdmin):
     
     # 2. Add the images section to the bottom of the Product edit page
     inlines = [ProductImageInline]
+
+
+@admin.register(Brand)
+class BrandAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug', 'store', 'is_active', 'image_preview')
+    search_fields = ('name', 'slug')
+    prepopulated_fields = {'slug': ('name',)}
+    list_filter = ('store', 'is_active')
+
+    def image_preview(self, obj):
+        if obj.image:
+            return mark_safe(
+                f'<img src="{obj.image.url}" width="50" height="50" '
+                f'style="object-fit:cover; border-radius:4px;" alt="{obj.name}" />'
+            )
+        return 'No Image'
+    image_preview.short_description = 'Image Preview'

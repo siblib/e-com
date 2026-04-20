@@ -8,6 +8,7 @@ from .products import (
     Attribute,
     ProductVariant,
     VariantAttributeValue,
+    Brand,
 )
 
 from .account import Address, Wishlist

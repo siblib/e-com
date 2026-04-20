@@ -3569,38 +3569,49 @@
 
                         <!-- Grid -->
                         <div class="ylm8n hjdn7 fafsg dy3ai n60o7">
+                                {% for top_cat in top_categories_data %}
                                 <!-- Card -->
-                                <div
-                                        class="relative group aqyoh rsdjd lnk45 er6t7 tvbow dark:bg-neutral-900 dark:border-neutral-700">
+                                <div class="relative group aqyoh rsdjd lnk45 er6t7 tvbow dark:bg-neutral-900 dark:border-neutral-700">
                                         <div class="taag7 ylm8n yjjd2">
                                                 <div class="mrkie vyel6 hzp86">
+                                                        {% if top_cat.images.0.is_static %}
                                                         <img class="w-full h-[calc(20rem-8px)] f4yn1 x1s1r pb094 dark:bg-neutral-800"
-                                                                src={%
-                                                                static 'images/photo-1699595749116-33a4a869503c(1)' %}
-                                                                alt="Category Image">
+                                                                src="{% static top_cat.images.0.url %}" alt="{{ top_cat.category.name }} Category">
+                                                        {% else %}
+                                                        <img class="w-full h-[calc(20rem-8px)] f4yn1 x1s1r pb094 dark:bg-neutral-800"
+                                                                src="{{ top_cat.images.0.url }}" alt="{{ top_cat.category.name }} Product">
+                                                        {% endif %}
                                                 </div>
                                                 <div class="qhvks vyel6 space-y-1">
+                                                        {% if top_cat.images.1.is_static %}
                                                         <img class="w-full h-[calc(10rem-6px)] f4yn1 x1s1r pb094 dark:bg-neutral-800"
-                                                                src={% static 'images/photo-1699593022913-7068606059c8'
-                                                                %} alt="Category Image">
+                                                                src="{% static top_cat.images.1.url %}" alt="{{ top_cat.category.name }} Category">
+                                                        {% else %}
                                                         <img class="w-full h-[calc(10rem-6px)] f4yn1 x1s1r pb094 dark:bg-neutral-800"
-                                                                src={% static 'images/photo-1600185365483-26d7a4cc7519'
-                                                                %} alt="Category Image">
+                                                                src="{{ top_cat.images.1.url }}" alt="{{ top_cat.category.name }} Product">
+                                                        {% endif %}
+
+                                                        {% if top_cat.images.2.is_static %}
+                                                        <img class="w-full h-[calc(10rem-6px)] f4yn1 x1s1r pb094 dark:bg-neutral-800"
+                                                                src="{% static top_cat.images.2.url %}" alt="{{ top_cat.category.name }} Category">
+                                                        {% else %}
+                                                        <img class="w-full h-[calc(10rem-6px)] f4yn1 x1s1r pb094 dark:bg-neutral-800"
+                                                                src="{{ top_cat.images.2.url }}" alt="{{ top_cat.category.name }} Product">
+                                                        {% endif %}
                                                 </div>
                                         </div>
 
                                         <!-- Body -->
                                         <div class="jq72l dtief">
                                                 <h4 class="sikx1 tbkeq c9jt8 dark:text-neutral-200">
-                                                        Nike Shoes
+                                                        {{ top_cat.category.name }}
                                                 </h4>
                                                 <p class="rwavo w4xo0 jy5gh dark:text-neutral-500">
-                                                        Starting from $99
+                                                        Starting from ${{ top_cat.starting_price|default:"0" }}
                                                 </p>
 
                                                 <p class="wc6fu">
-                                                        <span
-                                                                class="inline-flex items-center b1nd2 w4xo0 c9jt8 l5oyh povjg group-hover:text-indigo-600 group-focus:text-indigo-600 dark:text-neutral-200 dark:group-hover:text-indigo-400 dark:group-focus:text-indigo-400">
+                                                        <span class="inline-flex items-center b1nd2 w4xo0 c9jt8 l5oyh povjg group-hover:text-indigo-600 group-focus:text-indigo-600 dark:text-neutral-200 dark:group-hover:text-indigo-400 dark:group-focus:text-indigo-400">
                                                                 View all
                                                         </span>
                                                 </p>
@@ -3608,96 +3619,10 @@
                                         <!-- End Body -->
 
                                         <a class="after:absolute after:inset-0 after:z-10"
-                                                href="https://www.preline.co/pro/shop/listing-grid.html"></a>
+                                                href="{% if top_cat.category.get_absolute_url %}{{ top_cat.category.get_absolute_url }}{% else %}#{% endif %}"></a>
                                 </div>
                                 <!-- End Card -->
-
-                                <!-- Card -->
-                                <div
-                                        class="relative group aqyoh rsdjd lnk45 er6t7 tvbow dark:bg-neutral-900 dark:border-neutral-700">
-                                        <div class="taag7 ylm8n yjjd2">
-                                                <div class="mrkie vyel6 hzp86">
-                                                        <img class="w-full h-[calc(20rem-8px)] f4yn1 x1s1r pb094 dark:bg-neutral-800"
-                                                                src={%
-                                                                static 'images/photo-1708443683276-8a3eb30faef2(1)' %}
-                                                                alt="Category Image">
-                                                </div>
-                                                <div class="qhvks vyel6 space-y-1">
-                                                        <img class="w-full h-[calc(10rem-6px)] f4yn1 x1s1r pb094 dark:bg-neutral-800"
-                                                                src={% static 'images/photo-1627225924765-552d49cf47ad'
-                                                                %} alt="Category Image">
-                                                        <img class="w-full h-[calc(10rem-6px)] f4yn1 x1s1r pb094 dark:bg-neutral-800"
-                                                                src={%
-                                                                static 'images/photo-1708443683198-a2b77a54c36e(1)' %}
-                                                                alt="Category Image">
-                                                </div>
-                                        </div>
-
-                                        <!-- Body -->
-                                        <div class="jq72l dtief">
-                                                <h4 class="sikx1 tbkeq c9jt8 dark:text-neutral-200">
-                                                        Men's Clothing
-                                                </h4>
-                                                <p class="rwavo w4xo0 jy5gh dark:text-neutral-500">
-                                                        Starting from $39
-                                                </p>
-
-                                                <p class="wc6fu">
-                                                        <span
-                                                                class="inline-flex items-center b1nd2 w4xo0 c9jt8 l5oyh povjg group-hover:text-indigo-600 group-focus:text-indigo-600 dark:text-neutral-200 dark:group-hover:text-indigo-400 dark:group-focus:text-indigo-400">
-                                                                View all
-                                                        </span>
-                                                </p>
-                                        </div>
-                                        <!-- End Body -->
-
-                                        <a class="after:absolute after:inset-0 after:z-10"
-                                                href="https://www.preline.co/pro/shop/listing-grid.html"></a>
-                                </div>
-                                <!-- End Card -->
-
-                                <!-- Card -->
-                                <div
-                                        class="relative group aqyoh rsdjd lnk45 er6t7 tvbow dark:bg-neutral-900 dark:border-neutral-700">
-                                        <div class="taag7 ylm8n yjjd2">
-                                                <div class="mrkie vyel6 hzp86">
-                                                        <img class="w-full h-[calc(20rem-8px)] f4yn1 x1s1r pb094 dark:bg-neutral-800"
-                                                                src={% static 'images/photo-1654512697735-d7ff21350443'
-                                                                %} alt="Category Image">
-                                                </div>
-                                                <div class="qhvks vyel6 space-y-1">
-                                                        <img class="w-full h-[calc(10rem-6px)] f4yn1 x1s1r pb094 dark:bg-neutral-800"
-                                                                src={% static 'images/photo-1585487000160-6ebcfceb0d03'
-                                                                %} alt="Category Image">
-                                                        <img class="w-full h-[calc(10rem-6px)] f4yn1 x1s1r pb094 dark:bg-neutral-800"
-                                                                src={%
-                                                                static 'images/photo-1593164842264-854604db2260(1)' %}
-                                                                alt="Category Image">
-                                                </div>
-                                        </div>
-
-                                        <!-- Body -->
-                                        <div class="jq72l dtief">
-                                                <h4 class="sikx1 tbkeq c9jt8 dark:text-neutral-200">
-                                                        Women's Clothing
-                                                </h4>
-                                                <p class="rwavo w4xo0 jy5gh dark:text-neutral-500">
-                                                        Starting from $59
-                                                </p>
-
-                                                <p class="wc6fu">
-                                                        <span
-                                                                class="inline-flex items-center b1nd2 w4xo0 c9jt8 l5oyh povjg group-hover:text-indigo-600 group-focus:text-indigo-600 dark:text-neutral-200 dark:group-hover:text-indigo-400 dark:group-focus:text-indigo-400">
-                                                                View all
-                                                        </span>
-                                                </p>
-                                        </div>
-                                        <!-- End Body -->
-
-                                        <a class="after:absolute after:inset-0 after:z-10"
-                                                href="https://www.preline.co/pro/shop/listing-grid.html"></a>
-                                </div>
-                                <!-- End Card -->
+                                {% endfor %}
                         </div>
                         <!-- Grid -->
                 </div>
@@ -3771,7 +3696,7 @@
                 <div class="w-full ehc3u fglch xf1r4 ids43 mx-auto">
                         <div class="n8xpr hovfi qox4a b2ubo mx-auto dtief">
                                 <h2 class="cnneu mp30q iqo6n c9jt8 dark:text-neutral-200">
-                                        Shoes by classics
+                                        Shop by Brand
                                 </h2>
                         </div>
 
@@ -3793,149 +3718,55 @@
                                                 <div
                                                         class="hs-carousel w-full flex sbso4 sa2ld i6bn4 overflow-x-auto ndnt5 y0qzi bpysz lwuhe basss bxgd5 k0qok dark:[&amp;::-webkit-scrollbar-track]:bg-neutral-700 dark:[&amp;::-webkit-scrollbar-thumb]:bg-neutral-200">
                                                         <div class="hs-carousel-body flex flex-nowrap oeanj mx4xe">
-                                                                <div class="hs-carousel-slide c44he eoh5b ptmfq active"
-                                                                        style="width: 219.333px;">
-                                                                        <!-- Item -->
-                                                                        <a class="relative block group focus:outline-hidden"
-                                                                                href="https://www.preline.co/pro/shop/index.html#">
-                                                                                <div class="overflow-hidden er6t7">
-                                                                                        <img class="w-full xdkn9 x1s1r er6t7 group-hover:scale-105 group-focus:scale-105 oeanj ys1w3 resz6"
-                                                                                                src={%
-                                                                                                static 'images/photo-1606890542241-b848582fe5cd'
-                                                                                                %} alt="Category Image">
-                                                                                </div>
-                                                                                <div class="absolute inset-0">
-                                                                                        <div
-                                                                                                class="h1r77 flex flex-col jkwm1 items-center">
-                                                                                                <span
-                                                                                                        class="ga1u8 f2l40 aqyoh c9jt8 xs2f2 vj9jb kghwt">
-                                                                                                        Air Jordan
-                                                                                                </span>
-                                                                                        </div>
-                                                                                </div>
-                                                                        </a>
-                                                                        <!-- End Item -->
-                                                                </div>
 
-                                                                <div class="hs-carousel-slide c44he eoh5b ptmfq active"
+                                                                <!-- DYNAMIC BRANDS LOOP START -->
+                                                                {% for brand in featured_brands %}
+                                                                <div class="hs-carousel-slide c44he eoh5b ptmfq{% if forloop.first %} active{% endif %}"
                                                                         style="width: 219.333px;">
                                                                         <!-- Item -->
                                                                         <a class="relative block group focus:outline-hidden"
-                                                                                href="https://www.preline.co/pro/shop/index.html#">
+                                                                                href="{% url 'products_by_brand' brand.slug %}">
                                                                                 <div class="overflow-hidden er6t7">
                                                                                         <img class="w-full xdkn9 x1s1r er6t7 group-hover:scale-105 group-focus:scale-105 oeanj ys1w3 resz6"
-                                                                                                src={%
-                                                                                                static 'images/photo-1704949834515-e9d11a0ceb9a'
-                                                                                                %} alt="Category Image">
+                                                                                                src="{% if brand.image %}{{ brand.image.url }}{% else %}{% static 'images/placeholder-brand.jpg' %}{% endif %}"
+                                                                                                alt="{{ brand.name }}">
                                                                                 </div>
                                                                                 <div class="absolute inset-0">
                                                                                         <div
                                                                                                 class="h1r77 flex flex-col jkwm1 items-center">
                                                                                                 <span
-                                                                                                        class="ga1u8 f2l40 aqyoh c9jt8 xs2f2 vj9jb kghwt">
-                                                                                                        Air Jordan 1
+                                                                                                        class="ga1u8 f2l40 aqyoh c9jt8 xs2f2 vj9jb kghwt text-center p-2">
+                                                                                                        {{ brand.name }}
                                                                                                 </span>
                                                                                         </div>
                                                                                 </div>
                                                                         </a>
                                                                         <!-- End Item -->
                                                                 </div>
+                                                                {% empty %}
+                                                                <!-- Fallback: one placeholder keeps Preline UI layout intact when no brands exist -->
+                                                                <div class="hs-carousel-slide c44he eoh5b ptmfq active"
+                                                                        style="width: 219.333px;">
+                                                                        <a class="relative block group focus:outline-hidden" href="#">
+                                                                                <div class="overflow-hidden er6t7">
+                                                                                        <img class="w-full xdkn9 x1s1r er6t7 group-hover:scale-105 group-focus:scale-105 oeanj ys1w3 resz6"
+                                                                                                src="{% static 'images/placeholder-brand.jpg' %}"
+                                                                                                alt="Browse Brands">
+                                                                                </div>
+                                                                                <div class="absolute inset-0">
+                                                                                        <div
+                                                                                                class="h1r77 flex flex-col jkwm1 items-center">
+                                                                                                <span
+                                                                                                        class="ga1u8 f2l40 aqyoh c9jt8 xs2f2 vj9jb kghwt text-center p-2">
+                                                                                                        Browse Brands
+                                                                                                </span>
+                                                                                        </div>
+                                                                                </div>
+                                                                        </a>
+                                                                </div>
+                                                                {% endfor %}
+                                                                <!-- DYNAMIC BRANDS LOOP END -->
 
-                                                                <div class="hs-carousel-slide c44he eoh5b ptmfq active"
-                                                                        style="width: 219.333px;">
-                                                                        <!-- Item -->
-                                                                        <a class="relative block group focus:outline-hidden"
-                                                                                href="https://www.preline.co/pro/shop/index.html#">
-                                                                                <div class="overflow-hidden er6t7">
-                                                                                        <img class="w-full xdkn9 x1s1r er6t7 group-hover:scale-105 group-focus:scale-105 oeanj ys1w3 resz6"
-                                                                                                src={%
-                                                                                                static 'images/photo-1695686331766-16a2c3c2c382'
-                                                                                                %} alt="Category Image">
-                                                                                </div>
-                                                                                <div class="absolute inset-0">
-                                                                                        <div
-                                                                                                class="h1r77 flex flex-col jkwm1 items-center">
-                                                                                                <span
-                                                                                                        class="ga1u8 f2l40 aqyoh c9jt8 xs2f2 vj9jb kghwt">
-                                                                                                        Dunk
-                                                                                                </span>
-                                                                                        </div>
-                                                                                </div>
-                                                                        </a>
-                                                                        <!-- End Item -->
-                                                                </div>
-
-                                                                <div class="hs-carousel-slide c44he eoh5b ptmfq active"
-                                                                        style="width: 219.333px;">
-                                                                        <!-- Item -->
-                                                                        <a class="relative block group focus:outline-hidden"
-                                                                                href="https://www.preline.co/pro/shop/index.html#">
-                                                                                <div class="overflow-hidden er6t7">
-                                                                                        <img class="w-full xdkn9 x1s1r er6t7 group-hover:scale-105 group-focus:scale-105 oeanj ys1w3 resz6"
-                                                                                                src={%
-                                                                                                static 'images/photo-1699595749116-33a4a869503c'
-                                                                                                %} alt="Category Image">
-                                                                                </div>
-                                                                                <div class="absolute inset-0">
-                                                                                        <div
-                                                                                                class="h1r77 flex flex-col jkwm1 items-center">
-                                                                                                <span
-                                                                                                        class="ga1u8 f2l40 aqyoh c9jt8 xs2f2 vj9jb kghwt">
-                                                                                                        Air Force 1
-                                                                                                </span>
-                                                                                        </div>
-                                                                                </div>
-                                                                        </a>
-                                                                        <!-- End Item -->
-                                                                </div>
-
-                                                                <div class="hs-carousel-slide c44he eoh5b ptmfq active"
-                                                                        style="width: 219.333px;">
-                                                                        <!-- Item -->
-                                                                        <a class="relative block group focus:outline-hidden"
-                                                                                href="https://www.preline.co/pro/shop/index.html#">
-                                                                                <div class="overflow-hidden er6t7">
-                                                                                        <img class="w-full xdkn9 x1s1r er6t7 group-hover:scale-105 group-focus:scale-105 oeanj ys1w3 resz6"
-                                                                                                src={%
-                                                                                                static 'images/photo-1699593022913-7068606059c8(1)'
-                                                                                                %} alt="Category Image">
-                                                                                </div>
-                                                                                <div class="absolute inset-0">
-                                                                                        <div
-                                                                                                class="h1r77 flex flex-col jkwm1 items-center">
-                                                                                                <span
-                                                                                                        class="ga1u8 f2l40 aqyoh c9jt8 xs2f2 vj9jb kghwt">
-                                                                                                        Blazer
-                                                                                                </span>
-                                                                                        </div>
-                                                                                </div>
-                                                                        </a>
-                                                                        <!-- End Item -->
-                                                                </div>
-
-                                                                <div class="hs-carousel-slide c44he eoh5b ptmfq active"
-                                                                        style="width: 219.333px;">
-                                                                        <!-- Item -->
-                                                                        <a class="relative block group focus:outline-hidden"
-                                                                                href="https://www.preline.co/pro/shop/index.html#">
-                                                                                <div class="overflow-hidden er6t7">
-                                                                                        <img class="w-full xdkn9 x1s1r er6t7 group-hover:scale-105 group-focus:scale-105 oeanj ys1w3 resz6"
-                                                                                                src={%
-                                                                                                static 'images/photo-1700853012811-ce0a42d2b6d3(1)'
-                                                                                                %} alt="Category Image">
-                                                                                </div>
-                                                                                <div class="absolute inset-0">
-                                                                                        <div
-                                                                                                class="h1r77 flex flex-col jkwm1 items-center">
-                                                                                                <span
-                                                                                                        class="ga1u8 f2l40 aqyoh c9jt8 xs2f2 vj9jb kghwt">
-                                                                                                        Adidas
-                                                                                                </span>
-                                                                                        </div>
-                                                                                </div>
-                                                                        </a>
-                                                                        <!-- End Item -->
-                                                                </div>
                                                         </div>
                                                 </div>
                                         </div>

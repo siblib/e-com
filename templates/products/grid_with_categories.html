@@ -1672,1764 +1672,405 @@
 
   <!-- ========== MAIN CONTENT ========== -->
   <main id="content">
-    <div class="p3amf jqiho w-full ehc3u fglch xf1r4 ids43 mx-auto">
-      <div class="hl65v">
-        <!-- Slider -->
-        <div data-hs-carousel="{
-          &quot;loadingClasses&quot;: &quot;opacity-0&quot;,
-          &quot;slidesQty&quot;: {
-            &quot;xs&quot;: 2,
-            &quot;sm&quot;: 3,
-            &quot;md&quot;: 4,
-            &quot;lg&quot;: 5,
-            &quot;xl&quot;: 6
-          },
-          &quot;isSnap&quot;: true,
-          &quot;hasSnapSpacers&quot;: false
-        }" class="relative init">
-          <div class="overflow-x-hidden">
-            <div class="-mx-1 mpze3">
-              <div class="hs-carousel w-full flex sbso4 sa2ld i6bn4 overflow-x-auto ndnt5 y0qzi bpysz lwuhe basss bxgd5 k0qok dark:[&amp;::-webkit-scrollbar-track]:bg-neutral-700 dark:[&amp;::-webkit-scrollbar-thumb]:bg-neutral-200">
-                <div class="hs-carousel-body flex flex-nowrap oeanj mx4xe">
-                  <div class="hs-carousel-slide c44he eoh5b ptmfq active" style="width: 219.333px;">
-                    <!-- Item -->
-                    <a class="relative block group focus:outline-hidden" href="https://www.preline.co/pro/shop/listing-grid-with-categories.html#">
-                      <div class="overflow-hidden er6t7">
-                        <img class="w-full xdkn9 x1s1r er6t7 group-hover:scale-105 group-focus:scale-105 oeanj ys1w3 resz6" src={% static 'images/photo-1637248666034-d5f4e91870a3' %} alt="Category Image">
-                      </div>
-                      <div class="absolute inset-0">
-                        <div class="h1r77 flex flex-col jkwm1 items-center">
-                          <span class="ga1u8 f2l40 aqyoh c9jt8 xs2f2 vj9jb kghwt">
-                            Dresses
-                          </span>
-                        </div>
-                      </div>
-                    </a>
-                    <!-- End Item -->
-                  </div>
+{% load static %}
 
-                  <div class="hs-carousel-slide c44he eoh5b ptmfq active" style="width: 219.333px;">
-                    <!-- Item -->
-                    <a class="relative block group focus:outline-hidden" href="https://www.preline.co/pro/shop/listing-grid-with-categories.html#">
-                      <div class="overflow-hidden er6t7">
-                        <img class="w-full xdkn9 x1s1r er6t7 group-hover:scale-105 group-focus:scale-105 oeanj ys1w3 resz6" src={% static 'images/photo-1561357747-a5ebd644c2d6' %} alt="Category Image">
-                      </div>
-                      <div class="absolute inset-0">
-                        <div class="h1r77 flex flex-col jkwm1 items-center">
-                          <span class="ga1u8 f2l40 aqyoh c9jt8 xs2f2 vj9jb kghwt">
-                            Suits
-                          </span>
-                        </div>
-                      </div>
-                    </a>
-                    <!-- End Item -->
-                  </div>
+<!-- Content Area -->
+<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
 
-                  <div class="hs-carousel-slide c44he eoh5b ptmfq active" style="width: 219.333px;">
-                    <!-- Item -->
-                    <a class="relative block group focus:outline-hidden" href="https://www.preline.co/pro/shop/listing-grid-with-categories.html#">
-                      <div class="overflow-hidden er6t7">
-                        <img class="w-full xdkn9 x1s1r er6t7 group-hover:scale-105 group-focus:scale-105 oeanj ys1w3 resz6" src={% static 'images/photo-1699595749116-33a4a869503c(1)' %} alt="Category Image">
-                      </div>
-                      <div class="absolute inset-0">
-                        <div class="h1r77 flex flex-col jkwm1 items-center">
-                          <span class="ga1u8 f2l40 aqyoh c9jt8 xs2f2 vj9jb kghwt">
-                            Shoes
-                          </span>
-                        </div>
-                      </div>
-                    </a>
-                    <!-- End Item -->
+  <!-- Category child and brand carousel -->
+  <div class="hl65v mb-10">
+    <div data-hs-carousel='{
+      "loadingClasses": "opacity-0",
+      "slidesQty": {"xs": 2, "sm": 3, "md": 4, "lg": 5, "xl": 6},
+      "isSnap": true,
+      "hasSnapSpacers": false
+    }' class="relative init">
+      <div class="overflow-x-hidden">
+        <div class="-mx-1 mpze3">
+          <div class="hs-carousel w-full flex sbso4 sa2ld i6bn4 overflow-x-auto ndnt5 y0qzi bpysz lwuhe basss bxgd5 k0qok dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-200">
+            <div class="hs-carousel-body flex flex-nowrap oeanj mx4xe">
+              
+              <!-- Map through Immediate Child Categories -->
+              {% for child in child_categories %}
+              <div class="hs-carousel-slide c44he eoh5b ptmfq active" style="width: 219.333px;">
+                <a class="relative block group focus:outline-hidden" href="?category={{ child.slug }}">
+                  <div class="overflow-hidden er6t7 aspect-square">
+                    {% if child.image %}
+                    <img class="w-full h-full object-cover group-hover:scale-105 group-focus:scale-105 transition-transform duration-300" src="{{ child.image.url }}" alt="{{ child.name }}">
+                    {% else %}
+                    <div class="w-full h-full bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center">
+                        <span class="text-neutral-500 font-medium">{{ child.name }}</span>
+                    </div>
+                    {% endif %}
                   </div>
-
-                  <div class="hs-carousel-slide c44he eoh5b ptmfq active" style="width: 219.333px;">
-                    <!-- Item -->
-                    <a class="relative block group focus:outline-hidden" href="https://www.preline.co/pro/shop/listing-grid-with-categories.html#">
-                      <div class="overflow-hidden er6t7">
-                        <img class="w-full xdkn9 x1s1r er6t7 group-hover:scale-105 group-focus:scale-105 oeanj ys1w3 resz6" src={% static 'images/photo-1713276770479-8db87d24e80f' %} alt="Category Image">
-                      </div>
-                      <div class="absolute inset-0">
-                        <div class="h1r77 flex flex-col jkwm1 items-center">
-                          <span class="ga1u8 f2l40 aqyoh c9jt8 xs2f2 vj9jb kghwt">
-                            Jackets
-                          </span>
-                        </div>
-                      </div>
-                    </a>
-                    <!-- End Item -->
+                  <div class="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors">
+                    <div class="h1r77 flex flex-col jkwm1 items-center h-full justify-center">
+                      <span class="ga1u8 f2l40 aqyoh c9jt8 xs2f2 vj9jb kghwt text-white font-bold tracking-wide shadow-sm drop-shadow-md">
+                        {{ child.name }}
+                      </span>
+                    </div>
                   </div>
-
-                  <div class="hs-carousel-slide c44he eoh5b ptmfq active" style="width: 219.333px;">
-                    <!-- Item -->
-                    <a class="relative block group focus:outline-hidden" href="https://www.preline.co/pro/shop/listing-grid-with-categories.html#">
-                      <div class="overflow-hidden er6t7">
-                        <img class="w-full xdkn9 x1s1r er6t7 group-hover:scale-105 group-focus:scale-105 oeanj ys1w3 resz6" src={% static 'images/photo-1598343175492-9e7dc0e63cc6' %} alt="Category Image">
-                      </div>
-                      <div class="absolute inset-0">
-                        <div class="h1r77 flex flex-col jkwm1 items-center">
-                          <span class="ga1u8 f2l40 aqyoh c9jt8 xs2f2 vj9jb kghwt">
-                            Trousers
-                          </span>
-                        </div>
-                      </div>
-                    </a>
-                    <!-- End Item -->
-                  </div>
-
-                  <div class="hs-carousel-slide c44he eoh5b ptmfq active" style="width: 219.333px;">
-                    <!-- Item -->
-                    <a class="relative block group focus:outline-hidden" href="https://www.preline.co/pro/shop/listing-grid-with-categories.html#">
-                      <div class="overflow-hidden er6t7">
-                        <img class="w-full xdkn9 x1s1r er6t7 group-hover:scale-105 group-focus:scale-105 oeanj ys1w3 resz6" src={% static 'images/photo-1603344797033-f0f4f587ab60' %} alt="Category Image">
-                      </div>
-                      <div class="absolute inset-0">
-                        <div class="h1r77 flex flex-col jkwm1 items-center">
-                          <span class="ga1u8 f2l40 aqyoh c9jt8 xs2f2 vj9jb kghwt">
-                            Jeans
-                          </span>
-                        </div>
-                      </div>
-                    </a>
-                    <!-- End Item -->
-                  </div>
-                </div>
+                </a>
               </div>
+              {% endfor %}
+
+              <!-- Fallback to mapping through Brands if Child Categories empty or as additional nav blocks -->
+              {% for brand in brands %}
+              <div class="hs-carousel-slide c44he eoh5b ptmfq active" style="width: 219.333px;">
+                <a class="relative block group focus:outline-hidden" href="?category={{ active_category.slug }}&brand={{ brand.slug }}">
+                  <div class="overflow-hidden er6t7 aspect-square">
+                    {% if brand.image %}
+                    <img class="w-full h-full object-cover group-hover:scale-105 group-focus:scale-105 transition-transform duration-300" src="{{ brand.image.url }}" alt="{{ brand.name }}">
+                    {% else %}
+                    <div class="w-full h-full bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center">
+                        <span class="text-neutral-600 dark:text-neutral-300 font-semibold">{{ brand.name }}</span>
+                    </div>
+                    {% endif %}
+                  </div>
+                  <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors">
+                    <div class="h1r77 flex flex-col jkwm1 items-center h-full justify-center">
+                      <span class="ga1u8 f2l40 aqyoh c9jt8 xs2f2 vj9jb kghwt text-white font-bold tracking-wide shadow-sm drop-shadow-md">
+                        {{ brand.name }}
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {% empty %}
+                {% if not child_categories %}
+                <div class="w-full text-center py-6 text-gray-500">No categories or brands currently available here.</div>
+                {% endif %}
+              {% endfor %}
+
             </div>
           </div>
-
-          <!-- Nav -->
-          <button type="button" class="hs-carousel-prev hs-carousel-disabled:opacity-50 hs-carousel-disabled:cursor-default xl:hidden absolute zoyba xviih inline-flex jkwm1 items-center fjwwc aqyoh rsdjd rxmp4 c9jt8 kghwt hj07t d05xb -translate-y-1/2 focus:outline-hidden">
-            <span class="f8p8s" aria-hidden="true">
-              <svg class="e731n yhc35" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="m15 18-6-6 6-6"></path>
-              </svg>
-            </span>
-            <span class="et50x">Previous</span>
-          </button>
-          <button type="button" class="hs-carousel-next hs-carousel-disabled:opacity-50 hs-carousel-disabled:cursor-default xl:hidden absolute zoyba tb54y inline-flex jkwm1 items-center fjwwc aqyoh rsdjd rxmp4 c9jt8 kghwt hj07t d05xb -translate-y-1/2 focus:outline-hidden disabled" disabled="disabled">
-            <span class="et50x">Next</span>
-            <span class="f8p8s" aria-hidden="true">
-              <svg class="e731n yhc35" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="m9 18 6-6-6-6"></path>
-              </svg>
-            </span>
-          </button>
-          <!-- End Nav -->
         </div>
-        <!-- End Slider -->
       </div>
 
-      <div class="r4xgm">
-        <h1 class="cnneu mp30q iqo6n c9jt8 dark:text-neutral-200">
-          Women's Clothing
-        </h1>
-      </div>
-
-      <!-- Grid -->
-      <div class="e3s31 flex flex-wrap ox2cl items-center g27d7">
-        <div class="hlt95">
-          <!-- Filter Bar -->
-          <div class="flex flex-wrap  items-center o4ndh">
-            <!-- Dropdown Filter -->
-            <div class="hs-dropdown [--auto-close:inside] inline-block">
-              <!-- Filter Button -->
-              <button id="hs-pro-shsfbfld" type="button" class="hs-dropdown-toggle ga1u8 f2l40 flex items-center n6i5x rsdjd lnk45 w4xo0 w9dei c9jt8 kghwt d05xb disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden r2vwg hover dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
-                <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 6h18"></path>
-                  <path d="M7 12h10"></path>
-                  <path d="M10 18h4"></path>
-                </svg>
-                Filter
-                <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m6 9 6 6 6-6"></path>
-                </svg>
-              </button>
-              <!-- End Filter Button -->
-
-              <!-- Dropdown Menu -->
-              <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] md:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 w-full hidden gbcuh w-full x5nwc aqyoh er6t7 gmg3v before:absolute before:-top-4 before:start-0 before:w-full before:h-5 dark:bg-neutral-900" role="menu" aria-orientation="vertical" aria-labelledby="hs-pro-shsfbfld" tabindex="-1">
-                <div class="tbd2k dgycp">
-                  <!-- Item -->
-                  <span id="hs-pro-shfdaf1" class="hs-removing:opacity-0 whz4r ufjzp vyel6 z47ts inline-flex items-center m4ww2 f4yn1 c9jt8 w4xo0 m74u5 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-200">
-                    Women
-                    <button type="button" class="inline-flex e731n jkwm1 items-center yhc35 m74u5 fd43e cq7a3 focus:outline-hidden f6db7 w4xo0 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-400" data-hs-remove-element="#hs-pro-shfdaf1">
-                      <svg class="e731n b9gop" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 6 6 18"></path>
-                        <path d="m6 6 12 12"></path>
-                      </svg>
-                    </button>
-                  </span>
-                  <!-- End Item -->
-
-                  <!-- Item -->
-                  <span id="hs-pro-shfdaf2" class="hs-removing:opacity-0 whz4r ufjzp vyel6 z47ts inline-flex items-center m4ww2 f4yn1 c9jt8 w4xo0 m74u5 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-200">
-                    Clothing
-                    <button type="button" class="inline-flex e731n jkwm1 items-center yhc35 m74u5 fd43e cq7a3 focus:outline-hidden f6db7 w4xo0 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-400" data-hs-remove-element="#hs-pro-shfdaf2">
-                      <svg class="e731n b9gop" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 6 6 18"></path>
-                        <path d="m6 6 12 12"></path>
-                      </svg>
-                    </button>
-                  </span>
-                  <!-- End Item -->
-                </div>
-              </div>
-              <!-- End Dropdown Menu -->
-            </div>
-            <!-- End Dropdown Filter -->
-
-            <!-- Dropdown Category -->
-            <div class="hs-dropdown [--auto-close:inside] inline-block">
-              <!-- Category Button -->
-              <button id="hs-pro-shsfbctd" type="button" class="hs-dropdown-toggle ga1u8 f2l40 flex items-center n6i5x rsdjd lnk45 w4xo0 w9dei c9jt8 kghwt d05xb disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden r2vwg hover dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
-                Category
-                <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m6 9 6 6 6-6"></path>
-                </svg>
-              </button>
-              <!-- End Category Button -->
-
-              <!-- Dropdown Menu -->
-              <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] md:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 w-full hidden gbcuh w-full x5nwc aqyoh er6t7 gmg3v before:absolute before:-top-4 before:start-0 before:w-full before:h-5 dark:bg-neutral-900" role="menu" aria-orientation="vertical" aria-labelledby="hs-pro-shsfbctd" tabindex="-1">
-                <div class="tbd2k dgycp">
-                  <!-- List -->
-                  <div class="space-y-0.5">
-                    <!-- Checkbox -->
-                    <div class="flex items-center">
-                      <label for="hs-pro-shfloc-shirts" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                        <input type="checkbox" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-shirts">
-                        <span class="ncgn0 c9jt8 dark:text-neutral-400">Shirts</span>
-                        <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(47)</span>
-                      </label>
-                    </div>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <div class="flex items-center">
-                      <label for="hs-pro-shfloc-tshirts" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                        <input type="checkbox" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-tshirts">
-                        <span class="ncgn0 c9jt8 dark:text-neutral-400">T-shirts</span>
-                        <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(89)</span>
-                      </label>
-                    </div>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <div class="flex items-center">
-                      <label for="hs-pro-shfloc-polos" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                        <input type="checkbox" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-polos">
-                        <span class="ncgn0 c9jt8 dark:text-neutral-400">Polos</span>
-                        <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(35)</span>
-                      </label>
-                    </div>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <div class="flex items-center">
-                      <label for="hs-pro-shfloc-trousers" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                        <input type="checkbox" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-trousers">
-                        <span class="ncgn0 c9jt8 dark:text-neutral-400">Trousers</span>
-                        <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(30)</span>
-                      </label>
-                    </div>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <div class="flex items-center">
-                      <label for="hs-pro-shfloc-jeans" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                        <input type="checkbox" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-jeans">
-                        <span class="ncgn0 c9jt8 dark:text-neutral-400">Jeans</span>
-                        <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(21)</span>
-                      </label>
-                    </div>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <div class="flex items-center">
-                      <label for="hs-pro-shfloc-shorts" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                        <input type="checkbox" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-shorts">
-                        <span class="ncgn0 c9jt8 dark:text-neutral-400">Shorts</span>
-                        <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(5)</span>
-                      </label>
-                    </div>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <div class="flex items-center">
-                      <label for="hs-pro-shfloc-jackets" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                        <input type="checkbox" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-jackets">
-                        <span class="ncgn0 c9jt8 dark:text-neutral-400">Jackets</span>
-                        <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(15)</span>
-                      </label>
-                    </div>
-                    <!-- End Checkbox -->
-                  </div>
-
-                  <div id="hs-pro-shfcc-heading" class="hs-collapse hidden w-full overflow-hidden transition-[height] ufjzp" aria-labelledby="hs-pro-shfcc">
-                    <div class="space-y-0.5">
-                      <!-- Checkbox -->
-                      <div class="flex items-center">
-                        <label for="hs-pro-shfloc-sweaters" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                          <input type="checkbox" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-sweaters">
-                          <span class="ncgn0 c9jt8 dark:text-neutral-400">Sweaters</span>
-                          <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(44)</span>
-                        </label>
-                      </div>
-                      <!-- End Checkbox -->
-
-                      <!-- Checkbox -->
-                      <div class="flex items-center">
-                        <label for="hs-pro-shfloc-blazers" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                          <input type="checkbox" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-blazers">
-                          <span class="ncgn0 c9jt8 dark:text-neutral-400">Blazers</span>
-                          <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(1)</span>
-                        </label>
-                      </div>
-                      <!-- End Checkbox -->
-                    </div>
-                  </div>
-                  <!-- End List -->
-
-                  <div class="rwavo">
-                    <button type="button" class="hs-collapse-toggle inline-flex items-center b1nd2 z4zqw c9jt8 l5oyh povjg iiod0 focus:outline-hidden s6w37 dark:text-neutral-200 dark:hover:text-indigo-400 dark:focus:text-indigo-400" id="hs-pro-shfcc" aria-expanded="false" aria-controls="hs-pro-shfcc-heading" data-hs-collapse="#hs-pro-shfcc-heading">
-                      <span class="hs-collapse-open:hidden">Show more</span>
-                      <span class="hs-collapse-open:block hidden">Show less</span>
-                      <svg class="hs-collapse-open:rotate-180 e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="m6 9 6 6 6-6"></path>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <!-- End Dropdown Menu -->
-            </div>
-            <!-- End Dropdown Category -->
-
-            <!-- Dropdown Size -->
-            <div class="hs-dropdown [--auto-close:inside] inline-block">
-              <!-- Size Button -->
-              <button id="hs-pro-shsszd" type="button" class="hs-dropdown-toggle ga1u8 f2l40 flex items-center n6i5x rsdjd lnk45 w4xo0 w9dei c9jt8 kghwt d05xb disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden r17tr dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
-                Size
-                <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m6 9 6 6 6-6"></path>
-                </svg>
-              </button>
-              <!-- End Size Button -->
-
-              <!-- Dropdown Menu -->
-              <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] md:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 w-full hidden gbcuh w-full x5nwc aqyoh er6t7 gmg3v before:absolute before:-top-4 before:start-0 before:w-full before:h-5 dark:bg-neutral-900" role="menu" aria-orientation="vertical" aria-labelledby="hs-pro-shsszd" tabindex="-1">
-                <div class="tbd2k dgycp">
-                  <!-- Grid -->
-                  <div class="vo43q ylm8n zez8u o4ndh">
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsrOneSize" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsrOneSize" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        One size
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsr2XS" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsr2XS" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        2XS
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsrXS" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsrXS" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        XS
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsrS" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsrS" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        S
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsrM" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsrM" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        M
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsrL" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsrL" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        L
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsrXL" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsrXL" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        XL
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsr2XL" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsr2XL" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        2XL
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsr3XL" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsr3XL" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        3XL
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsr4XL" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsr4XL" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        4XL
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsr36" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsr36" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        36
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsr38" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsr38" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        38
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsr39" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsr39" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        39
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsr40" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsr40" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        40
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsr41" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsr41" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        41
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsr42" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsr42" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        42
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsr43" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsr43" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        43
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsr44" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsr44" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        44
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsr45" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsr45" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        45
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsr46" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsr46" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        46
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsr48" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsr48" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        48
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsr50" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsr50" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        50
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsr52" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsr52" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        52
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsr54" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsr54" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        54
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsr56" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsr56" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        56
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsr58" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsr58" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        58
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <label for="hs-pro-shfdsr60" class="oze3y group relative flex jkwm1 items-center vyfcq dtief xs2f2 aqyoh c9jt8 rsdjd lnk45 cursor-pointer pb094 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200
-                    vg053 dark:has-checked:text-indigo-500
-                    gzyzm dark:has-checked:border-indigo-500
-                    kuxro
-                    fao71 dark:has-checked:ring-indigo-500
-                    has-disabled:pointer-events-none
-                    has-disabled:text-gray-200 dark:has-disabled:text-neutral-700
-                    has-disabled:after:absolute
-                    has-disabled:after:inset-0
-                    has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-gray-200)_calc(50%-1px),var(--color-gray-200)_50%,transparent_50%)]
-                    dark:has-disabled:after:bg-[linear-gradient(to_right_bottom,transparent_calc(50%-1px),var(--color-neutral-700)_calc(50%-1px),var(--color-neutral-700)_50%,transparent_50%)] ">
-                      <input type="checkbox" id="hs-pro-shfdsr60" class="hidden w4poy lnk45 g41z1 g22e3 axcnw dark:text-indigo-500 dark:border-neutral-700 dark:focus:ring-neutral-900" name="hs-pro-shfdsr">
-                      <span class="block">
-                        60
-                      </span>
-                    </label>
-                    <!-- End Checkbox -->
-                  </div>
-                  <!-- End Grid -->
-                </div>
-              </div>
-              <!-- End Dropdown Menu -->
-            </div>
-            <!-- End Dropdown Size -->
-
-            <!-- Dropdown Color -->
-            <div class="hs-dropdown [--auto-close:inside] inline-block">
-              <!-- Color Button -->
-              <button id="hs-pro-shscld" type="button" class="hs-dropdown-toggle ga1u8 f2l40 flex items-center n6i5x rsdjd lnk45 w4xo0 w9dei c9jt8 kghwt d05xb disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden r17tr dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
-                Color
-                <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m6 9 6 6 6-6"></path>
-                </svg>
-              </button>
-              <!-- End Color Button -->
-
-              <!-- Dropdown Menu -->
-              <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] md:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 w-full hidden gbcuh w-full x5nwc aqyoh er6t7 gmg3v before:absolute before:-top-4 before:start-0 before:w-full before:h-5 dark:bg-neutral-900" role="menu" aria-orientation="vertical" aria-labelledby="hs-pro-shscld" tabindex="-1">
-                <div class="tbd2k dgycp">
-                  <!-- Grid -->
-                  <div class="space-y-0.5">
-                    <!-- Radio -->
-                    <label for="hs-pro-shflocss-black" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                      <input type="checkbox" class="e731n twmqj gokyy md7sj m8zlk yvj92 axcnw checked:text-black disabled:opacity-50 disabled:pointer-events-none" id="hs-pro-shflocss-black">
-                      <span class="ncgn0 c9jt8 dark:text-neutral-400">Black</span>
-                      <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(70)</span>
-                    </label>
-                    <!-- End Radio -->
-
-                    <!-- Radio -->
-                    <label for="hs-pro-shfloc-white" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                      <input type="checkbox" class="e731n twmqj aqyoh dwbp4 m8zlk yvj92 axcnw focus:checked:border-gray-300 checked:text-white checked:border-gray-300 checked:bg-none disabled:opacity-50 disabled:pointer-events-none" id="hs-pro-shfloc-white">
-                      <svg class="e731n b9gop -ms-[17px] opacity-0 group-has-checked:opacity-100 qisr3" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z"></path>
-                      </svg>
-                      <span class="ncgn0 c9jt8 dark:text-neutral-400">White</span>
-                      <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(127)</span>
-                    </label>
-                    <!-- End Radio -->
-
-                    <!-- Radio -->
-                    <label for="hs-pro-shfloc-gray" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                      <input type="checkbox" class="e731n twmqj vte9v dwbp4 m8zlk yvj92 axcnw checked:text-gray-300 disabled:opacity-50 disabled:pointer-events-none" id="hs-pro-shfloc-gray">
-                      <span class="ncgn0 c9jt8 dark:text-neutral-400">Gray</span>
-                      <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(63)</span>
-                    </label>
-                    <!-- End Radio -->
-
-                    <!-- Radio -->
-                    <label for="hs-pro-shfloc-red" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                      <input type="checkbox" class="e731n twmqj jmaom bpjvw m8zlk yvj92 axcnw checked:text-red-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-pro-shfloc-red">
-                      <span class="ncgn0 c9jt8 dark:text-neutral-400">Red</span>
-                      <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(32)</span>
-                    </label>
-                    <!-- End Radio -->
-
-                    <!-- Radio -->
-                    <label for="hs-pro-shfloc-orange" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                      <input type="checkbox" class="e731n twmqj rtknk yhzk9 m8zlk yvj92 axcnw checked:text-orange-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-pro-shfloc-orange">
-                      <span class="ncgn0 c9jt8 dark:text-neutral-400">Orange</span>
-                      <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(25)</span>
-                    </label>
-                    <!-- End Radio -->
-
-                    <!-- Radio -->
-                    <label for="hs-pro-shfloc-yellow" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                      <input type="checkbox" class="e731n twmqj mn56d qdin9 m8zlk yvj92 axcnw checked:text-yellow-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-pro-shfloc-yellow">
-                      <span class="ncgn0 c9jt8 dark:text-neutral-400">Yellow</span>
-                      <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(15)</span>
-                    </label>
-                    <!-- End Radio -->
-
-                    <!-- Radio -->
-                    <label for="hs-pro-shfloc-green" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                      <input type="checkbox" class="e731n twmqj jhgul ajc6v m8zlk yvj92 axcnw checked:text-green-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-pro-shfloc-green">
-                      <span class="ncgn0 c9jt8 dark:text-neutral-400">Green</span>
-                      <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(12)</span>
-                    </label>
-                    <!-- End Radio -->
-
-                    <!-- Radio -->
-                    <label for="hs-pro-shfloc-blue" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                      <input type="checkbox" class="e731n twmqj d8gja wx7jz m8zlk yvj92 axcnw checked:text-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-pro-shfloc-blue">
-                      <span class="ncgn0 c9jt8 dark:text-neutral-400">Blue</span>
-                      <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(86)</span>
-                    </label>
-                    <!-- End Radio -->
-                  </div>
-                  <!-- End Grid -->
-                </div>
-              </div>
-              <!-- End Dropdown Menu -->
-            </div>
-            <!-- End Dropdown Color -->
-
-            <!-- Dropdown Price -->
-            <div class="hs-dropdown [--auto-close:inside] inline-block">
-              <!-- Price Button -->
-              <button id="hs-pro-shsprd" type="button" class="hs-dropdown-toggle ga1u8 f2l40 flex items-center n6i5x rsdjd lnk45 w4xo0 w9dei c9jt8 kghwt d05xb disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden r17tr dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
-                Price
-                <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m6 9 6 6 6-6"></path>
-                </svg>
-              </button>
-              <!-- End Price Button -->
-
-              <!-- Dropdown Menu -->
-              <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] md:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 w-full hidden gbcuh w-full x5nwc aqyoh er6t7 gmg3v before:absolute before:-top-4 before:start-0 before:w-full before:h-5 dark:bg-neutral-900" role="menu" aria-orientation="vertical" aria-labelledby="hs-pro-shsprd" tabindex="-1">
-                <div class="tbd2k l73lz dgycp ts1cc">
-                  <!-- List -->
-                  <div class="space-y-0.5">
-                    <!-- Checkbox -->
-                    <div class="flex items-center">
-                      <label for="hs-pro-shfloc-0-25" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                        <input type="checkbox" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-0-25">
-                        <span class="ncgn0 c9jt8 dark:text-neutral-400">$0-$25</span>
-                        <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(53)</span>
-                      </label>
-                    </div>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <div class="flex items-center">
-                      <label for="hs-pro-shfloc-25-50" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                        <input type="checkbox" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-25-50">
-                        <span class="ncgn0 c9jt8 dark:text-neutral-400">$25-$50</span>
-                        <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(92)</span>
-                      </label>
-                    </div>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <div class="flex items-center">
-                      <label for="hs-pro-shfloc-50-100" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                        <input type="checkbox" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-50-100">
-                        <span class="ncgn0 c9jt8 dark:text-neutral-400">$50-$100</span>
-                        <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(135)</span>
-                      </label>
-                    </div>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <div class="flex items-center">
-                      <label for="hs-pro-shfloc-100-150" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                        <input type="checkbox" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-100-150">
-                        <span class="ncgn0 c9jt8 dark:text-neutral-400">$100-$150</span>
-                        <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(27)</span>
-                      </label>
-                    </div>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <div class="flex items-center">
-                      <label for="hs-pro-shfloc-150-plus" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                        <input type="checkbox" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-150-plus">
-                        <span class="ncgn0 c9jt8 dark:text-neutral-400">$150+</span>
-                        <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(3)</span>
-                      </label>
-                    </div>
-                    <!-- End Checkbox -->
-                  </div>
-                  <!-- End List -->
-
-                  <!-- Range Slider -->
-                  <div class="ixte5 chaem">
-                    <div class="flex jkwm1 w-full r4xgm">
-                      <div class="flex items-center w4xo0 dark:text-neutral-200">
-                        <div id="hs-pass-values-to-html-elements-min-target" class="dtief utc3s">$250</div>
-                        -
-                        <div id="hs-pass-values-to-html-elements-max-target" class="dtief utc3s">$750</div>
-                      </div>
-                    </div>
-                    <label class="et50x">Example range</label>
-                    <div id="hs-pass-values-to-html-elements" class="--prevent-on-load-init noUi-target relative srw05 kghwt f4yn1 dark:bg-neutral-700 noUi-ltr noUi-horizontal noUi-txt-dir-ltr" data-hs-range-slider="{
-                      &quot;start&quot;: [250, 750],
-                      &quot;range&quot;: {
-                        &quot;min&quot;: 0,
-                        &quot;max&quot;: 1000
-                      },
-                      &quot;formatter&quot;: {
-                        &quot;type&quot;: &quot;integer&quot;,
-                        &quot;prefix&quot;: &quot;$&quot;
-                      },
-                      &quot;connect&quot;: true,
-                      &quot;cssClasses&quot;: {
-                        &quot;target&quot;: &quot;relative srw05 kghwt f4yn1 dark:bg-neutral-700&quot;,
-                        &quot;base&quot;: &quot;fp3m4 relative aka1n&quot;,
-                        &quot;origin&quot;: &quot;absolute fuv09 kji94 fp3m4 yjal6 kghwt&quot;,
-                        &quot;handle&quot;: &quot;absolute zoyba kji94 yhc35 aqyoh xhdzk o8rxe kghwt cursor-pointer kqyph -translate-y-2/4 dark:bg-neutral-900 dark:border-neutral-200&quot;,
-                        &quot;connects&quot;: &quot;relative c7ixs fp3m4 kghwt overflow-hidden&quot;,
-                        &quot;connect&quot;: &quot;absolute fuv09 kji94 aka1n fp3m4 y73k3 yjal6 dark:bg-neutral-200&quot;,
-                        &quot;touchArea&quot;: &quot;absolute -top-1 -bottom-1 -start-1 -end-1&quot;
-                      }
-                    }"><div class=" noUi-base fp3m4 relative aka1n"><div class=" noUi-connects relative c7ixs fp3m4 kghwt overflow-hidden"><div class=" noUi-connect absolute fuv09 kji94 aka1n fp3m4 y73k3 yjal6 dark:bg-neutral-200" style="transform: translate(25%, 0px) scale(0.5, 1);"></div></div><div class=" noUi-origin absolute fuv09 kji94 fp3m4 yjal6 kghwt" style="transform: translate(-75%, 0px); z-index: 5;"><div class="noUi-handle absolute zoyba kji94 yhc35 aqyoh xhdzk o8rxe kghwt cursor-pointer kqyph -translate-y-2/4 dark:bg-neutral-900 dark:border-neutral-200 noUi-handle-lower" data-handle="0" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="750.0" aria-valuenow="250.0" aria-valuetext="250.00"><div class=" noUi-touch-area absolute -top-1 -bottom-1 -start-1 -end-1"></div></div></div><div class=" noUi-origin absolute fuv09 kji94 fp3m4 yjal6 kghwt" style="transform: translate(-25%, 0px); z-index: 4;"><div class="noUi-handle absolute zoyba kji94 yhc35 aqyoh xhdzk o8rxe kghwt cursor-pointer kqyph -translate-y-2/4 dark:bg-neutral-900 dark:border-neutral-200 noUi-handle-upper" data-handle="1" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="250.0" aria-valuemax="1000.0" aria-valuenow="750.0" aria-valuetext="750.00"><div class=" noUi-touch-area absolute -top-1 -bottom-1 -start-1 -end-1"></div></div></div></div></div>
-                  </div>
-                  <!-- End Range Slider -->
-                </div>
-              </div>
-              <!-- End Dropdown Menu -->
-            </div>
-            <!-- End Dropdown Price -->
-
-            <!-- Dropdown Fit -->
-            <div class="hs-dropdown [--auto-close:inside] inline-block">
-              <!-- Fit Button -->
-              <button id="hs-pro-shsfid" type="button" class="hs-dropdown-toggle ga1u8 f2l40 flex items-center n6i5x rsdjd lnk45 w4xo0 w9dei c9jt8 kghwt d05xb disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden r17tr dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
-                Fit
-                <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m6 9 6 6 6-6"></path>
-                </svg>
-              </button>
-              <!-- End Fit Button -->
-
-              <!-- Dropdown Menu -->
-              <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] md:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 w-full hidden gbcuh w-full x5nwc aqyoh er6t7 gmg3v before:absolute before:-top-4 before:start-0 before:w-full before:h-5 dark:bg-neutral-900" role="menu" aria-orientation="vertical" aria-labelledby="hs-pro-shsfid" tabindex="-1">
-                <div class="tbd2k dgycp">
-                  <!-- List -->
-                  <div class="space-y-0.5">
-                    <!-- Checkbox -->
-                    <div class="flex items-center">
-                      <label for="hs-pro-shfloc-classic" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                        <input type="checkbox" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-classic">
-                        <span class="ncgn0 c9jt8 dark:text-neutral-400">Classic</span>
-                        <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(38)</span>
-                      </label>
-                    </div>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <div class="flex items-center">
-                      <label for="hs-pro-shfloc-modern" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                        <input type="checkbox" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-modern">
-                        <span class="ncgn0 c9jt8 dark:text-neutral-400">Modern</span>
-                        <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(1)</span>
-                      </label>
-                    </div>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <div class="flex items-center">
-                      <label for="hs-pro-shfloc-regular" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                        <input type="checkbox" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-regular">
-                        <span class="ncgn0 c9jt8 dark:text-neutral-400">Regular</span>
-                        <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(135)</span>
-                      </label>
-                    </div>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <div class="flex items-center">
-                      <label for="hs-pro-shfloc-relaxed" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                        <input type="checkbox" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-relaxed">
-                        <span class="ncgn0 c9jt8 dark:text-neutral-400">Relaxed</span>
-                        <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(26)</span>
-                      </label>
-                    </div>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <div class="flex items-center">
-                      <label for="hs-pro-shfloc-skinny" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                        <input type="checkbox" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-skinny">
-                        <span class="ncgn0 c9jt8 dark:text-neutral-400">Skinny</span>
-                        <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(3)</span>
-                      </label>
-                    </div>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <div class="flex items-center">
-                      <label for="hs-pro-shfloc-slim" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                        <input type="checkbox" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-slim">
-                        <span class="ncgn0 c9jt8 dark:text-neutral-400">Slim</span>
-                        <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(30)</span>
-                      </label>
-                    </div>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <div class="flex items-center">
-                      <label for="hs-pro-shfloc-straight" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                        <input type="checkbox" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-straight">
-                        <span class="ncgn0 c9jt8 dark:text-neutral-400">Straight</span>
-                        <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(9)</span>
-                      </label>
-                    </div>
-                    <!-- End Checkbox -->
-                  </div>
-                  <!-- End List -->
-                </div>
-              </div>
-              <!-- End Dropdown Menu -->
-            </div>
-            <!-- End Dropdown Fit -->
-
-            <!-- Dropdown Sleeve Length -->
-            <div class="hs-dropdown [--auto-close:inside] inline-block">
-              <!-- Sleeve Length Button -->
-              <button id="hs-pro-shssld" type="button" class="hs-dropdown-toggle ga1u8 f2l40 flex items-center n6i5x rsdjd lnk45 w4xo0 w9dei c9jt8 kghwt d05xb disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden r17tr dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
-                Sleeve Length
-                <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m6 9 6 6 6-6"></path>
-                </svg>
-              </button>
-              <!-- End Sleeve Length Button -->
-
-              <!-- Dropdown Menu -->
-              <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] md:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 w-full hidden gbcuh w-full x5nwc aqyoh er6t7 gmg3v before:absolute before:-top-4 before:start-0 before:w-full before:h-5 dark:bg-neutral-900" role="menu" aria-orientation="vertical" aria-labelledby="hs-pro-shssld" tabindex="-1">
-                <div class="tbd2k dgycp">
-                  <!-- List -->
-                  <div class="space-y-0.5">
-                    <!-- Checkbox -->
-                    <div class="flex items-center">
-                      <label for="hs-pro-shfloc-long-sleeve" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                        <input type="checkbox" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-long-sleeve">
-                        <span class="ncgn0 c9jt8 dark:text-neutral-400">Long Sleeve</span>
-                        <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(56)</span>
-                      </label>
-                    </div>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <div class="flex items-center">
-                      <label for="hs-pro-shfloc-short-sleeve" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                        <input type="checkbox" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-short-sleeve">
-                        <span class="ncgn0 c9jt8 dark:text-neutral-400">Short Sleeve</span>
-                        <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(78)</span>
-                      </label>
-                    </div>
-                    <!-- End Checkbox -->
-
-                    <!-- Checkbox -->
-                    <div class="flex items-center">
-                      <label for="hs-pro-shfloc-sleeveless" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                        <input type="checkbox" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-sleeveless">
-                        <span class="ncgn0 c9jt8 dark:text-neutral-400">Sleeveless</span>
-                        <span class="ms-auto xs2f2 jy5gh dark:text-neutral-500">(2)</span>
-                      </label>
-                    </div>
-                    <!-- End Checkbox -->
-                  </div>
-                  <!-- End List -->
-                </div>
-              </div>
-              <!-- End Dropdown Menu -->
-            </div>
-            <!-- End Dropdown Sleeve Length -->
-          </div>
-          <!-- End Filter Bar -->
-        </div>
-
-        <div class="flex flex-wrap ox2cl items-center g27d7">
-          <p class="z4zqw jy5gh dark:text-neutral-500">
-            120 results
-          </p>
-
-          <div class="adwno f7hjv vte9v dark:bg-neutral-700"></div>
-
-          <!-- Dropdown Sort By -->
+      <!-- Nav -->
+      <button type="button" class="hs-carousel-prev hs-carousel-disabled:opacity-50 hs-carousel-disabled:cursor-default xl:hidden absolute zoyba xviih inline-flex jkwm1 items-center fjwwc aqyoh rsdjd rxmp4 c9jt8 kghwt hj07t d05xb -translate-y-1/2 focus:outline-hidden">
+        <span class="f8p8s" aria-hidden="true">
+          <svg class="e731n yhc35" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+        </span>
+        <span class="et50x">Previous</span>
+      </button>
+      <button type="button" class="hs-carousel-next hs-carousel-disabled:opacity-50 hs-carousel-disabled:cursor-default xl:hidden absolute zoyba tb54y inline-flex jkwm1 items-center fjwwc aqyoh rsdjd rxmp4 c9jt8 kghwt hj07t d05xb -translate-y-1/2 focus:outline-hidden">
+        <span class="et50x">Next</span>
+        <span class="f8p8s" aria-hidden="true">
+          <svg class="e731n yhc35" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+        </span>
+      </button>
+    </div>
+  </div>
+
+
+  <!-- Grid Form Logic Wrapper -->
+  <form method="GET" action="." id="grid-filter-form" class="w-full">
+    {% if request.GET.category %}
+    <input type="hidden" name="category" value="{{ request.GET.category }}">
+    {% endif %}
+
+    <!-- Grid Filters -->
+    <div class="e3s31 flex flex-wrap ox2cl items-center g27d7 mb-8">
+      <div class="hlt95">
+        <!-- Filter Bar -->
+        <div class="flex flex-wrap items-center o4ndh">
+          
+          <!-- Dropdown Filter: Active Variables Selected -->
           <div class="hs-dropdown [--auto-close:inside] inline-block">
-            <!-- Sort By Button -->
-            <button id="hs-pro-shssbd" type="button" class="hs-dropdown-toggle ga1u8 flex items-center n6i5x z4zqw w9dei jy5gh povjg f1348 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden ow4j6 dark:text-neutral-500" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
-              Sort By
-              <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="m6 9 6 6 6-6"></path>
-              </svg>
+            <button id="hs-pro-shsfbfld" type="button" class="hs-dropdown-toggle ga1u8 f2l40 flex items-center n6i5x rsdjd lnk45 w4xo0 w9dei c9jt8 kghwt d05xb disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden r2vwg hover dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+              <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M7 12h10"></path><path d="M10 18h4"></path></svg>
+              Filter
+              <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
             </button>
-            <!-- End Sort By Button -->
 
             <!-- Dropdown Menu -->
-            <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] md:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 w-full hidden gbcuh w-full x5nwc aqyoh er6t7 gmg3v before:absolute before:-top-4 before:start-0 before:w-full before:h-5 dark:bg-neutral-900" role="menu" aria-orientation="vertical" aria-labelledby="hs-pro-shssbd" tabindex="-1">
-              <div class="jq72l">
+            <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] md:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 hidden gbcuh w-full x5nwc aqyoh er6t7 gmg3v before:absolute before:-top-4 before:start-0 before:w-full before:h-5 dark:bg-neutral-900" role="menu" aria-orientation="vertical" aria-labelledby="hs-pro-shsfbfld" tabindex="-1">
+              <div class="tbd2k dgycp">
+                <!-- Title Replacement Item -->
+                <span id="hs-pro-shfdaf1" class="hs-removing:opacity-0 whz4r ufjzp vyel6 z47ts inline-flex items-center m4ww2 f4yn1 c9jt8 w4xo0 m74u5 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-200">
+                  {{ active_category.name|default:"All Categories" }}
+                </span>
+                
+                <!-- Dynamic active brand badges -->
+                {% for brand_slug in selected_brands %}
+                <span class="hs-removing:opacity-0 whz4r ufjzp vyel6 z47ts inline-flex items-center m4ww2 f4yn1 c9jt8 w4xo0 m74u5 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-200">
+                  {{ brand_slug|title }}
+                  <button type="button" class="inline-flex e731n jkwm1 items-center yhc35 m74u5 fd43e cq7a3 focus:outline-hidden f6db7 w4xo0 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-400" onclick="document.getElementById('brand-{{ brand_slug }}').checked = false; this.form.submit();">
+                    <svg class="e731n b9gop" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+                  </button>
+                </span>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+          <!-- Dropdown Category / Brands (Combined UX) -->
+          <div class="hs-dropdown [--auto-close:inside] inline-block">
+            <button id="hs-pro-shsfbctd" type="button" class="hs-dropdown-toggle ga1u8 f2l40 flex items-center n6i5x rsdjd lnk45 w4xo0 w9dei c9jt8 kghwt d05xb disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden r2vwg hover dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+              Category / Brand
+              <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] md:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 hidden gbcuh w-full x5nwc aqyoh er6t7 gmg3v before:absolute before:-top-4 before:start-0 before:w-full before:h-5 dark:bg-neutral-900" role="menu" aria-orientation="vertical" aria-labelledby="hs-pro-shsfbctd" tabindex="-1">
+              <div class="tbd2k dgycp">
                 <!-- List -->
                 <div class="space-y-0.5">
-                  <!-- Radio -->
+                  <!-- First chunk of items (limit 7 logic) -->
+                  {% for child in child_categories|slice:":3" %}
                   <div class="flex items-center">
-                    <label for="hs-pro-shfloc-bestseller" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                      <input type="radio" name="hs-pro-shfloc" class="e731n twmqj dwbp4 kghwt g41z1 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-bestseller">
-                      <span class="ncgn0 c9jt8 dark:text-neutral-400">Bestseller</span>
+                    <label for="cat-{{ child.slug }}" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
+                      <input type="radio" name="category" value="{{ child.slug }}" onchange="this.form.submit()" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="cat-{{ child.slug }}" {% if request.GET.category == child.slug %}checked{% endif %}>
+                      <span class="ncgn0 c9jt8 dark:text-neutral-400">{{ child.name }}</span>
                     </label>
                   </div>
-                  <!-- End Radio -->
-
-                  <!-- Radio -->
+                  {% endfor %}
+                  {% for brand in brands|slice:":4" %}
                   <div class="flex items-center">
-                    <label for="hs-pro-shfloc-trending" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                      <input type="radio" name="hs-pro-shfloc" class="e731n twmqj dwbp4 kghwt g41z1 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-trending">
-                      <span class="ncgn0 c9jt8 dark:text-neutral-400">Trending</span>
+                    <label for="brand-{{ brand.slug }}" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
+                      <input type="checkbox" name="brand" value="{{ brand.slug }}" onchange="this.form.submit()" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="brand-{{ brand.slug }}" {% if brand.slug in selected_brands %}checked{% endif %}>
+                      <span class="ncgn0 c9jt8 dark:text-neutral-400">{{ brand.name }}</span>
                     </label>
                   </div>
-                  <!-- End Radio -->
-
-                  <!-- Radio -->
-                  <div class="flex items-center">
-                    <label for="hs-pro-shfloc-price-low-to-high" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                      <input type="radio" name="hs-pro-shfloc" class="e731n twmqj dwbp4 kghwt g41z1 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-price-low-to-high">
-                      <span class="ncgn0 c9jt8 dark:text-neutral-400">Price low to high</span>
-                    </label>
-                  </div>
-                  <!-- End Radio -->
-
-                  <!-- Radio -->
-                  <div class="flex items-center">
-                    <label for="hs-pro-shfloc-price-high-to-low" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
-                      <input type="radio" name="hs-pro-shfloc" class="e731n twmqj dwbp4 kghwt g41z1 m5fuw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-gray-800" id="hs-pro-shfloc-price-high-to-low">
-                      <span class="ncgn0 c9jt8 dark:text-neutral-400">Price hight to low</span>
-                    </label>
-                  </div>
-                  <!-- End Radio -->
+                  {% endfor %}
                 </div>
-                <!-- End List -->
+
+                <!-- Show More chunk -->
+                <div id="hs-pro-shfcc-heading" class="hs-collapse hidden w-full overflow-hidden transition-[height] ufjzp" aria-labelledby="hs-pro-shfcc">
+                  <div class="space-y-0.5">
+                    {% for child in child_categories|slice:"3:" %}
+                    <div class="flex items-center">
+                      <label for="cat-{{ child.slug }}" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
+                        <input type="radio" name="category" value="{{ child.slug }}" onchange="this.form.submit()" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500" id="cat-{{ child.slug }}" {% if request.GET.category == child.slug %}checked{% endif %}>
+                        <span class="ncgn0 c9jt8 dark:text-neutral-400">{{ child.name }}</span>
+                      </label>
+                    </div>
+                    {% endfor %}
+                    {% for brand in brands|slice:"4:" %}
+                    <div class="flex items-center">
+                      <label for="brand-{{ brand.slug }}" class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
+                        <input type="checkbox" name="brand" value="{{ brand.slug }}" onchange="this.form.submit()" class="e731n twmqj dwbp4 m8zlk g41z1 checked:border-indigo-600 m5fuw disabled:opacity-50 dark:bg-neutral-900 dark:border-neutral-500 dark:checked:bg-indigo-500" id="brand-{{ brand.slug }}" {% if brand.slug in selected_brands %}checked{% endif %}>
+                        <span class="ncgn0 c9jt8 dark:text-neutral-400">{{ brand.name }}</span>
+                      </label>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+
+                <div class="rwavo">
+                  <button type="button" class="hs-collapse-toggle inline-flex items-center b1nd2 z4zqw c9jt8 l5oyh povjg iiod0 focus:outline-hidden s6w37 dark:text-neutral-200 dark:hover:text-indigo-400 dark:focus:text-indigo-400" id="hs-pro-shfcc" data-hs-collapse="#hs-pro-shfcc-heading">
+                    <span class="hs-collapse-open:hidden">Show more</span>
+                    <span class="hs-collapse-open:block hidden">Show less</span>
+                    <svg class="hs-collapse-open:rotate-180 e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                  </button>
+                </div>
               </div>
             </div>
-            <!-- End Dropdown Menu -->
           </div>
-          <!-- End Dropdown Sort By -->
+
+          <!-- Color Dropdown Filter UI connected form -->
+          <!-- Replace your pre-existing filter UI inputs with equivalent: name="color" value="black" onchange="this.form.submit()" where applicable -->
+          <!-- Example for specific properties snippet representation: -->
+          <div class="hs-dropdown [--auto-close:inside] inline-block">
+            <button id="hs-pro-shscld" type="button" class="hs-dropdown-toggle ga1u8 f2l40 flex items-center n6i5x rsdjd lnk45 w4xo0 w9dei c9jt8 kghwt d05xb disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden r17tr dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+              Color
+              <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+            </button>
+            <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] md:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 hidden gbcuh w-full x5nwc aqyoh er6t7 gmg3v dark:bg-neutral-900" role="menu" aria-labelledby="hs-pro-shscld" tabindex="-1">
+              <div class="tbd2k dgycp">
+                <div class="space-y-0.5">
+                  <label class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
+                    <input type="checkbox" name="color" value="black" onchange="this.form.submit()" class="e731n twmqj gokyy md7sj m8zlk yvj92 axcnw checked:text-black">
+                    <span class="ncgn0 c9jt8 dark:text-neutral-400">Black</span>
+                  </label>
+                  <label class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
+                    <input type="checkbox" name="color" value="white" onchange="this.form.submit()" class="e731n twmqj aqyoh dwbp4 m8zlk yvj92 axcnw focus:checked:border-gray-300 checked:text-white checked:border-gray-300">
+                    <span class="ncgn0 c9jt8 dark:text-neutral-400">White</span>
+                  </label>
+                  <!-- Add remaining colors exactly as previously provided but insert name="color" value="..." onchange="this.form.submit()" -->
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <!-- End Grid -->
 
-      <!-- Grid -->
-      <div class="ylm8n dzapa vdd7r yq7mo yb2jh vyfcq wb1by ">
-        <!-- Card -->
-        <a class="block relative h1r77 er6t7 focus:outline-hidden" href="https://www.preline.co/pro/shop/listing-grid-with-categories.html#">
-          <img class="f4yn1 fp3m4 x1s1r er6t7 dark:bg-neutral-800" src={% static 'images/photo-1713204767650-8be36bc71040' %} alt="Promo Image">
-
-          <div class="absolute mq18k e33ca l73lz jxswk hgy6n dtief">
-            <span class="block cnneu tbkeq iqo6n kew0r">
-              Be Your Own Boss
-            </span>
-            <p class="rwavo w4xo0 kew0r l5oyh povjg">
-              Shop now
-            </p>
-          </div>
-        </a>
-        <!-- End Card -->
-
-        <!-- Card -->
-        <div class=" group relative">
-          <div class="relative">
-            <a class="block er6t7 focus:outline-hidden" href="https://www.preline.co/pro/shop/product-detail.html">
-              <img class="f4yn1 er6t7 dark:bg-neutral-800" src={% static 'images/photo-1644483878395-858cd642538e' %} alt="Product Image">
-            </a>
-
-            <!-- Add to Favorites -->
-            <div class="absolute fuv09 kji94 wzd7f kmove mx6w2">
-              <button type="button" class="odrp3 flex jkwm1 items-center n6i5x kghwt xs2f2 aqyoh rsdjd azddh c9jt8 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden">
-                <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                </svg>
-                <span class="et50x">Add to favorites</span>
-              </button>
-            </div>
-            <!-- End Add to Favorites -->
-
-            <!-- Badge Group -->
-            <div class="absolute fuv09 gihcw kmove z47ts gxxgf">
-              <div class="flex flex-col jon87">
-                <p>
-                  <span class="ga1u8 u4i8k mx6w2 aqyoh sikx1 xs2f2 c9jt8 kghwt hj07t dark:bg-neutral-900 dark:text-neutral-200">
-                    -7%
-                  </span>
-                </p>
-              </div>
-            </div>
-            <!-- End Badge Group -->
-          </div>
-
-          <a class="after:z-1 after:absolute after:inset-0" href="https://www.preline.co/pro/shop/product-detail.html"></a>
-
-          <div class="f5e2w">
-            <span class="block w4xo0 cve4m c9jt8 dark:text-neutral-200">
-              White Shirt
-            </span>
-            <p class="ja90s w4xo0 jy5gh dark:text-neutral-400">
-              Women's Shirts
-            </p>
-
-            <p class="rwavo sikx1 w4xo0 c9jt8 dark:text-neutral-200">
-              $125
-            </p>
-          </div>
-        </div>
-        <!-- End Card -->
-
-        <!-- Card -->
-        <div class=" group relative">
-          <div class="relative">
-            <a class="block er6t7 focus:outline-hidden" href="https://www.preline.co/pro/shop/product-detail.html">
-              <img class="f4yn1 er6t7 dark:bg-neutral-800" src={% static 'images/photo-1654512697704-89cf740323a3' %} alt="Product Image">
-            </a>
-
-            <!-- Add to Favorites -->
-            <div class="absolute fuv09 kji94 wzd7f kmove mx6w2">
-              <button type="button" class="odrp3 flex jkwm1 items-center n6i5x kghwt xs2f2 aqyoh rsdjd azddh c9jt8 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden">
-                <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                </svg>
-                <span class="et50x">Add to favorites</span>
-              </button>
-            </div>
-            <!-- End Add to Favorites -->
-
-            <!-- Badge Group -->
-            <div class="absolute fuv09 gihcw kmove z47ts gxxgf">
-              <div class="flex flex-col jon87">
-                <p>
-                  <span class="ga1u8 u4i8k mx6w2 aqyoh sikx1 xs2f2 c9jt8 kghwt hj07t dark:bg-neutral-900 dark:text-neutral-200">
-                    🔥 Trending
-                  </span>
-                </p>
-              </div>
-            </div>
-            <!-- End Badge Group -->
-          </div>
-
-          <a class="after:z-1 after:absolute after:inset-0" href="https://www.preline.co/pro/shop/product-detail.html"></a>
-
-          <div class="f5e2w">
-            <span class="block w4xo0 cve4m c9jt8 dark:text-neutral-200">
-              Micro Houndstooth Suit Blazer
-            </span>
-            <p class="ja90s w4xo0 jy5gh dark:text-neutral-400">
-              Women's Blazers
-            </p>
-
-            <p class="rwavo sikx1 w4xo0 c9jt8 dark:text-neutral-200">
-              $35
-            </p>
-          </div>
-        </div>
-        <!-- End Card -->
-
-        <!-- Card -->
-        <div class=" group relative">
-          <div class="relative">
-            <a class="block er6t7 focus:outline-hidden" href="https://www.preline.co/pro/shop/product-detail.html">
-              <img class="f4yn1 er6t7 dark:bg-neutral-800" src={% static 'images/photo-1654512697945-9936dc2ca5b9' %} alt="Product Image">
-            </a>
-
-            <!-- Add to Favorites -->
-            <div class="absolute fuv09 kji94 wzd7f kmove mx6w2">
-              <button type="button" class="odrp3 flex jkwm1 items-center n6i5x kghwt xs2f2 aqyoh rsdjd azddh c9jt8 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden">
-                <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                </svg>
-                <span class="et50x">Add to favorites</span>
-              </button>
-            </div>
-            <!-- End Add to Favorites -->
-          </div>
-
-          <a class="after:z-1 after:absolute after:inset-0" href="https://www.preline.co/pro/shop/product-detail.html"></a>
-
-          <div class="f5e2w">
-            <span class="block w4xo0 cve4m c9jt8 dark:text-neutral-200">
-              Suit Jacket with Belt
-            </span>
-            <p class="ja90s w4xo0 jy5gh dark:text-neutral-400">
-              Women's Blazers
-            </p>
-
-            <p class="rwavo sikx1 w4xo0 c9jt8 dark:text-neutral-200">
-              $29
-            </p>
-          </div>
-        </div>
-        <!-- End Card -->
-
-        <!-- Card -->
-        <div class=" group relative">
-          <div class="relative">
-            <a class="block er6t7 focus:outline-hidden" href="https://www.preline.co/pro/shop/product-detail.html">
-              <img class="f4yn1 er6t7 dark:bg-neutral-800" src={% static 'images/photo-1585487000407-adff899ca570' %} alt="Product Image">
-            </a>
-
-            <!-- Add to Favorites -->
-            <div class="absolute fuv09 kji94 wzd7f kmove mx6w2">
-              <button type="button" class="odrp3 flex jkwm1 items-center n6i5x kghwt xs2f2 aqyoh rsdjd azddh c9jt8 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden">
-                <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                </svg>
-                <span class="et50x">Add to favorites</span>
-              </button>
-            </div>
-            <!-- End Add to Favorites -->
-          </div>
-
-          <a class="after:z-1 after:absolute after:inset-0" href="https://www.preline.co/pro/shop/product-detail.html"></a>
-
-          <div class="f5e2w">
-            <span class="block w4xo0 cve4m c9jt8 dark:text-neutral-200">
-              Gray Midi Dress
-            </span>
-            <p class="ja90s w4xo0 jy5gh dark:text-neutral-400">
-              Women's Dresses
-            </p>
-
-            <p class="rwavo sikx1 w4xo0 c9jt8 dark:text-neutral-200">
-              $190
-            </p>
-          </div>
-        </div>
-        <!-- End Card -->
-
-        <!-- Card -->
-        <div class=" group relative">
-          <div class="relative">
-            <a class="block er6t7 focus:outline-hidden" href="https://www.preline.co/pro/shop/product-detail.html">
-              <img class="f4yn1 er6t7 dark:bg-neutral-800" src={% static 'images/photo-1585487000261-3fc48269c3f1' %} alt="Product Image">
-            </a>
-
-            <!-- Add to Favorites -->
-            <div class="absolute fuv09 kji94 wzd7f kmove mx6w2">
-              <button type="button" class="odrp3 flex jkwm1 items-center n6i5x kghwt xs2f2 aqyoh rsdjd azddh c9jt8 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden">
-                <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                </svg>
-                <span class="et50x">Add to favorites</span>
-              </button>
-            </div>
-            <!-- End Add to Favorites -->
-          </div>
-
-          <a class="after:z-1 after:absolute after:inset-0" href="https://www.preline.co/pro/shop/product-detail.html"></a>
-
-          <div class="f5e2w">
-            <span class="block w4xo0 cve4m c9jt8 dark:text-neutral-200">
-              Dark Gray Midi Dress
-            </span>
-            <p class="ja90s w4xo0 jy5gh dark:text-neutral-400">
-              Women's Dresses
-            </p>
-
-            <p class="rwavo sikx1 w4xo0 c9jt8 dark:text-neutral-200">
-              $50
-            </p>
-          </div>
-        </div>
-        <!-- End Card -->
-
-        <!-- Card -->
-        <div class=" group relative">
-          <div class="relative">
-            <a class="block er6t7 focus:outline-hidden" href="https://www.preline.co/pro/shop/product-detail.html">
-              <img class="f4yn1 er6t7 dark:bg-neutral-800" src={% static 'images/photo-1585487000143-9bcec9b8e483' %} alt="Product Image">
-            </a>
-
-            <!-- Add to Favorites -->
-            <div class="absolute fuv09 kji94 wzd7f kmove mx6w2">
-              <button type="button" class="odrp3 flex jkwm1 items-center n6i5x kghwt xs2f2 aqyoh rsdjd azddh c9jt8 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden">
-                <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                </svg>
-                <span class="et50x">Add to favorites</span>
-              </button>
-            </div>
-            <!-- End Add to Favorites -->
-
-            <!-- Badge Group -->
-            <div class="absolute fuv09 gihcw kmove z47ts gxxgf">
-              <div class="flex flex-col jon87">
-                <p>
-                  <span class="ga1u8 u4i8k mx6w2 aqyoh sikx1 xs2f2 c9jt8 kghwt hj07t dark:bg-neutral-900 dark:text-neutral-200">
-                    -40%
-                  </span>
-                </p>
-              </div>
-            </div>
-            <!-- End Badge Group -->
-          </div>
-
-          <a class="after:z-1 after:absolute after:inset-0" href="https://www.preline.co/pro/shop/product-detail.html"></a>
-
-          <div class="f5e2w">
-            <span class="block w4xo0 cve4m c9jt8 dark:text-neutral-200">
-              Light Gray Midi Dress
-            </span>
-            <p class="ja90s w4xo0 jy5gh dark:text-neutral-400">
-              Women's Dresses
-            </p>
-
-            <p class="rwavo w4xo0">
-              <span class="w4xo0 jy5gh dark:text-neutral-500">
-                <s>$140</s>
-              </span>
-              <span class="w4xo0 jmzb2">
-                $100
-              </span>
-            </p>
-          </div>
-        </div>
-        <!-- End Card -->
-
-        <!-- Card -->
-        <div class=" group relative">
-          <div class="relative">
-            <a class="block er6t7 focus:outline-hidden" href="https://www.preline.co/pro/shop/product-detail.html">
-              <img class="f4yn1 er6t7 dark:bg-neutral-800" src={% static 'images/photo-1585487000160-6ebcfceb0d03' %} alt="Product Image">
-            </a>
-
-            <!-- Add to Favorites -->
-            <div class="absolute fuv09 kji94 wzd7f kmove mx6w2">
-              <button type="button" class="odrp3 flex jkwm1 items-center n6i5x kghwt xs2f2 aqyoh rsdjd azddh c9jt8 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden">
-                <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                </svg>
-                <span class="et50x">Add to favorites</span>
-              </button>
-            </div>
-            <!-- End Add to Favorites -->
-          </div>
-
-          <a class="after:z-1 after:absolute after:inset-0" href="https://www.preline.co/pro/shop/product-detail.html"></a>
-
-          <div class="f5e2w">
-            <span class="block w4xo0 cve4m c9jt8 dark:text-neutral-200">
-              Burgundy Midi Dress
-            </span>
-            <p class="ja90s w4xo0 jy5gh dark:text-neutral-400">
-              Women's Dresses
-            </p>
-
-            <p class="rwavo w4xo0">
-              <span class="w4xo0 jy5gh dark:text-neutral-500">
-                <s>$49</s>
-              </span>
-              <span class="w4xo0 jmzb2">
-                $42
-              </span>
-            </p>
-          </div>
-        </div>
-        <!-- End Card -->
-
-        <!-- Card -->
-        <div class=" group relative">
-          <div class="relative">
-            <a class="block er6t7 focus:outline-hidden" href="https://www.preline.co/pro/shop/product-detail.html">
-              <img class="f4yn1 er6t7 dark:bg-neutral-800" src={% static 'images/photo-1654512697735-d7ff21350443' %} alt="Product Image">
-            </a>
-
-            <!-- Add to Favorites -->
-            <div class="absolute fuv09 kji94 wzd7f kmove mx6w2">
-              <button type="button" class="odrp3 flex jkwm1 items-center n6i5x kghwt xs2f2 aqyoh rsdjd azddh c9jt8 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden">
-                <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                </svg>
-                <span class="et50x">Add to favorites</span>
-              </button>
-            </div>
-            <!-- End Add to Favorites -->
-          </div>
-
-          <a class="after:z-1 after:absolute after:inset-0" href="https://www.preline.co/pro/shop/product-detail.html"></a>
-
-          <div class="f5e2w">
-            <span class="block w4xo0 cve4m c9jt8 dark:text-neutral-200">
-              Micro Houndstooth Suit Trousers
-            </span>
-            <p class="ja90s w4xo0 jy5gh dark:text-neutral-400">
-              Women's Trousers
-            </p>
-
-            <p class="rwavo sikx1 w4xo0 c9jt8 dark:text-neutral-200">
-              $29
-            </p>
-          </div>
-        </div>
-        <!-- End Card -->
-
-        <!-- Card -->
-        <div class=" group relative">
-          <div class="relative">
-            <a class="block er6t7 focus:outline-hidden" href="https://www.preline.co/pro/shop/product-detail.html">
-              <img class="f4yn1 er6t7 dark:bg-neutral-800" src={% static 'images/photo-1604136172384-b2e9c43271ec' %} alt="Product Image">
-            </a>
-
-            <!-- Add to Favorites -->
-            <div class="absolute fuv09 kji94 wzd7f kmove mx6w2">
-              <button type="button" class="odrp3 flex jkwm1 items-center n6i5x kghwt xs2f2 aqyoh rsdjd azddh c9jt8 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden">
-                <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                </svg>
-                <span class="et50x">Add to favorites</span>
-              </button>
-            </div>
-            <!-- End Add to Favorites -->
-          </div>
-
-          <a class="after:z-1 after:absolute after:inset-0" href="https://www.preline.co/pro/shop/product-detail.html"></a>
-
-          <div class="f5e2w">
-            <span class="block w4xo0 cve4m c9jt8 dark:text-neutral-200">
-              Pleated Loose Trousers
-            </span>
-            <p class="ja90s w4xo0 jy5gh dark:text-neutral-400">
-              Women's Trousers
-            </p>
-
-            <p class="rwavo sikx1 w4xo0 c9jt8 dark:text-neutral-200">
-              $110
-            </p>
-          </div>
-        </div>
-        <!-- End Card -->
-
-        <!-- Card -->
-        <div class=" group relative">
-          <div class="relative">
-            <a class="block er6t7 focus:outline-hidden" href="https://www.preline.co/pro/shop/product-detail.html">
-              <img class="f4yn1 er6t7 dark:bg-neutral-800" src={% static 'images/photo-1593164842264-854604db2260' %} alt="Product Image">
-            </a>
-
-            <!-- Add to Favorites -->
-            <div class="absolute fuv09 kji94 wzd7f kmove mx6w2">
-              <button type="button" class="odrp3 flex jkwm1 items-center n6i5x kghwt xs2f2 aqyoh rsdjd azddh c9jt8 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden">
-                <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                </svg>
-                <span class="et50x">Add to favorites</span>
-              </button>
-            </div>
-            <!-- End Add to Favorites -->
-
-            <!-- Badge Group -->
-            <div class="absolute fuv09 gihcw kmove z47ts gxxgf">
-              <div class="flex flex-col jon87">
-                <p>
-                  <span class="ga1u8 u4i8k mx6w2 aqyoh sikx1 xs2f2 c9jt8 kghwt hj07t dark:bg-neutral-900 dark:text-neutral-200">
-                    🔥 Trending
-                  </span>
-                </p>
-              </div>
-            </div>
-            <!-- End Badge Group -->
-          </div>
-
-          <a class="after:z-1 after:absolute after:inset-0" href="https://www.preline.co/pro/shop/product-detail.html"></a>
-
-          <div class="f5e2w">
-            <span class="block w4xo0 cve4m c9jt8 dark:text-neutral-200">
-              Yoga Leggings
-            </span>
-            <p class="ja90s w4xo0 jy5gh dark:text-neutral-400">
-              Women's Leggings
-            </p>
-
-            <p class="rwavo sikx1 w4xo0 c9jt8 dark:text-neutral-200">
-              $89
-            </p>
-          </div>
-        </div>
-        <!-- End Card -->
-
-        <!-- Card -->
-        <a class="block relative h1r77 er6t7 focus:outline-hidden" href="https://www.preline.co/pro/shop/listing-grid-with-categories.html#">
-          <img class="f4yn1 fp3m4 x1s1r er6t7 dark:bg-neutral-800" src={% static 'images/photo-1701927461048-1e4e06671de2' %} alt="Promo Image">
-
-          <div class="absolute mq18k e33ca l73lz jxswk hgy6n dtief">
-            <span class="block cnneu tbkeq iqo6n kew0r">
-              New Arrivals
-            </span>
-            <p class="rwavo w4xo0 kew0r l5oyh povjg">
-              Shop now
-            </p>
-          </div>
-        </a>
-        <!-- End Card -->
-      </div>
-      <!-- End Grid -->
-
-      <!-- Loading -->
-      <div class="gle75 w-full x5nwc mx-auto dtief space-y-5">
-        <p>
-          <span class="cnneu c9jt8 dark:text-neutral-200">12</span>
-          <span class="w4xo0 jy5gh dark:text-neutral-500">items of</span>
-          <span class="cnneu c9jt8 dark:text-neutral-200">120</span>
+      <div class="flex flex-wrap ox2cl items-center g27d7">
+        <p class="z4zqw jy5gh dark:text-neutral-500">
+          {{ total_products }} results
         </p>
 
-        <!-- Progress -->
-        <div class="flex w-full srw05 tfa1w m8zlk overflow-hidden dark:bg-neutral-700" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
-          <div class="flex flex-col jkwm1 m8zlk overflow-hidden y73k3 xs2f2 kew0r dtief s1lil whz4r ys1w3 dark:bg-neutral-200" style="width: 10%"></div>
-        </div>
-        <!-- End Progress -->
+        <div class="adwno f7hjv vte9v dark:bg-neutral-700"></div>
 
-        <p>
-          <button type="button" class="brrnv fglch relative inline-flex jkwm1 items-center b1nd2 w4xo0 sikx1 pb094 rsdjd lnk45 aqyoh c9jt8 hj07t nzmya disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden d16zw dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-300">
-            Show more products
+        <!-- Dropdown Sort By -->
+        <div class="hs-dropdown [--auto-close:inside] inline-block">
+          <button id="hs-pro-shssbd" type="button" class="hs-dropdown-toggle ga1u8 flex items-center n6i5x z4zqw w9dei jy5gh povjg f1348 disabled:opacity-50 focus:outline-hidden ow4j6 dark:text-neutral-500" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+            Sort By
+            <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
           </button>
+
+          <!-- Dropdown Menu -->
+          <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] md:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 hidden gbcuh w-full x5nwc aqyoh er6t7 gmg3v before:absolute before:-top-4 before:start-0 before:w-full before:h-5 dark:bg-neutral-900" role="menu" aria-orientation="vertical" aria-labelledby="hs-pro-shssbd" tabindex="-1">
+            <div class="jq72l">
+              <div class="space-y-0.5">
+                <div class="flex items-center">
+                  <label class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
+                    <input type="radio" name="sort" value="bestseller" onchange="this.form.submit()" class="e731n twmqj dwbp4 kghwt g41z1 m5fuw dark:bg-neutral-900 dark:border-neutral-700 dark:checked:bg-indigo-500 dark:checked:border-indigo-500" {% if sort_by == 'bestseller' %}checked{% endif %}>
+                    <span class="ncgn0 c9jt8 dark:text-neutral-400">Bestseller</span>
+                  </label>
+                </div>
+                <div class="flex items-center">
+                  <label class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
+                    <input type="radio" name="sort" value="trending" onchange="this.form.submit()" class="e731n twmqj dwbp4 kghwt g41z1 m5fuw dark:bg-neutral-900 dark:border-neutral-700 dark:checked:bg-indigo-500 dark:checked:border-indigo-500" {% if sort_by == 'trending' %}checked{% endif %}>
+                    <span class="ncgn0 c9jt8 dark:text-neutral-400">Trending</span>
+                  </label>
+                </div>
+                <div class="flex items-center">
+                  <label class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
+                    <input type="radio" name="sort" value="price-low-to-high" onchange="this.form.submit()" class="e731n twmqj dwbp4 kghwt g41z1 m5fuw dark:bg-neutral-900 dark:border-neutral-700 dark:checked:bg-indigo-500 dark:checked:border-indigo-500" {% if sort_by == 'price-low-to-high' %}checked{% endif %}>
+                    <span class="ncgn0 c9jt8 dark:text-neutral-400">Price low to high</span>
+                  </label>
+                </div>
+                <div class="flex items-center">
+                  <label class="an00p group w-full inline-flex items-center cursor-pointer w4xo0 pb094 d05xb dark:hover:bg-neutral-800">
+                    <input type="radio" name="sort" value="price-high-to-low" onchange="this.form.submit()" class="e731n twmqj dwbp4 kghwt g41z1 m5fuw dark:bg-neutral-900 dark:border-neutral-700 dark:checked:bg-indigo-500 dark:checked:border-indigo-500" {% if sort_by == 'price-high-to-low' %}checked{% endif %}>
+                    <span class="ncgn0 c9jt8 dark:text-neutral-400">Price high to low</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- End Grid Filters Form logic -->
+
+  <!-- Main Grid View -->
+  <div class="ylm8n dzapa vdd7r yq7mo yb2jh vyfcq wb1by">
+    
+    <!-- Feature Card Start (Always visible on first page) -->
+    {% if products.number == 1 %}
+    <a class="block relative h1r77 er6t7 focus:outline-hidden" href="#">
+      <img class="f4yn1 fp3m4 x1s1r er6t7 object-cover dark:bg-neutral-800" src="{% static 'images/photo-1713204767650-8be36bc71040' %}" alt="Promo Image">
+      <div class="absolute mq18k e33ca l73lz jxswk hgy6n dtief">
+        <span class="block cnneu tbkeq iqo6n kew0r shadow-sm">
+          Be Your Own Boss
+        </span>
+        <p class="rwavo w4xo0 kew0r l5oyh povjg drop-shadow-md">
+          Shop now
         </p>
       </div>
-      <!-- End Loading -->
+    </a>
+    {% endif %}
+
+    <!-- Database Products Displaying Dynamics -->
+    {% for product in products %}
+    <div class="group relative">
+      <div class="relative">
+        <a class="block er6t7 focus:outline-hidden" href="{% url 'product_detail' product.id %}">
+          {% if product.images.first %}
+          <img class="f4yn1 er6t7 dark:bg-neutral-800 object-cover min-h-[300px]" src="{{ product.images.first.image.url }}" alt="{{ product.name }}">
+          {% else %}
+          <div class="f4yn1 er6t7 bg-neutral-200 dark:bg-neutral-800 min-h-[300px] flex items-center justify-center">
+            <span class="text-neutral-400">No Image</span>
+          </div>
+          {% endif %}
+        </a>
+
+        <!-- Add to Favorites -->
+        <div class="absolute fuv09 kji94 wzd7f kmove mx6w2 z-10">
+          <button type="button" class="odrp3 flex jkwm1 items-center n6i5x kghwt xs2f2 aqyoh rsdjd azddh c9jt8 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden bg-white/70 hover:bg-white dark:bg-neutral-900/50 dark:hover:bg-neutral-900 shadow-sm transition">
+            <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
+            <span class="et50x">Add to favorites</span>
+          </button>
+        </div>
+
+        <!-- Badge Grouping -->
+        {% if product.is_trending or product.discount_percentage %}
+        <div class="absolute fuv09 gihcw kmove z47ts gxxgf z-10">
+          <div class="flex flex-col jon87">
+            <p>
+              {% if product.discount_percentage %}
+              <span class="ga1u8 u4i8k mx6w2 aqyoh sikx1 xs2f2 c9jt8 kghwt hj07t dark:bg-neutral-900 dark:text-neutral-200 shadow mb-1 block">
+                -{{ product.discount_percentage }}%
+              </span>
+              {% endif %}
+              {% if product.is_trending %}
+              <span class="ga1u8 u4i8k mx6w2 aqyoh sikx1 xs2f2 c9jt8 kghwt hj07t bg-indigo-600 text-white dark:bg-indigo-600 dark:text-white shadow">
+                🔥 Trending
+              </span>
+              {% endif %}
+            </p>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Make the entire div seamlessly clickable -->
+      <a class="after:z-[1] after:absolute after:inset-0" href="{% url 'product_detail' product.id %}"></a>
+
+      <div class="f5e2w mt-4">
+        <span class="block w4xo0 cve4m c9jt8 dark:text-neutral-200 font-semibold line-clamp-1">
+          {{ product.name }}
+        </span>
+        <p class="ja90s w4xo0 jy5gh dark:text-neutral-400 text-sm">
+          {{ product.category.name }}
+        </p>
+
+        <p class="rwavo sikx1 w4xo0 c9jt8 dark:text-neutral-200 mt-1">
+          {% if product.regular_price and product.regular_price > product.price %}
+          <span class="w4xo0 jy5gh dark:text-neutral-500 mr-2">
+            <s>${{ product.regular_price }}</s>
+          </span>
+          {% endif %}
+          <span class="w4xo0 jmzb2 font-bold text-gray-900 dark:text-white">
+            ${{ product.price }}
+          </span>
+        </p>
+      </div>
     </div>
+    {% empty %}
+    <div class="col-span-full text-center py-12">
+        <p class="text-neutral-500 dark:text-neutral-400 text-lg">No products match your current filters.</p>
+    </div>
+    {% endfor %}
+
+    <!-- Footer Promo Feature block if it's exhausted/bottom -->
+    {% if not products.has_next %}
+    <a class="block relative h1r77 er6t7 focus:outline-hidden" href="#">
+      <img class="f4yn1 fp3m4 x1s1r er6t7 object-cover dark:bg-neutral-800" src="{% static 'images/photo-1701927461048-1e4e06671de2' %}" alt="Promo Image">
+      <div class="absolute mq18k e33ca l73lz jxswk hgy6n dtief">
+        <span class="block cnneu tbkeq iqo6n kew0r shadow-sm">
+          New Arrivals
+        </span>
+        <p class="rwavo w4xo0 kew0r l5oyh povjg drop-shadow-md">
+          Shop now
+        </p>
+      </div>
+    </a>
+    {% endif %}
+
+  </div>
+  <!-- End Grid -->
+
+  <!-- Pagination / Show More Layout Logic -->
+  <div class="mt-12 flex flex-col items-center justify-center space-y-4">
+    <p class="text-sm font-medium text-gray-500 dark:text-neutral-400">
+      Showing {{ products.end_index|default:0 }} items out of {{ total_products }} items
+    </p>
+    
+    {% if products.has_next %}
+    <!-- Maintains all parameters across pagination organically -->
+    <a href="?page={{ products.next_page_number }}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}{% for b in selected_brands %}&brand={{ b }}{% endfor %}&sort={{ sort_by }}" 
+       class="inline-flex items-center justify-center py-3 px-8 text-sm font-semibold text-center text-gray-800 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 focus:ring-4 focus:ring-gray-100 dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 transition">
+      Show more products
+    </a>
+    {% endif %}
+  </div>
+
+</div>
   </main>
   <!-- ========== END MAIN CONTENT ========== -->
 

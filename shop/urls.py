@@ -24,6 +24,9 @@ urlpatterns = [
     # --- Products (Browsing) ---
     path('shop/', products.grid, name='shop_grid'),
 
+    # --- Brands ---
+    path('brands/<slug:brand_slug>/', products.products_by_brand, name='products_by_brand'),
+
 
 
     # --- Product Detail Pages ---

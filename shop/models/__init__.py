@@ -5,9 +5,7 @@ from .products import (
     Product,
     ProductImage,
     Review,
-    Attribute,
-    ProductVariant,
-    VariantAttributeValue,
+    ProductAttribute,
     Brand,
 )
 

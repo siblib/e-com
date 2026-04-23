@@ -19,7 +19,6 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     order = models.ForeignKey('shop.Order', on_delete=models.CASCADE, related_name='items')
-    # Pointing to ProductVariant in products.py
-    variant = models.ForeignKey('shop.ProductVariant', on_delete=models.SET_NULL, null=True)
+    product = models.ForeignKey('shop.Product', on_delete=models.SET_NULL, null=True)
     quantity = models.PositiveIntegerField(default=1)
     price_at_purchase = models.DecimalField(max_digits=10, decimal_places=2)

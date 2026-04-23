@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.utils.text import slugify
 from typing import Dict, Any
+from django.db.models import Avg
 
 # Import models from the modular structure
 from shop.models import Product, Store, Category, ProductImage  # ← This works due to __init__.py
@@ -127,10 +128,64 @@ def grid_mini_categories(request):
 # Product Detail View
 # ======================
 
-def product_detail(request, product_id: int):
+def product_detail(request, slug: str):
     """Display detailed information for a specific product."""
+    product = get_object_or_404(
+        Product.objects.prefetch_related(
+            'images', 'reviews', 'attributes', 'complementary_products', 'related_products', 'category'
+        ),
+        slug=slug
+    )
+    
+    # Calculate average rating and handle review tracking logic
+    reviews = product.reviews.all().order_by('-created_at')
+    avg_rating = reviews.aggregate(Avg('rating'))['rating__avg'] or 0.0
+    total_reviews = reviews.count()
+    
+    # Breakdown percentages for the ratings progress bars (5 stars down to 1)
+    rating_counts = {i: 0 for i in range(5, 0, -1)}
+    for r in reviews:
+        if r.rating in rating_counts:
+            rating_counts[r.rating] += 1
+            
+    rating_percentages = {}
+    for stars, count in rating_counts.items():
+        rating_percentages[stars] = (count / total_reviews * 100) if total_reviews > 0 else 0
+    
+    # Group flexible attributes (e.g. {'Color': ['Red', 'Blue'], 'Size': ['S', 'M', 'L']})
+    attributes_grouped = {}
+    for attr in product.attributes.all():
+        if attr.name not in attributes_grouped:
+            attributes_grouped[attr.name] = []
+        if attr.value not in attributes_grouped[attr.name]:
+            attributes_grouped[attr.name].append(attr.value)
+        
+    # Dynamic breadcrumbs generation tracing back parent categories
+    breadcrumbs = []
+    cat = product.category
+    while cat:
+        breadcrumbs.insert(0, cat)
+        cat = cat.parent
+        
+    # Main Image & Gallery resolution
+    main_image = product.images.filter(is_main=True).first()
+    if not main_image:
+        main_image = product.images.first()
+        
     context: Dict[str, Any] = {
-        'product_id': product_id,
+        'product': product,
+        'main_image': main_image,
+        'gallery_images': product.images.all(),
+        'reviews': reviews,
+        'avg_rating': round(avg_rating, 1),
+        'avg_rating_range': range(int(round(avg_rating, 0))), # Filled stars
+        'empty_stars_range': range(5 - int(round(avg_rating, 0))), # Empty stars
+        'total_reviews': total_reviews,
+        'rating_percentages': rating_percentages,
+        'attributes_grouped': attributes_grouped,
+        'breadcrumbs': breadcrumbs,
+        'complementary_products': product.complementary_products.filter(is_active=True)[:4],
+        'related_products': product.related_products.filter(is_active=True)[:4],
     }
     return render(request, 'products/product_detail.html', context)
 

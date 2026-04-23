@@ -6,7 +6,7 @@ from .models.products import Product, Category, ProductImage, Store, Brand
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
     extra = 1 # Shows one empty slot for a new image by default
-    fields = ['image', 'is_primary', 'display_order']
+    fields = ['image', 'is_main', 'alt_text']
 
 @admin.register(Store)
 class StoreAdmin(admin.ModelAdmin):
@@ -15,15 +15,15 @@ class StoreAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug', 'parent', 'is_featured']
-    list_filter = ['is_featured', 'store']
+    list_display = ['name', 'slug', 'parent', 'store']
+    list_filter = ['store']
     prepopulated_fields = {'slug': ('name',)}
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['name', 'category', 'price', 'in_stock', 'is_active', 'is_trending', 'created']
-    list_filter = ['in_stock', 'is_active', 'is_trending', 'category', 'store']
-    list_editable = ['price', 'in_stock', 'is_active', 'is_trending']
+    list_display = ['name', 'category', 'brand', 'price', 'stock', 'is_active', 'is_trending', 'created']
+    list_filter = ['is_active', 'is_trending', 'category', 'brand']
+    list_editable = ['price', 'stock', 'is_active', 'is_trending']
     prepopulated_fields = {'slug': ('name',)}
     
     # 2. Add the images section to the bottom of the Product edit page

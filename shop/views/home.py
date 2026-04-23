@@ -120,8 +120,7 @@ def index(request):
 
     # 3. TRENDING CATEGORIES
     trending_categories = Category.objects.filter(
-        store=active_store,
-        is_featured=True
+        store=active_store
     ).order_by('id')[:2]
     
     tab_config = []

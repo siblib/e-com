@@ -30,7 +30,7 @@ urlpatterns = [
 
 
     # --- Product Detail Pages ---
-    path('product/<int:product_id>/', products.product_detail, name='product_detail'),
+    path('product/<slug:slug>/', products.product_detail, name='product_detail'),
     
     # NEW: Sticky Sidebar and Gallery Slider Variations
     path('product/<int:product_id>/sticky/', products.product_sticky_sidebar, name='product_sticky_sidebar'),

@@ -5,7 +5,9 @@ from .products import (
     Product,
     ProductImage,
     Review,
-    ProductAttribute,
+    ProductProperty,
+    PropertyValue,
+    ProductVariant,
     Brand,
 )
 

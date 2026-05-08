@@ -50,12 +50,15 @@ class Product(models.Model):
     low_stock_threshold = models.IntegerField(default=5)
     
     # Additional expandable info for accordions
-    size_fit_details = models.TextField(blank=True, null=True, help_text="Details regarding sizing and fit.")
-    shipping_returns_details = models.TextField(blank=True, null=True, help_text="Details about shipping and return policies.")
+    size_and_fit_guide = models.TextField(blank=True, null=True)
+    shipping_and_returns_policy = models.TextField(blank=True, null=True)
+    warranty_details = models.TextField(blank=True, null=True)
     
     # Relationships for 'Goes well with' and 'You may also like'
     complementary_products = models.ManyToManyField('self', blank=True, symmetrical=False, related_name='complemented_by')
     related_products = models.ManyToManyField('self', blank=True, symmetrical=False, related_name='related_to')
+    
+    attributes = models.ManyToManyField('PropertyValue', related_name='products', blank=True)
 
     def __str__(self):
         return self.name
@@ -69,16 +72,33 @@ class ProductImage(models.Model):
     class Meta:
         ordering = ['-is_main', 'id']
 
-class ProductAttribute(models.Model):
-    """
-    Flexible attribute system to handle properties like Color, Size, Screen Size, RAM, etc.
-    """
-    product = models.ForeignKey(Product, related_name='attributes', on_delete=models.CASCADE)
-    name = models.CharField(max_length=50, help_text="e.g., Color, Size, RAM")
-    value = models.CharField(max_length=50, help_text="e.g., Red, XL, 16GB")
+class ProductProperty(models.Model):
+    name = models.CharField(max_length=50, unique=True, help_text="e.g., Color, Size, Material")
+    is_variable = models.BooleanField(default=True)
 
     def __str__(self):
-        return f"{self.product.name} - {self.name}: {self.value}"
+        return self.name
+
+class PropertyValue(models.Model):
+    property = models.ForeignKey(ProductProperty, related_name='values', on_delete=models.CASCADE)
+    value = models.CharField(max_length=50)
+    hex_code = models.CharField(max_length=7, blank=True, null=True, help_text="e.g., #FF0000 for Color")
+
+    class Meta:
+        unique_together = ('property', 'value')
+
+    def __str__(self):
+        return f"{self.property.name}: {self.value}"
+
+class ProductVariant(models.Model):
+    product = models.ForeignKey(Product, related_name='variants', on_delete=models.CASCADE)
+    values = models.ManyToManyField(PropertyValue, related_name='variants')
+    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    stock_quantity = models.IntegerField(default=0)
+    images = models.ManyToManyField('ProductImage', blank=True, related_name='variants')
+
+    def __str__(self):
+        return f"{self.product.name} Variant"
 
 class Review(models.Model):
     product = models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE)

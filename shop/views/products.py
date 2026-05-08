@@ -1,4 +1,5 @@
 # shop/views/products.py
+import json
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
 from django.contrib import messages
@@ -132,7 +133,7 @@ def product_detail(request, slug: str):
     """Display detailed information for a specific product."""
     product = get_object_or_404(
         Product.objects.prefetch_related(
-            'images', 'reviews', 'attributes', 'complementary_products', 'related_products', 'category'
+            'images', 'reviews', 'complementary_products', 'related_products', 'category', 'variants__values__property', 'variants__images'
         ),
         slug=slug
     )
@@ -151,14 +152,6 @@ def product_detail(request, slug: str):
     rating_percentages = {}
     for stars, count in rating_counts.items():
         rating_percentages[stars] = (count / total_reviews * 100) if total_reviews > 0 else 0
-    
-    # Group flexible attributes (e.g. {'Color': ['Red', 'Blue'], 'Size': ['S', 'M', 'L']})
-    attributes_grouped = {}
-    for attr in product.attributes.all():
-        if attr.name not in attributes_grouped:
-            attributes_grouped[attr.name] = []
-        if attr.value not in attributes_grouped[attr.name]:
-            attributes_grouped[attr.name].append(attr.value)
         
     # Dynamic breadcrumbs generation tracing back parent categories
     breadcrumbs = []
@@ -172,6 +165,48 @@ def product_detail(request, slug: str):
     if not main_image:
         main_image = product.images.first()
         
+    variants = product.variants.all()
+    variant_data = []
+    
+    total_stock = sum(v.stock_quantity for v in variants) if variants.exists() else product.stock
+    is_low_stock = total_stock <= product.low_stock_threshold
+    
+    product_properties = {}
+    
+    for variant in variants:
+        v_info = {
+            'id': variant.id,
+            'price': str(variant.price) if variant.price is not None else str(product.price),
+            'stock': variant.stock_quantity,
+            'values': [],
+            'images': [img.image.url for img in variant.images.all()]
+        }
+        for val in variant.values.all():
+            prop_name = val.property.name
+            v_info['values'].append(val.value)
+            
+            if prop_name not in product_properties:
+                product_properties[prop_name] = {'name': prop_name, 'values': []}
+            
+            if not any(v['id'] == val.id for v in product_properties[prop_name]['values']):
+                product_properties[prop_name]['values'].append({
+                    'id': val.id,
+                    'value': val.value,
+                    'hex_code': val.hex_code
+                })
+                
+        variant_data.append(v_info)
+        
+    properties_list = list(product_properties.values())
+        
+    informational_attributes = product.attributes.select_related('property').all()
+    info_attributes_grouped = {}
+    for attr in informational_attributes:
+        prop_name = attr.property.name
+        if prop_name not in info_attributes_grouped:
+            info_attributes_grouped[prop_name] = []
+        info_attributes_grouped[prop_name].append(attr.value)
+        
     context: Dict[str, Any] = {
         'product': product,
         'main_image': main_image,
@@ -182,10 +217,14 @@ def product_detail(request, slug: str):
         'empty_stars_range': range(5 - int(round(avg_rating, 0))), # Empty stars
         'total_reviews': total_reviews,
         'rating_percentages': rating_percentages,
-        'attributes_grouped': attributes_grouped,
         'breadcrumbs': breadcrumbs,
         'complementary_products': product.complementary_products.filter(is_active=True)[:4],
         'related_products': product.related_products.filter(is_active=True)[:4],
+        'product_properties': properties_list,
+        'variant_data_json': json.dumps(variant_data),
+        'info_attributes_grouped': info_attributes_grouped,
+        'is_low_stock': is_low_stock,
+        'total_stock': total_stock,
     }
     return render(request, 'products/product_detail.html', context)
 

@@ -853,88 +853,23 @@
 
                                                         <!-- Rating Snapshot -->
                                                         <div class="space-y-2">
+{% for rd in rating_data %}
                                                                 <!-- Progress -->
                                                                 <div class="flex items-center p5sau">
                                                                         <span
-                                                                                class="utc3s xs2f2 jy5gh dark:text-neutral-500">5
-                                                                                stars</span>
+                                                                                class="utc3s xs2f2 jy5gh dark:text-neutral-500">{{ rd.stars }}
+                                                                                star{{ rd.stars|pluralize }}</span>
                                                                         <div class="flex w-full q3cqc tfa1w kghwt overflow-hidden dark:bg-neutral-700"
-                                                                                role="progressbar" aria-valuenow="60"
+                                                                                role="progressbar" aria-valuenow="{{ rd.percentage }}"
                                                                                 aria-valuemin="0" aria-valuemax="100">
                                                                                 <div class="flex flex-col jkwm1 overflow-hidden lgr79 xs2f2 kew0r dtief kghwt s1lil dark:bg-indigo-400"
-                                                                                        style="width: 80%">
-                                                                                </div>
+                                                                                        style="width: {{ rd.percentage|floatformat:0 }}%"></div>
                                                                         </div>
                                                                         <span
-                                                                                class="oueoz xs2f2 jy5gh dark:text-neutral-500">10</span>
+                                                                                class="oueoz xs2f2 jy5gh dark:text-neutral-500">{{ rd.count }}</span>
                                                                 </div>
                                                                 <!-- End Progress -->
-
-                                                                <!-- Progress -->
-                                                                <div class="flex items-center p5sau">
-                                                                        <span
-                                                                                class="utc3s xs2f2 jy5gh dark:text-neutral-500">4
-                                                                                stars</span>
-                                                                        <div class="flex w-full q3cqc tfa1w kghwt overflow-hidden dark:bg-neutral-700"
-                                                                                role="progressbar" aria-valuenow="20"
-                                                                                aria-valuemin="0" aria-valuemax="100">
-                                                                                <div class="flex flex-col jkwm1 overflow-hidden lgr79 xs2f2 kew0r dtief kghwt s1lil dark:bg-indigo-400"
-                                                                                        style="width: 10%">
-                                                                                </div>
-                                                                        </div>
-                                                                        <span
-                                                                                class="oueoz xs2f2 jy5gh dark:text-neutral-500">1</span>
-                                                                </div>
-                                                                <!-- End Progress -->
-
-                                                                <!-- Progress -->
-                                                                <div class="flex items-center p5sau">
-                                                                        <span
-                                                                                class="utc3s xs2f2 jy5gh dark:text-neutral-500">3
-                                                                                stars</span>
-                                                                        <div class="flex w-full q3cqc tfa1w kghwt overflow-hidden dark:bg-neutral-700"
-                                                                                role="progressbar" aria-valuenow="10"
-                                                                                aria-valuemin="0" aria-valuemax="100">
-                                                                                <div class="flex flex-col jkwm1 overflow-hidden lgr79 xs2f2 kew0r dtief kghwt s1lil dark:bg-indigo-400"
-                                                                                        style="width: 10%">
-                                                                                </div>
-                                                                        </div>
-                                                                        <span
-                                                                                class="oueoz xs2f2 jy5gh dark:text-neutral-500">1</span>
-                                                                </div>
-                                                                <!-- End Progress -->
-
-                                                                <!-- Progress -->
-                                                                <div class="flex items-center p5sau">
-                                                                        <span
-                                                                                class="utc3s xs2f2 jy5gh dark:text-neutral-500">2
-                                                                                stars</span>
-                                                                        <div class="flex w-full q3cqc tfa1w kghwt overflow-hidden dark:bg-neutral-700"
-                                                                                role="progressbar" aria-valuenow="0"
-                                                                                aria-valuemin="0" aria-valuemax="100">
-                                                                                <div class="flex flex-col jkwm1 overflow-hidden lgr79 xs2f2 kew0r dtief kghwt s1lil dark:bg-indigo-400"
-                                                                                        style="width: 0%"></div>
-                                                                        </div>
-                                                                        <span
-                                                                                class="oueoz xs2f2 jy5gh dark:text-neutral-500">0</span>
-                                                                </div>
-                                                                <!-- End Progress -->
-
-                                                                <!-- Progress -->
-                                                                <div class="flex items-center p5sau">
-                                                                        <span
-                                                                                class="utc3s xs2f2 jy5gh dark:text-neutral-500">1
-                                                                                star</span>
-                                                                        <div class="flex w-full q3cqc tfa1w kghwt overflow-hidden dark:bg-neutral-700"
-                                                                                role="progressbar" aria-valuenow="0"
-                                                                                aria-valuemin="0" aria-valuemax="100">
-                                                                                <div class="flex flex-col jkwm1 overflow-hidden lgr79 xs2f2 kew0r dtief kghwt s1lil dark:bg-indigo-400"
-                                                                                        style="width: 0%"></div>
-                                                                        </div>
-                                                                        <span
-                                                                                class="oueoz xs2f2 jy5gh dark:text-neutral-500">0</span>
-                                                                </div>
-                                                                <!-- End Progress -->
+{% endfor %}
                                                         </div>
                                                         <!-- End Rating Snapshot -->
                                                 </div>
@@ -1266,538 +1201,104 @@
                                 <!-- End Col -->
 
                                 <!-- Review List -->
-                                <div class="pp4w9 u2bil g3zhs p6v5q wxbqx tttvu yfv61 lnk45 dark:border-neutral-700">
-                                        <!-- Review -->
-                                        <div class="fwblm hhbup fazzp rxmp4 x8wiw nx3r8 u9m3z dark:border-neutral-700">
-                                                <!-- Review -->
-                                                <div class="flex items-center hhi70">
-                                                        <svg class="e731n h6zia g41z1 dark:text-indigo-400"
-                                                                xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                                <path
-                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                </path>
-                                                        </svg>
-                                                        <svg class="e731n h6zia g41z1 dark:text-indigo-400"
-                                                                xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                                <path
-                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                </path>
-                                                        </svg>
-                                                        <svg class="e731n h6zia g41z1 dark:text-indigo-400"
-                                                                xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                                <path
-                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                </path>
-                                                        </svg>
-                                                        <svg class="e731n h6zia g41z1 dark:text-indigo-400"
-                                                                xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                                <path
-                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                </path>
-                                                        </svg>
-                                                        <svg class="e731n h6zia g41z1 dark:text-indigo-400"
-                                                                xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                                <path
-                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                </path>
-                                                        </svg>
-                                                        <span class="ncgn0 xs2f2 jy5gh dark:text-neutral-500">
-                                                                Highly recommended
-                                                        </span>
-                                                </div>
-                                                <!-- End Review -->
+<div class="pp4w9 u2bil g3zhs p6v5q wxbqx tttvu yfv61 lnk45 dark:border-neutral-700">
+        {% for review in reviews %}
+        <!-- Review -->
+        <div class="fwblm hhbup fazzp rxmp4 x8wiw nx3r8 u9m3z dark:border-neutral-700">
+                <!-- Review -->
+                <div class="flex items-center hhi70">
+                        {% for i in "12345" %}
+                        {% if forloop.counter <= review.rating %}
+                        <svg class="e731n h6zia g41z1 dark:text-indigo-400" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                        {% else %}
+                        <svg class="e731n h6zia g41z1 dark:text-indigo-400" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"></path>
+                        </svg>
+                        {% endif %}
+                        {% endfor %}
+                        
+                        {% if review.is_recommended %}
+                        <span class="ncgn0 xs2f2 jy5gh dark:text-neutral-500">
+                                Highly recommended
+                        </span>
+                        {% endif %}
+                </div>
+                <!-- End Review -->
 
-                                                <div class="wc6fu flex flex-wrap ox2cl items-center g27d7">
-                                                        <h3 class="cnneu c9jt8 dark:text-neutral-200">
-                                                                Comfortable relaxed fit
-                                                        </h3>
+                <div class="wc6fu flex flex-wrap ox2cl items-center g27d7">
+                        <h3 class="cnneu c9jt8 dark:text-neutral-200">
+                                {{ review.title }}
+                        </h3>
 
-                                                        <p class="z4zqw jy5gh dark:text-neutral-500">
-                                                                13 hours ago
-                                                        </p>
-                                                </div>
+                        <p class="z4zqw jy5gh dark:text-neutral-500">
+                                {{ review.created_at|timesince }} ago
+                        </p>
+                </div>
 
-                                                <div class="wc6fu flex o4ndh">
-                                                        <img class="e731n s2spy f4yn1 pb094 dark:bg-neutral-800" src={% static 'images/photo-1598538423445-dec578db1bf8' %}
-                                                                alt="Review Image">
-                                                        <img class="e731n s2spy f4yn1 pb094 dark:bg-neutral-800" src={% static 'images/photo-1598538472450-92865d69291b' %}
-                                                                alt="Review Image">
-                                                </div>
+                {% if review.images.all %}
+                <div class="wc6fu flex o4ndh">
+                        {% for img in review.images.all %}
+                        <div class="x8wiw">
+                                <img class="e731n s2spy f4yn1 pb094 dark:bg-neutral-800" src="{{ img.image.url }}" alt="Review Image">
+                        </div>
+                        {% endfor %}
+                </div>
+                {% endif %}
 
-                                                <p class="wc6fu w4xo0 c9jt8 dark:text-neutral-200">
-                                                        The most stylish and funky slippers l've ever owned!
-                                                        Much admired by friends and family.
-                                                </p>
+                <p class="wc6fu w4xo0 c9jt8 dark:text-neutral-200">
+                        {{ review.content }}
+                </p>
 
-                                                <!-- Footer -->
-                                                <div
-                                                        class="ah7xl flex flex-wrap flex-col sm:flex-row i4wli sm:items-center o4ndh">
-                                                        <div class="flex items-center v1hon">
-                                                                <h6 class="cnneu w4xo0 c9jt8 dark:text-neutral-200">
-                                                                        runMiles
-                                                                </h6>
+                <!-- Footer -->
+                <div class="ah7xl flex flex-wrap flex-col sm:flex-row i4wli sm:items-center o4ndh">
+                        <div class="flex items-center v1hon">
+                                <h6 class="cnneu w4xo0 c9jt8 dark:text-neutral-200">
+                                        {% if review.user %}{{ review.user.username }}{% else %}Anonymous{% endif %}
+                                </h6>
+                                {% if review.is_verified_purchase %}
+                                <p class="xs2f2 jy5gh dark:text-neutral-500 ml-2">
+                                        Verified customer
+                                </p>
+                                {% endif %}
+                        </div>
 
-                                                                <span class="xs2f2 jy5gh dark:text-neutral-500">—</span>
+                        <!-- Button Group -->
+                        <div class="flex flex-wrap items-center g27d7">
+                                <span class="z4zqw jy5gh dark:text-neutral-500">
+                                        Helpful?
+                                </span>
 
-                                                                <div class="inline-flex items-center n6i5x">
-                                                                        <svg class="e731n b9gop jy5gh dark:text-neutral-500"
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="24" height="24"
-                                                                                viewBox="0 0 24 24" fill="none"
-                                                                                stroke="currentColor" stroke-width="2"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round">
-                                                                                <path
-                                                                                        d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10">
-                                                                                </path>
-                                                                                <path d="m9 12 2 2 4-4"></path>
-                                                                        </svg>
-                                                                        <p class="xs2f2 jy5gh dark:text-neutral-500">
-                                                                                Verified customer
-                                                                        </p>
-                                                                </div>
-                                                        </div>
+                                <button type="button" class="flex items-center b1nd2 z4zqw jy5gh mg8vb focus:outline-hidden dark:text-neutral-500 dark:hover:text-neutral-200">
+                                        <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M7 10v12"></path>
+                                                <path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"></path>
+                                        </svg>
+                                        ({{ review.helpful_votes }})
+                                </button>
 
-                                                        <!-- Button Group -->
-                                                        <div class="flex flex-wrap items-center g27d7">
-                                                                <span class="z4zqw jy5gh dark:text-neutral-500">
-                                                                        Helpful?
-                                                                </span>
+                                <button type="button" class="flex items-center b1nd2 z4zqw jy5gh mg8vb focus:outline-hidden dark:text-neutral-500 dark:hover:text-neutral-200">
+                                        <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M17 14V2"></path>
+                                                <path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"></path>
+                                        </svg>
+                                        (0)
+                                </button>
 
-                                                                <button type="button"
-                                                                        class="flex items-center b1nd2 z4zqw jy5gh mg8vb focus:outline-hidden dark:text-neutral-500 dark:hover:text-neutral-200">
-                                                                        <svg class="e731n h6zia"
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="24" height="24"
-                                                                                viewBox="0 0 24 24" fill="none"
-                                                                                stroke="currentColor" stroke-width="2"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round">
-                                                                                <path d="M7 10v12"></path>
-                                                                                <path
-                                                                                        d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z">
-                                                                                </path>
-                                                                        </svg>
-                                                                        (2)
-                                                                </button>
-
-                                                                <button type="button"
-                                                                        class="flex items-center b1nd2 z4zqw jy5gh mg8vb focus:outline-hidden dark:text-neutral-500 dark:hover:text-neutral-200">
-                                                                        <svg class="e731n h6zia"
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="24" height="24"
-                                                                                viewBox="0 0 24 24" fill="none"
-                                                                                stroke="currentColor" stroke-width="2"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round">
-                                                                                <path d="M17 14V2"></path>
-                                                                                <path
-                                                                                        d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z">
-                                                                                </path>
-                                                                        </svg>
-                                                                        (0)
-                                                                </button>
-
-                                                                <button type="button"
-                                                                        class="z4zqw jy5gh l5oyh povjg mg8vb focus:outline-hidden pwmu5 dark:text-neutral-500 dark:hover:text-neutral-200 dark:focus:text-neutral-200">
-                                                                        Report
-                                                                </button>
-                                                        </div>
-                                                        <!-- End Button Group -->
-                                                </div>
-                                                <!-- End Footer -->
-                                        </div>
-                                        <!-- End Review -->
-
-                                        <!-- Review -->
-                                        <div class="fwblm hhbup fazzp rxmp4 x8wiw nx3r8 u9m3z dark:border-neutral-700">
-                                                <!-- Review -->
-                                                <div class="flex items-center hhi70">
-                                                        <svg class="e731n h6zia g41z1 dark:text-indigo-400"
-                                                                xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                                <path
-                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                </path>
-                                                        </svg>
-                                                        <svg class="e731n h6zia g41z1 dark:text-indigo-400"
-                                                                xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                                <path
-                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                </path>
-                                                        </svg>
-                                                        <svg class="e731n h6zia g41z1 dark:text-indigo-400"
-                                                                xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                                <path
-                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                </path>
-                                                        </svg>
-                                                        <svg class="e731n h6zia g41z1 dark:text-indigo-400"
-                                                                xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                                <path
-                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                </path>
-                                                        </svg>
-                                                        <svg class="e731n h6zia g41z1 dark:text-indigo-400"
-                                                                xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                                <path
-                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                </path>
-                                                        </svg>
-                                                        <span class="ncgn0 xs2f2 jy5gh dark:text-neutral-500">
-                                                                Highly recommended
-                                                        </span>
-                                                </div>
-                                                <!-- End Review -->
-
-                                                <div class="wc6fu flex flex-wrap ox2cl items-center g27d7">
-                                                        <h3 class="cnneu c9jt8 dark:text-neutral-200">
-                                                                Top Choice Shoes!
-                                                        </h3>
-
-                                                        <p class="z4zqw jy5gh dark:text-neutral-500">
-                                                                5 days ago
-                                                        </p>
-                                                </div>
-
-                                                <div class="wc6fu flex o4ndh">
-                                                        <img class="e731n s2spy f4yn1 pb094 dark:bg-neutral-800" src={% static 'images/photo-1598342991184-db235a7e49d8' %}
-                                                                alt="Review Image">
-                                                        <img class="e731n s2spy f4yn1 pb094 dark:bg-neutral-800" src={% static 'images/photo-1598342991207-cde150d8e9b1' %}
-                                                                alt="Review Image">
-                                                        <img class="e731n s2spy f4yn1 pb094 dark:bg-neutral-800" src={% static 'images/photo-1598538423445-dec578db1bf8' %}
-                                                                alt="Review Image">
-                                                </div>
-
-                                                <p class="wc6fu w4xo0 c9jt8 dark:text-neutral-200">
-                                                        I've done a review but I don't mind gloating about your
-                                                        product. The pair I have now are my 3rd and love the
-                                                        comfort, design and now the new white sole.
-                                                </p>
-
-                                                <!-- Footer -->
-                                                <div
-                                                        class="ah7xl flex flex-wrap flex-col sm:flex-row i4wli sm:items-center o4ndh">
-                                                        <div class="flex items-center v1hon">
-                                                                <h6 class="cnneu w4xo0 c9jt8 dark:text-neutral-200">
-                                                                        Sam
-                                                                </h6>
-
-                                                                <span class="xs2f2 jy5gh dark:text-neutral-500">—</span>
-
-                                                                <div class="inline-flex items-center n6i5x">
-                                                                        <svg class="e731n b9gop jy5gh dark:text-neutral-500"
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="24" height="24"
-                                                                                viewBox="0 0 24 24" fill="none"
-                                                                                stroke="currentColor" stroke-width="2"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round">
-                                                                                <path
-                                                                                        d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10">
-                                                                                </path>
-                                                                                <path d="m9 12 2 2 4-4"></path>
-                                                                        </svg>
-                                                                        <p class="xs2f2 jy5gh dark:text-neutral-500">
-                                                                                Verified customer
-                                                                        </p>
-                                                                </div>
-                                                        </div>
-
-                                                        <!-- Button Group -->
-                                                        <div class="flex flex-wrap items-center g27d7">
-                                                                <span class="z4zqw jy5gh dark:text-neutral-500">
-                                                                        Helpful?
-                                                                </span>
-
-                                                                <button type="button"
-                                                                        class="flex items-center b1nd2 z4zqw jy5gh mg8vb focus:outline-hidden dark:text-neutral-500 dark:hover:text-neutral-200">
-                                                                        <svg class="e731n h6zia"
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="24" height="24"
-                                                                                viewBox="0 0 24 24" fill="none"
-                                                                                stroke="currentColor" stroke-width="2"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round">
-                                                                                <path d="M7 10v12"></path>
-                                                                                <path
-                                                                                        d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z">
-                                                                                </path>
-                                                                        </svg>
-                                                                        (1)
-                                                                </button>
-
-                                                                <button type="button"
-                                                                        class="flex items-center b1nd2 z4zqw jy5gh mg8vb focus:outline-hidden dark:text-neutral-500 dark:hover:text-neutral-200">
-                                                                        <svg class="e731n h6zia"
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="24" height="24"
-                                                                                viewBox="0 0 24 24" fill="none"
-                                                                                stroke="currentColor" stroke-width="2"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round">
-                                                                                <path d="M17 14V2"></path>
-                                                                                <path
-                                                                                        d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z">
-                                                                                </path>
-                                                                        </svg>
-                                                                        (0)
-                                                                </button>
-
-                                                                <button type="button"
-                                                                        class="z4zqw jy5gh l5oyh povjg mg8vb focus:outline-hidden pwmu5 dark:text-neutral-500 dark:hover:text-neutral-200 dark:focus:text-neutral-200">
-                                                                        Report
-                                                                </button>
-                                                        </div>
-                                                        <!-- End Button Group -->
-                                                </div>
-                                                <!-- End Footer -->
-                                        </div>
-                                        <!-- End Review -->
-
-                                        <!-- Review -->
-                                        <div class="fwblm hhbup fazzp rxmp4 x8wiw nx3r8 u9m3z dark:border-neutral-700">
-                                                <!-- Review -->
-                                                <div class="flex items-center hhi70">
-                                                        <svg class="e731n h6zia g41z1 dark:text-indigo-400"
-                                                                xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                                <path
-                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                </path>
-                                                        </svg>
-                                                        <svg class="e731n h6zia g41z1 dark:text-indigo-400"
-                                                                xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                                <path
-                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                </path>
-                                                        </svg>
-                                                        <svg class="e731n h6zia g41z1 dark:text-indigo-400"
-                                                                xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                                <path
-                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                </path>
-                                                        </svg>
-                                                        <svg class="e731n h6zia g41z1 dark:text-indigo-400"
-                                                                xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                                <path
-                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                </path>
-                                                        </svg>
-                                                        <svg class="e731n h6zia g41z1 dark:text-indigo-400"
-                                                                xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                                <path
-                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                </path>
-                                                        </svg>
-                                                </div>
-                                                <!-- End Review -->
-
-                                                <div class="wc6fu flex flex-wrap ox2cl items-center g27d7">
-                                                        <h3 class="cnneu c9jt8 dark:text-neutral-200">
-                                                                Amazing
-                                                        </h3>
-
-                                                        <p class="z4zqw jy5gh dark:text-neutral-500">
-                                                                1 week ago
-                                                        </p>
-                                                </div>
-
-                                                <p class="wc6fu w4xo0 c9jt8 dark:text-neutral-200">
-                                                        Very good and extremely comfortable. Often the back of
-                                                        the slipper tends to pull apart sooner than you would
-                                                        think for such an expensive product.
-                                                </p>
-
-                                                <!-- Footer -->
-                                                <div
-                                                        class="ah7xl flex flex-wrap flex-col sm:flex-row i4wli sm:items-center o4ndh">
-                                                        <div class="flex items-center v1hon">
-                                                                <h6 class="cnneu w4xo0 c9jt8 dark:text-neutral-200">
-                                                                        CaseyPA
-                                                                </h6>
-                                                        </div>
-
-                                                        <!-- Button Group -->
-                                                        <div class="flex flex-wrap items-center g27d7">
-                                                                <span class="z4zqw jy5gh dark:text-neutral-500">
-                                                                        Helpful?
-                                                                </span>
-
-                                                                <button type="button"
-                                                                        class="flex items-center b1nd2 z4zqw jy5gh mg8vb focus:outline-hidden dark:text-neutral-500 dark:hover:text-neutral-200">
-                                                                        <svg class="e731n h6zia"
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="24" height="24"
-                                                                                viewBox="0 0 24 24" fill="none"
-                                                                                stroke="currentColor" stroke-width="2"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round">
-                                                                                <path d="M7 10v12"></path>
-                                                                                <path
-                                                                                        d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z">
-                                                                                </path>
-                                                                        </svg>
-                                                                        (0)
-                                                                </button>
-
-                                                                <button type="button"
-                                                                        class="flex items-center b1nd2 z4zqw jy5gh mg8vb focus:outline-hidden dark:text-neutral-500 dark:hover:text-neutral-200">
-                                                                        <svg class="e731n h6zia"
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="24" height="24"
-                                                                                viewBox="0 0 24 24" fill="none"
-                                                                                stroke="currentColor" stroke-width="2"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round">
-                                                                                <path d="M17 14V2"></path>
-                                                                                <path
-                                                                                        d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z">
-                                                                                </path>
-                                                                        </svg>
-                                                                        (0)
-                                                                </button>
-
-                                                                <button type="button"
-                                                                        class="z4zqw jy5gh l5oyh povjg mg8vb focus:outline-hidden pwmu5 dark:text-neutral-500 dark:hover:text-neutral-200 dark:focus:text-neutral-200">
-                                                                        Report
-                                                                </button>
-                                                        </div>
-                                                        <!-- End Button Group -->
-                                                </div>
-                                                <!-- End Footer -->
-                                        </div>
-                                        <!-- End Review -->
-
-                                        <!-- Review -->
-                                        <div class="fwblm hhbup fazzp rxmp4 x8wiw nx3r8 u9m3z dark:border-neutral-700">
-                                                <!-- Review -->
-                                                <div class="flex items-center hhi70">
-                                                        <svg class="e731n h6zia g41z1 dark:text-indigo-400"
-                                                                xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                                <path
-                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                </path>
-                                                        </svg>
-                                                        <svg class="e731n h6zia g41z1 dark:text-indigo-400"
-                                                                xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                                <path
-                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                </path>
-                                                        </svg>
-                                                        <svg class="e731n h6zia g41z1 dark:text-indigo-400"
-                                                                xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                                <path
-                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                </path>
-                                                        </svg>
-                                                        <svg class="e731n h6zia g41z1 dark:text-indigo-400"
-                                                                xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                                <path
-                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                </path>
-                                                        </svg>
-                                                        <svg class="e731n h6zia g41z1 dark:text-indigo-400"
-                                                                xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                                <path
-                                                                        d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z">
-                                                                </path>
-                                                        </svg>
-                                                </div>
-                                                <!-- End Review -->
-
-                                                <div class="wc6fu flex flex-wrap ox2cl items-center g27d7">
-                                                        <h3 class="cnneu c9jt8 dark:text-neutral-200">
-                                                                Comfortable
-                                                        </h3>
-
-                                                        <p class="z4zqw jy5gh dark:text-neutral-500">
-                                                                3 month ago
-                                                        </p>
-                                                </div>
-
-                                                <p class="wc6fu w4xo0 c9jt8 dark:text-neutral-200">
-                                                        Comfortable, took a week or two to wear in.
-                                                </p>
-
-                                                <!-- Footer -->
-                                                <div
-                                                        class="ah7xl flex flex-wrap flex-col sm:flex-row i4wli sm:items-center o4ndh">
-                                                        <div class="flex items-center v1hon">
-                                                                <h6 class="cnneu w4xo0 c9jt8 dark:text-neutral-200">
-                                                                        mrX
-                                                                </h6>
-                                                        </div>
-
-                                                        <!-- Button Group -->
-                                                        <div class="flex flex-wrap items-center g27d7">
-                                                                <span class="z4zqw jy5gh dark:text-neutral-500">
-                                                                        Helpful?
-                                                                </span>
-
-                                                                <button type="button"
-                                                                        class="flex items-center b1nd2 z4zqw jy5gh mg8vb focus:outline-hidden dark:text-neutral-500 dark:hover:text-neutral-200">
-                                                                        <svg class="e731n h6zia"
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="24" height="24"
-                                                                                viewBox="0 0 24 24" fill="none"
-                                                                                stroke="currentColor" stroke-width="2"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round">
-                                                                                <path d="M7 10v12"></path>
-                                                                                <path
-                                                                                        d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z">
-                                                                                </path>
-                                                                        </svg>
-                                                                        (0)
-                                                                </button>
-
-                                                                <button type="button"
-                                                                        class="flex items-center b1nd2 z4zqw jy5gh mg8vb focus:outline-hidden dark:text-neutral-500 dark:hover:text-neutral-200">
-                                                                        <svg class="e731n h6zia"
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="24" height="24"
-                                                                                viewBox="0 0 24 24" fill="none"
-                                                                                stroke="currentColor" stroke-width="2"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round">
-                                                                                <path d="M17 14V2"></path>
-                                                                                <path
-                                                                                        d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z">
-                                                                                </path>
-                                                                        </svg>
-                                                                        (0)
-                                                                </button>
-
-                                                                <button type="button"
-                                                                        class="z4zqw jy5gh l5oyh povjg mg8vb focus:outline-hidden pwmu5 dark:text-neutral-500 dark:hover:text-neutral-200 dark:focus:text-neutral-200">
-                                                                        Report
-                                                                </button>
-                                                        </div>
-                                                        <!-- End Button Group -->
-                                                </div>
-                                                <!-- End Footer -->
-                                        </div>
-                                        <!-- End Review -->
-                                </div>
+                                <button type="button" class="z4zqw jy5gh l5oyh povjg mg8vb focus:outline-hidden pwmu5 dark:text-neutral-500 dark:hover:text-neutral-200 dark:focus:text-neutral-200">
+                                        Report
+                                </button>
+                        </div>
+                        <!-- End Button Group -->
+                </div>
+                <!-- End Footer -->
+        </div>
+        <!-- End Review -->
+        {% empty %}
+        <p class="jy5gh dark:text-neutral-500 pb094">No reviews yet. Be the first to review this product!</p>
+        {% endfor %}
+</div>
                                 <!-- End Review List -->
                         </div>
                         <!-- End Grid -->

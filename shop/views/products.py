@@ -139,7 +139,7 @@ def product_detail(request, slug: str):
     )
     
     # Calculate average rating and handle review tracking logic
-    reviews = product.reviews.all().order_by('-created_at')
+    reviews = product.reviews.prefetch_related('images', 'user').all().order_by('-created_at')
     avg_rating = reviews.aggregate(Avg('rating'))['rating__avg'] or 0.0
     total_reviews = reviews.count()
     
@@ -149,9 +149,11 @@ def product_detail(request, slug: str):
         if r.rating in rating_counts:
             rating_counts[r.rating] += 1
             
-    rating_percentages = {}
-    for stars, count in rating_counts.items():
-        rating_percentages[stars] = (count / total_reviews * 100) if total_reviews > 0 else 0
+    rating_data = []
+    for stars in range(5, 0, -1):
+        count = rating_counts[stars]
+        percentage = (count / total_reviews * 100) if total_reviews > 0 else 0
+        rating_data.append({'stars': stars, 'count': count, 'percentage': percentage})
         
     # Dynamic breadcrumbs generation tracing back parent categories
     breadcrumbs = []
@@ -216,7 +218,7 @@ def product_detail(request, slug: str):
         'avg_rating_range': range(int(round(avg_rating, 0))), # Filled stars
         'empty_stars_range': range(5 - int(round(avg_rating, 0))), # Empty stars
         'total_reviews': total_reviews,
-        'rating_percentages': rating_percentages,
+        'rating_data': rating_data,
         'breadcrumbs': breadcrumbs,
         'complementary_products': product.complementary_products.filter(is_active=True)[:4],
         'related_products': product.related_products.filter(is_active=True)[:4],

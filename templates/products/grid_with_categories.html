@@ -1969,7 +1969,7 @@
     {% for product in products %}
     <div class="group relative">
       <div class="relative">
-        <a class="block er6t7 focus:outline-hidden" href="{% url 'product_detail' product.id %}">
+        <a class="block er6t7 focus:outline-hidden" href="{% url 'shop:product_detail' product.id %}">
           {% if product.images.first %}
           <img class="f4yn1 er6t7 dark:bg-neutral-800 object-cover min-h-[300px]" src="{{ product.images.first.image.url }}" alt="{{ product.name }}">
           {% else %}
@@ -2009,7 +2009,7 @@
       </div>
 
       <!-- Make the entire div seamlessly clickable -->
-      <a class="after:z-[1] after:absolute after:inset-0" href="{% url 'product_detail' product.id %}"></a>
+      <a class="after:z-[1] after:absolute after:inset-0" href="{% url 'shop:product_detail' product.id %}"></a>
 
       <div class="f5e2w mt-4">
         <span class="block w4xo0 cve4m c9jt8 dark:text-neutral-200 font-semibold line-clamp-1">

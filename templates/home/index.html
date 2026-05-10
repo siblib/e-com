@@ -3541,7 +3541,7 @@
                                 <!-- Button Group -->
                                 <div class="ah7xl dtief">
                                         <a class="inline-flex items-center b1nd2 c9jt8 l5oyh povjg iiod0 focus:outline-hidden s6w37 dark:text-neutral-200 dark:hover:text-indigo-400 dark:focus:text-indigo-400"
-                                                href="{% if tab.type == 'category' %}{% url 'shop_grid' %}?category={{ tab.slug }}{% else %}{% url 'shop_grid' %}?exclude_trending=true{% endif %}">
+                                                href="{% if tab.type == 'category' %}{% url 'shop:shop_grid' %}?category={{ tab.slug }}{% else %}{% url 'shop:shop_grid' %}?exclude_trending=true{% endif %}">
                                                 Shop all {{ tab.label|lower }}
                                                 <svg class="e731n b9gop" xmlns="http://www.w3.org/2000/svg" width="24"
                                                         height="24" viewBox="0 0 24 24" fill="none"
@@ -3725,7 +3725,7 @@
                                                                         style="width: 219.333px;">
                                                                         <!-- Item -->
                                                                         <a class="relative block group focus:outline-hidden"
-                                                                                href="{% url 'products_by_brand' brand.slug %}">
+                                                                                href="{% url 'shop:products_by_brand' brand.slug %}">
                                                                                 <div class="overflow-hidden er6t7">
                                                                                         <img class="w-full xdkn9 x1s1r er6t7 group-hover:scale-105 group-focus:scale-105 oeanj ys1w3 resz6"
                                                                                                 src="{% if brand.image %}{{ brand.image.url }}{% else %}{% static 'images/placeholder-brand.jpg' %}{% endif %}"

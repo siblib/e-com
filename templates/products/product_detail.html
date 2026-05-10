@@ -504,7 +504,8 @@
                                                                                         <ul
                                                                                                 class="w4xo0 jy5gh dark:text-neutral-500 list-disc pl-5">
                                                                                                 {% for prop_name, values in info_attributes_grouped.items %}
-                                                                                                <li><strong>{{ prop_name }}:</strong> {{ values|join:", " }}</li>
+                                                                                                <li><strong>{{ prop_name }}:</strong>
+                                                                                                        {{ values|join:", " }}</li>
                                                                                                 {% endfor %}
                                                                                         </ul>
                                                                                 </div>
@@ -853,23 +854,25 @@
 
                                                         <!-- Rating Snapshot -->
                                                         <div class="space-y-2">
-{% for rd in rating_data %}
+                                                                {% for rd in rating_data %}
                                                                 <!-- Progress -->
                                                                 <div class="flex items-center p5sau">
                                                                         <span
                                                                                 class="utc3s xs2f2 jy5gh dark:text-neutral-500">{{ rd.stars }}
                                                                                 star{{ rd.stars|pluralize }}</span>
                                                                         <div class="flex w-full q3cqc tfa1w kghwt overflow-hidden dark:bg-neutral-700"
-                                                                                role="progressbar" aria-valuenow="{{ rd.percentage }}"
+                                                                                role="progressbar"
+                                                                                aria-valuenow="{{ rd.percentage }}"
                                                                                 aria-valuemin="0" aria-valuemax="100">
                                                                                 <div class="flex flex-col jkwm1 overflow-hidden lgr79 xs2f2 kew0r dtief kghwt s1lil dark:bg-indigo-400"
-                                                                                        style="width: {{ rd.percentage|floatformat:0 }}%"></div>
+                                                                                        style="width: {{ rd.percentage|floatformat:0 }}%">
+                                                                                </div>
                                                                         </div>
                                                                         <span
                                                                                 class="oueoz xs2f2 jy5gh dark:text-neutral-500">{{ rd.count }}</span>
                                                                 </div>
                                                                 <!-- End Progress -->
-{% endfor %}
+                                                                {% endfor %}
                                                         </div>
                                                         <!-- End Rating Snapshot -->
                                                 </div>
@@ -1201,104 +1204,135 @@
                                 <!-- End Col -->
 
                                 <!-- Review List -->
-<div class="pp4w9 u2bil g3zhs p6v5q wxbqx tttvu yfv61 lnk45 dark:border-neutral-700">
-        {% for review in reviews %}
-        <!-- Review -->
-        <div class="fwblm hhbup fazzp rxmp4 x8wiw nx3r8 u9m3z dark:border-neutral-700">
-                <!-- Review -->
-                <div class="flex items-center hhi70">
-                        {% for i in "12345" %}
-                        {% if forloop.counter <= review.rating %}
-                        <svg class="e731n h6zia g41z1 dark:text-indigo-400" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                        </svg>
-                        {% else %}
-                        <svg class="e731n h6zia g41z1 dark:text-indigo-400" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"></path>
-                        </svg>
-                        {% endif %}
-                        {% endfor %}
-                        
-                        {% if review.is_recommended %}
-                        <span class="ncgn0 xs2f2 jy5gh dark:text-neutral-500">
-                                Highly recommended
-                        </span>
-                        {% endif %}
-                </div>
-                <!-- End Review -->
+                                <div class="pp4w9 u2bil g3zhs p6v5q wxbqx tttvu yfv61 lnk45 dark:border-neutral-700">
+                                        {% for review in reviews %}
+                                        <!-- Review -->
+                                        <div class="fwblm hhbup fazzp rxmp4 x8wiw nx3r8 u9m3z dark:border-neutral-700">
+                                                <!-- Review -->
+                                                <div class="flex items-center hhi70">
+                                                        {% for i in "12345" %}
+                                                        {% if forloop.counter <= review.rating %} <svg
+                                                                class="e731n h6zia g41z1 dark:text-indigo-400"
+                                                                xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" viewBox="0 0 16 16">
+                                                                <path
+                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                                </path>
+                                                                </svg>
+                                                                {% else %}
+                                                                <svg class="e731n h6zia g41z1 dark:text-indigo-400"
+                                                                        xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                        height="16" fill="currentColor"
+                                                                        viewBox="0 0 16 16">
+                                                                        <path
+                                                                                d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z">
+                                                                        </path>
+                                                                </svg>
+                                                                {% endif %}
+                                                                {% endfor %}
 
-                <div class="wc6fu flex flex-wrap ox2cl items-center g27d7">
-                        <h3 class="cnneu c9jt8 dark:text-neutral-200">
-                                {{ review.title }}
-                        </h3>
+                                                                {% if review.is_recommended %}
+                                                                <span class="ncgn0 xs2f2 jy5gh dark:text-neutral-500">
+                                                                        Highly recommended
+                                                                </span>
+                                                                {% endif %}
+                                                </div>
+                                                <!-- End Review -->
 
-                        <p class="z4zqw jy5gh dark:text-neutral-500">
-                                {{ review.created_at|timesince }} ago
-                        </p>
-                </div>
+                                                <div class="wc6fu flex flex-wrap ox2cl items-center g27d7">
+                                                        <h3 class="cnneu c9jt8 dark:text-neutral-200">
+                                                                {{ review.title }}
+                                                        </h3>
 
-                {% if review.images.all %}
-                <div class="wc6fu flex o4ndh">
-                        {% for img in review.images.all %}
-                        <div class="x8wiw">
-                                <img class="e731n s2spy f4yn1 pb094 dark:bg-neutral-800" src="{{ img.image.url }}" alt="Review Image">
-                        </div>
-                        {% endfor %}
-                </div>
-                {% endif %}
+                                                        <p class="z4zqw jy5gh dark:text-neutral-500">
+                                                                {{ review.created_at|timesince }} ago
+                                                        </p>
+                                                </div>
 
-                <p class="wc6fu w4xo0 c9jt8 dark:text-neutral-200">
-                        {{ review.content }}
-                </p>
+                                                {% if review.images.all %}
+                                                <div class="wc6fu flex o4ndh">
+                                                        {% for img in review.images.all %}
+                                                        <div class="x8wiw">
+                                                                <img class="e731n s2spy f4yn1 pb094 dark:bg-neutral-800"
+                                                                        src="{{ img.image.url }}" alt="Review Image">
+                                                        </div>
+                                                        {% endfor %}
+                                                </div>
+                                                {% endif %}
 
-                <!-- Footer -->
-                <div class="ah7xl flex flex-wrap flex-col sm:flex-row i4wli sm:items-center o4ndh">
-                        <div class="flex items-center v1hon">
-                                <h6 class="cnneu w4xo0 c9jt8 dark:text-neutral-200">
-                                        {% if review.user %}{{ review.user.username }}{% else %}Anonymous{% endif %}
-                                </h6>
-                                {% if review.is_verified_purchase %}
-                                <p class="xs2f2 jy5gh dark:text-neutral-500 ml-2">
-                                        Verified customer
-                                </p>
-                                {% endif %}
-                        </div>
+                                                <p class="wc6fu w4xo0 c9jt8 dark:text-neutral-200">
+                                                        {{ review.content }}
+                                                </p>
 
-                        <!-- Button Group -->
-                        <div class="flex flex-wrap items-center g27d7">
-                                <span class="z4zqw jy5gh dark:text-neutral-500">
-                                        Helpful?
-                                </span>
+                                                <!-- Footer -->
+                                                <div
+                                                        class="ah7xl flex flex-wrap flex-col sm:flex-row i4wli sm:items-center o4ndh">
+                                                        <div class="flex items-center v1hon">
+                                                                <h6 class="cnneu w4xo0 c9jt8 dark:text-neutral-200">
+                                                                        {% if review.user %}{{ review.user.username }}{% else %}Anonymous{% endif %}
+                                                                </h6>
+                                                                {% if review.is_verified_purchase %}
+                                                                <p class="xs2f2 jy5gh dark:text-neutral-500 ml-2">
+                                                                        Verified customer
+                                                                </p>
+                                                                {% endif %}
+                                                        </div>
 
-                                <button type="button" class="flex items-center b1nd2 z4zqw jy5gh mg8vb focus:outline-hidden dark:text-neutral-500 dark:hover:text-neutral-200">
-                                        <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                <path d="M7 10v12"></path>
-                                                <path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"></path>
-                                        </svg>
-                                        ({{ review.helpful_votes }})
-                                </button>
+                                                        <!-- Button Group -->
+                                                        <div class="flex flex-wrap items-center g27d7">
+                                                                <span class="z4zqw jy5gh dark:text-neutral-500">
+                                                                        Helpful?
+                                                                </span>
 
-                                <button type="button" class="flex items-center b1nd2 z4zqw jy5gh mg8vb focus:outline-hidden dark:text-neutral-500 dark:hover:text-neutral-200">
-                                        <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                <path d="M17 14V2"></path>
-                                                <path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"></path>
-                                        </svg>
-                                        (0)
-                                </button>
+                                                                <button type="button"
+                                                                        class="flex items-center b1nd2 z4zqw jy5gh mg8vb focus:outline-hidden dark:text-neutral-500 dark:hover:text-neutral-200">
+                                                                        <svg class="e731n h6zia"
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                width="24" height="24"
+                                                                                viewBox="0 0 24 24" fill="none"
+                                                                                stroke="currentColor" stroke-width="2"
+                                                                                stroke-linecap="round"
+                                                                                stroke-linejoin="round">
+                                                                                <path d="M7 10v12"></path>
+                                                                                <path
+                                                                                        d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z">
+                                                                                </path>
+                                                                        </svg>
+                                                                        ({{ review.helpful_votes }})
+                                                                </button>
 
-                                <button type="button" class="z4zqw jy5gh l5oyh povjg mg8vb focus:outline-hidden pwmu5 dark:text-neutral-500 dark:hover:text-neutral-200 dark:focus:text-neutral-200">
-                                        Report
-                                </button>
-                        </div>
-                        <!-- End Button Group -->
-                </div>
-                <!-- End Footer -->
-        </div>
-        <!-- End Review -->
-        {% empty %}
-        <p class="jy5gh dark:text-neutral-500 pb094">No reviews yet. Be the first to review this product!</p>
-        {% endfor %}
-</div>
+                                                                <button type="button"
+                                                                        class="flex items-center b1nd2 z4zqw jy5gh mg8vb focus:outline-hidden dark:text-neutral-500 dark:hover:text-neutral-200">
+                                                                        <svg class="e731n h6zia"
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                width="24" height="24"
+                                                                                viewBox="0 0 24 24" fill="none"
+                                                                                stroke="currentColor" stroke-width="2"
+                                                                                stroke-linecap="round"
+                                                                                stroke-linejoin="round">
+                                                                                <path d="M17 14V2"></path>
+                                                                                <path
+                                                                                        d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z">
+                                                                                </path>
+                                                                        </svg>
+                                                                        (0)
+                                                                </button>
+
+                                                                <button type="button"
+                                                                        class="z4zqw jy5gh l5oyh povjg mg8vb focus:outline-hidden pwmu5 dark:text-neutral-500 dark:hover:text-neutral-200 dark:focus:text-neutral-200">
+                                                                        Report
+                                                                </button>
+                                                        </div>
+                                                        <!-- End Button Group -->
+                                                </div>
+                                                <!-- End Footer -->
+                                        </div>
+                                        <!-- End Review -->
+                                        {% empty %}
+                                        <p class="jy5gh dark:text-neutral-500 pb094">No reviews yet. Be the first to
+                                                review this product!</p>
+                                        {% endfor %}
+                                </div>
                                 <!-- End Review List -->
                         </div>
                         <!-- End Grid -->
@@ -1346,19 +1380,23 @@
                                                 class="hs-carousel w-full flex sbso4 sa2ld i6bn4 overflow-x-auto ndnt5 y0qzi bpysz jog11 basss bxgd5 k0qok dark:[&amp;::-webkit-scrollbar-track]:bg-neutral-700 dark:[&amp;::-webkit-scrollbar-thumb]:bg-neutral-200">
                                                 <div class="hs-carousel-body flex flex-nowrap oeanj mx4xe">
                                                         {% for comp_product in complementary_products %}
-                                                        <div class="hs-carousel-slide c44he eoh5b n93cb {% if forloop.first %}active{% endif %}">
+                                                        <div
+                                                                class="hs-carousel-slide c44he eoh5b n93cb {% if forloop.first %}active{% endif %}">
                                                                 <!-- Card -->
                                                                 <div class="hzazi relative group overflow-hidden">
                                                                         {% if comp_product.images.first %}
                                                                         <img class="w-full hzazi x1s1r f4yn1 er6t7 dark:bg-neutral-800"
-                                                                                src="{{ comp_product.images.first.image.url }}" alt="{{ comp_product.name }}">
+                                                                                src="{{ comp_product.images.first.image.url }}"
+                                                                                alt="{{ comp_product.name }}">
                                                                         {% else %}
                                                                         <img class="w-full hzazi x1s1r f4yn1 er6t7 dark:bg-neutral-800"
-                                                                                src="{% static 'images/placeholder.png' %}" alt="Placeholder">
+                                                                                src="{% static 'images/placeholder.png' %}"
+                                                                                alt="Placeholder">
                                                                         {% endif %}
 
                                                                         <!-- Look Dropdown -->
-                                                                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                                                        <div
+                                                                                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                                                                                 <div
                                                                                         class="hs-dropdown [--auto-close:inside] [--trigger:hover] relative inline-flex">
                                                                                         <!-- Look Button Icon -->
@@ -1368,7 +1406,8 @@
                                                                                                 aria-haspopup="menu"
                                                                                                 aria-expanded="false"
                                                                                                 aria-label="Dropdown">
-                                                                                                <span class="relative flex">
+                                                                                                <span
+                                                                                                        class="relative flex">
                                                                                                         <span
                                                                                                                 class="baj5e absolute inline-flex fp3m4 kghwt aqyoh y1afu"></span>
                                                                                                         <span
@@ -1503,7 +1542,8 @@
                                                 class="hs-carousel w-full flex sbso4 q1glq b22kl i6bn4 overflow-x-auto ndnt5 y0qzi bpysz jog11 basss bxgd5 k0qok dark:[&amp;::-webkit-scrollbar-track]:bg-neutral-700 dark:[&amp;::-webkit-scrollbar-thumb]:bg-neutral-200">
                                                 <div class="hs-carousel-body flex flex-nowrap oeanj mx4xe">
                                                         {% for rel_product in related_products %}
-                                                        <div class="hs-carousel-slide c44he eoh5b n93cb {% if forloop.first %}active{% endif %}">
+                                                        <div
+                                                                class="hs-carousel-slide c44he eoh5b n93cb {% if forloop.first %}active{% endif %}">
                                                                 <!-- Card -->
                                                                 <div class=" group relative">
                                                                         <div class="relative">
@@ -1511,10 +1551,12 @@
                                                                                         href="{% url 'shop:product_detail' rel_product.slug %}">
                                                                                         {% if rel_product.images.first %}
                                                                                         <img class="f4yn1 er6t7 dark:bg-neutral-800"
-                                                                                                src="{{ rel_product.images.first.image.url }}" alt="{{ rel_product.name }}">
+                                                                                                src="{{ rel_product.images.first.image.url }}"
+                                                                                                alt="{{ rel_product.name }}">
                                                                                         {% else %}
                                                                                         <img class="f4yn1 er6t7 dark:bg-neutral-800"
-                                                                                                src="{% static 'images/placeholder.png' %}" alt="Placeholder">
+                                                                                                src="{% static 'images/placeholder.png' %}"
+                                                                                                alt="Placeholder">
                                                                                         {% endif %}
                                                                                 </a>
 

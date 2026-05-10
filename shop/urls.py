@@ -1,6 +1,8 @@
 from django.urls import path
 from .views import home, auth, account, products, checkout, cart, support
 
+app_name = 'shop'
+
 urlpatterns = [
     # --- Home ---
     path('', home.index, name='home'),

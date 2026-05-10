@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.utils.text import slugify
 from typing import Dict, Any
-from django.db.models import Avg
+from django.db.models import Avg, Count, Prefetch
 
 # Import models from the modular structure
 from shop.models import Product, Store, Category, ProductImage  # ← This works due to __init__.py
@@ -131,9 +131,21 @@ def grid_mini_categories(request):
 
 def product_detail(request, slug: str):
     """Display detailed information for a specific product."""
+    prefetch_comp = Prefetch(
+        'complementary_products',
+        queryset=Product.objects.filter(is_active=True).prefetch_related('images', 'category')
+    )
+    prefetch_rel = Prefetch(
+        'related_products',
+        queryset=Product.objects.filter(is_active=True)
+        .annotate(review_count=Count('reviews'))
+        .prefetch_related('images', 'category')
+    )
+
     product = get_object_or_404(
         Product.objects.prefetch_related(
-            'images', 'reviews', 'complementary_products', 'related_products', 'category', 'variants__values__property', 'variants__images'
+            'images', 'reviews', 'category', 'variants__values__property', 'variants__images',
+            prefetch_comp, prefetch_rel
         ),
         slug=slug
     )
@@ -220,8 +232,8 @@ def product_detail(request, slug: str):
         'total_reviews': total_reviews,
         'rating_data': rating_data,
         'breadcrumbs': breadcrumbs,
-        'complementary_products': product.complementary_products.filter(is_active=True)[:4],
-        'related_products': product.related_products.filter(is_active=True)[:4],
+        'complementary_products': list(product.complementary_products.all())[:4],
+        'related_products': list(product.related_products.all())[:4],
         'product_properties': properties_list,
         'variant_data_json': json.dumps(variant_data),
         'info_attributes_grouped': info_attributes_grouped,

@@ -1319,6 +1319,7 @@
         </div>
         <!-- End Reviews -->
 
+        {% if complementary_products %}
         <!-- Complete the Look -->
         <div id="completeTheLook" class="qpdxi p3amf jqiho w-full ehc3u fglch xf1r4 ids43 mx-auto">
                 <!-- Header -->
@@ -1344,26 +1345,30 @@
                                         <div
                                                 class="hs-carousel w-full flex sbso4 sa2ld i6bn4 overflow-x-auto ndnt5 y0qzi bpysz jog11 basss bxgd5 k0qok dark:[&amp;::-webkit-scrollbar-track]:bg-neutral-700 dark:[&amp;::-webkit-scrollbar-thumb]:bg-neutral-200">
                                                 <div class="hs-carousel-body flex flex-nowrap oeanj mx4xe">
-                                                        <div class="hs-carousel-slide c44he eoh5b n93cb active"
-                                                                style="width: 438.667px;">
+                                                        {% for comp_product in complementary_products %}
+                                                        <div class="hs-carousel-slide c44he eoh5b n93cb {% if forloop.first %}active{% endif %}">
                                                                 <!-- Card -->
                                                                 <div class="hzazi relative group overflow-hidden">
+                                                                        {% if comp_product.images.first %}
                                                                         <img class="w-full hzazi x1s1r f4yn1 er6t7 dark:bg-neutral-800"
-                                                                                src={% static 'images/photo-1708443683202-a5be0ced5b8b' %} alt="Product Image">
+                                                                                src="{{ comp_product.images.first.image.url }}" alt="{{ comp_product.name }}">
+                                                                        {% else %}
+                                                                        <img class="w-full hzazi x1s1r f4yn1 er6t7 dark:bg-neutral-800"
+                                                                                src="{% static 'images/placeholder.png' %}" alt="Placeholder">
+                                                                        {% endif %}
 
                                                                         <!-- Look Dropdown -->
-                                                                        <div class="mjczn wxz2o absolute">
+                                                                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                                                                                 <div
                                                                                         class="hs-dropdown [--auto-close:inside] [--trigger:hover] relative inline-flex">
                                                                                         <!-- Look Button Icon -->
-                                                                                        <button id="hs-pro-shpdcl1d1"
+                                                                                        <button id="hs-pro-comp-{{ comp_product.id }}"
                                                                                                 type="button"
                                                                                                 class="group rowji ey6m2 focus:outline-hidden"
                                                                                                 aria-haspopup="menu"
                                                                                                 aria-expanded="false"
                                                                                                 aria-label="Dropdown">
-                                                                                                <span
-                                                                                                        class="relative flex">
+                                                                                                <span class="relative flex">
                                                                                                         <span
                                                                                                                 class="baj5e absolute inline-flex fp3m4 kghwt aqyoh y1afu"></span>
                                                                                                         <span
@@ -1379,102 +1384,25 @@
                                                                                         <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 v7yyc hidden wzd7f aqyoh rsdjd rxmp4 er6t7 poi4v before:absolute before:-top-2.5 before:start-0 before:w-full before:h-3 dark:bg-neutral-900 dark:border-neutral-700"
                                                                                                 role="menu"
                                                                                                 aria-orientation="vertical"
-                                                                                                aria-labelledby="hs-pro-shpdcl1d1"
+                                                                                                aria-labelledby="hs-pro-comp-{{ comp_product.id }}"
                                                                                                 tabindex="-1">
                                                                                                 <div
                                                                                                         class="vyel6 aqyoh er6t7 dark:bg-neutral-900">
                                                                                                         <a class="oze3y flex items-center n9hej pb094 cq7a3 focus:outline-hidden f6db7 dark:bg-neutral-900 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                                                                                                                href="https://www.preline.co/pro/shop/product-detail.html#">
+                                                                                                                href="{% url 'shop:product_detail' comp_product.slug %}">
                                                                                                                 <div
                                                                                                                         class="hlt95">
                                                                                                                         <span
                                                                                                                                 class="block w4xo0 c9jt8 dark:text-neutral-200">
-                                                                                                                                Lightweight
-                                                                                                                                Cotton
-                                                                                                                                Hooded
+                                                                                                                                {{ comp_product.name }}
                                                                                                                         </span>
                                                                                                                         <p
                                                                                                                                 class="rwavo xs2f2 jy5gh dark:text-neutral-500">
-                                                                                                                                Men's
-                                                                                                                                Clothing
+                                                                                                                                {{ comp_product.category.name|default:"General" }}
                                                                                                                         </p>
                                                                                                                         <p
                                                                                                                                 class="sikx1 w4xo0 c9jt8 dark:text-neutral-200">
-                                                                                                                                $45
-                                                                                                                        </p>
-                                                                                                                </div>
-                                                                                                                <svg class="e731n b9gop c9jt8 dark:text-neutral-200"
-                                                                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                                                                        width="24"
-                                                                                                                        height="24"
-                                                                                                                        viewBox="0 0 24 24"
-                                                                                                                        fill="none"
-                                                                                                                        stroke="currentColor"
-                                                                                                                        stroke-width="2"
-                                                                                                                        stroke-linecap="round"
-                                                                                                                        stroke-linejoin="round">
-                                                                                                                        <path
-                                                                                                                                d="m9 18 6-6-6-6">
-                                                                                                                        </path>
-                                                                                                                </svg>
-                                                                                                        </a>
-                                                                                                </div>
-                                                                                        </div>
-                                                                                        <!-- End Look Dropdown -->
-                                                                                </div>
-                                                                        </div>
-                                                                        <!-- End Look Dropdown -->
-
-                                                                        <!-- Look Dropdown -->
-                                                                        <div class="tuns3 xi8x2 absolute">
-                                                                                <div
-                                                                                        class="hs-dropdown [--auto-close:inside] [--trigger:hover] relative inline-flex">
-                                                                                        <!-- Look Button Icon -->
-                                                                                        <button id="hs-pro-shpdcl1d2"
-                                                                                                type="button"
-                                                                                                class="group rowji ey6m2 focus:outline-hidden"
-                                                                                                aria-haspopup="menu"
-                                                                                                aria-expanded="false"
-                                                                                                aria-label="Dropdown">
-                                                                                                <span
-                                                                                                        class="relative flex">
-                                                                                                        <span
-                                                                                                                class="baj5e absolute inline-flex fp3m4 kghwt aqyoh y1afu"></span>
-                                                                                                        <span
-                                                                                                                class="relative inline-flex kghwt b9gop aqyoh"></span>
-                                                                                                        <span
-                                                                                                                class="et50x">Look
-                                                                                                                Dot</span>
-                                                                                                </span>
-                                                                                        </button>
-                                                                                        <!-- End Look Button Icon -->
-
-                                                                                        <!-- Look Dropdown -->
-                                                                                        <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 v7yyc hidden wzd7f aqyoh rsdjd rxmp4 er6t7 poi4v before:absolute before:-top-2.5 before:start-0 before:w-full before:h-3 dark:bg-neutral-900 dark:border-neutral-700"
-                                                                                                role="menu"
-                                                                                                aria-orientation="vertical"
-                                                                                                aria-labelledby="hs-pro-shpdcl1d2"
-                                                                                                tabindex="-1">
-                                                                                                <div
-                                                                                                        class="vyel6 aqyoh er6t7 dark:bg-neutral-900">
-                                                                                                        <a class="oze3y flex items-center n9hej pb094 cq7a3 focus:outline-hidden f6db7 dark:bg-neutral-900 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                                                                                                                href="https://www.preline.co/pro/shop/product-detail.html#">
-                                                                                                                <div
-                                                                                                                        class="hlt95">
-                                                                                                                        <span
-                                                                                                                                class="block w4xo0 c9jt8 dark:text-neutral-200">
-                                                                                                                                Slim
-                                                                                                                                Lyocell
-                                                                                                                                Trousers
-                                                                                                                        </span>
-                                                                                                                        <p
-                                                                                                                                class="rwavo xs2f2 jy5gh dark:text-neutral-500">
-                                                                                                                                Men's
-                                                                                                                                Trousers
-                                                                                                                        </p>
-                                                                                                                        <p
-                                                                                                                                class="sikx1 w4xo0 c9jt8 dark:text-neutral-200">
-                                                                                                                                $50
+                                                                                                                                ${{ comp_product.price }}
                                                                                                                         </p>
                                                                                                                 </div>
                                                                                                                 <svg class="e731n b9gop c9jt8 dark:text-neutral-200"
@@ -1501,576 +1429,15 @@
 
                                                                         <div
                                                                                 class="group-hover:translate-y-0 r3hb5 ufjzp absolute mq18k e33ca vyel6">
-                                                                                <button type="button"
-                                                                                        class="gdxvw f2l40 w-full inline-flex jkwm1 items-center b1nd2 w4xo0 sikx1 pb094 rsdjd lnk45 aqyoh c9jt8 hj07t nzmya disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden d16zw dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-700"
-                                                                                        data-hs-overlay="#hs-pro-shvilm"
-                                                                                        aria-expanded="false">
+                                                                                <a href="{% url 'shop:product_detail' comp_product.slug %}"
+                                                                                        class="gdxvw f2l40 w-full inline-flex jkwm1 items-center b1nd2 w4xo0 sikx1 pb094 rsdjd lnk45 aqyoh c9jt8 hj07t nzmya disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden d16zw dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-700">
                                                                                         View details
-                                                                                </button>
+                                                                                </a>
                                                                         </div>
                                                                 </div>
                                                                 <!-- End Card -->
                                                         </div>
-
-                                                        <div class="hs-carousel-slide c44he eoh5b n93cb active"
-                                                                style="width: 438.667px;">
-                                                                <!-- Card -->
-                                                                <div class="hzazi relative group overflow-hidden">
-                                                                        <img class="w-full hzazi x1s1r f4yn1 er6t7 dark:bg-neutral-800"
-                                                                                src={% static 'images/photo-1708443683334-1e41c52f33ac(1)' %} alt="Product Image">
-
-                                                                        <!-- Look Dropdown -->
-                                                                        <div class="fptuf mkksb absolute">
-                                                                                <div
-                                                                                        class="hs-dropdown [--auto-close:inside] [--trigger:hover] relative inline-flex">
-                                                                                        <!-- Look Button Icon -->
-                                                                                        <button id="hs-pro-shpdcl2d1"
-                                                                                                type="button"
-                                                                                                class="group rowji ey6m2 focus:outline-hidden"
-                                                                                                aria-haspopup="menu"
-                                                                                                aria-expanded="false"
-                                                                                                aria-label="Dropdown">
-                                                                                                <span
-                                                                                                        class="relative flex">
-                                                                                                        <span
-                                                                                                                class="baj5e absolute inline-flex fp3m4 kghwt aqyoh y1afu"></span>
-                                                                                                        <span
-                                                                                                                class="relative inline-flex kghwt b9gop aqyoh"></span>
-                                                                                                        <span
-                                                                                                                class="et50x">Look
-                                                                                                                Dot</span>
-                                                                                                </span>
-                                                                                        </button>
-                                                                                        <!-- End Look Button Icon -->
-
-                                                                                        <!-- Look Dropdown -->
-                                                                                        <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 v7yyc hidden wzd7f aqyoh rsdjd rxmp4 er6t7 poi4v before:absolute before:-top-2.5 before:start-0 before:w-full before:h-3 dark:bg-neutral-900 dark:border-neutral-700"
-                                                                                                role="menu"
-                                                                                                aria-orientation="vertical"
-                                                                                                aria-labelledby="hs-pro-shpdcl2d1"
-                                                                                                tabindex="-1">
-                                                                                                <div
-                                                                                                        class="vyel6 aqyoh er6t7 dark:bg-neutral-900">
-                                                                                                        <a class="oze3y flex items-center n9hej pb094 cq7a3 focus:outline-hidden f6db7 dark:bg-neutral-900 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                                                                                                                href="https://www.preline.co/pro/shop/product-detail.html#">
-                                                                                                                <div
-                                                                                                                        class="hlt95">
-                                                                                                                        <span
-                                                                                                                                class="block w4xo0 c9jt8 dark:text-neutral-200">
-                                                                                                                                Camo
-                                                                                                                                Blend
-                                                                                                                                Jacket
-                                                                                                                        </span>
-                                                                                                                        <p
-                                                                                                                                class="rwavo xs2f2 jy5gh dark:text-neutral-500">
-                                                                                                                                Men's
-                                                                                                                                Jackets
-                                                                                                                        </p>
-                                                                                                                        <p
-                                                                                                                                class="sikx1 w4xo0 c9jt8 dark:text-neutral-200">
-                                                                                                                                $100
-                                                                                                                        </p>
-                                                                                                                </div>
-                                                                                                                <svg class="e731n b9gop c9jt8 dark:text-neutral-200"
-                                                                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                                                                        width="24"
-                                                                                                                        height="24"
-                                                                                                                        viewBox="0 0 24 24"
-                                                                                                                        fill="none"
-                                                                                                                        stroke="currentColor"
-                                                                                                                        stroke-width="2"
-                                                                                                                        stroke-linecap="round"
-                                                                                                                        stroke-linejoin="round">
-                                                                                                                        <path
-                                                                                                                                d="m9 18 6-6-6-6">
-                                                                                                                        </path>
-                                                                                                                </svg>
-                                                                                                        </a>
-                                                                                                </div>
-                                                                                        </div>
-                                                                                        <!-- End Look Dropdown -->
-                                                                                </div>
-                                                                        </div>
-                                                                        <!-- End Look Dropdown -->
-
-                                                                        <!-- Look Dropdown -->
-                                                                        <div class="havhv itqnp absolute">
-                                                                                <div
-                                                                                        class="hs-dropdown [--auto-close:inside] [--trigger:hover] relative inline-flex">
-                                                                                        <!-- Look Button Icon -->
-                                                                                        <button id="hs-pro-shpdcl2d2"
-                                                                                                type="button"
-                                                                                                class="group rowji ey6m2 focus:outline-hidden"
-                                                                                                aria-haspopup="menu"
-                                                                                                aria-expanded="false"
-                                                                                                aria-label="Dropdown">
-                                                                                                <span
-                                                                                                        class="relative flex">
-                                                                                                        <span
-                                                                                                                class="baj5e absolute inline-flex fp3m4 kghwt aqyoh y1afu"></span>
-                                                                                                        <span
-                                                                                                                class="relative inline-flex kghwt b9gop aqyoh"></span>
-                                                                                                        <span
-                                                                                                                class="et50x">Look
-                                                                                                                Dot</span>
-                                                                                                </span>
-                                                                                        </button>
-                                                                                        <!-- End Look Button Icon -->
-
-                                                                                        <!-- Look Dropdown -->
-                                                                                        <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 v7yyc hidden wzd7f aqyoh rsdjd rxmp4 er6t7 poi4v before:absolute before:-top-2.5 before:start-0 before:w-full before:h-3 dark:bg-neutral-900 dark:border-neutral-700"
-                                                                                                role="menu"
-                                                                                                aria-orientation="vertical"
-                                                                                                aria-labelledby="hs-pro-shpdcl2d2"
-                                                                                                tabindex="-1">
-                                                                                                <div
-                                                                                                        class="vyel6 aqyoh er6t7 dark:bg-neutral-900">
-                                                                                                        <a class="oze3y flex items-center n9hej pb094 cq7a3 focus:outline-hidden f6db7 dark:bg-neutral-900 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                                                                                                                href="https://www.preline.co/pro/shop/product-detail.html#">
-                                                                                                                <div
-                                                                                                                        class="hlt95">
-                                                                                                                        <span
-                                                                                                                                class="block w4xo0 c9jt8 dark:text-neutral-200">
-                                                                                                                                Everyday
-                                                                                                                                Solid
-                                                                                                                                White
-                                                                                                                                T-Shirt
-                                                                                                                        </span>
-                                                                                                                        <p
-                                                                                                                                class="rwavo xs2f2 jy5gh dark:text-neutral-500">
-                                                                                                                                Men's
-                                                                                                                                T-Shirts
-                                                                                                                        </p>
-                                                                                                                        <p
-                                                                                                                                class="sikx1 w4xo0 c9jt8 dark:text-neutral-200">
-                                                                                                                                $49
-                                                                                                                        </p>
-                                                                                                                </div>
-                                                                                                                <svg class="e731n b9gop c9jt8 dark:text-neutral-200"
-                                                                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                                                                        width="24"
-                                                                                                                        height="24"
-                                                                                                                        viewBox="0 0 24 24"
-                                                                                                                        fill="none"
-                                                                                                                        stroke="currentColor"
-                                                                                                                        stroke-width="2"
-                                                                                                                        stroke-linecap="round"
-                                                                                                                        stroke-linejoin="round">
-                                                                                                                        <path
-                                                                                                                                d="m9 18 6-6-6-6">
-                                                                                                                        </path>
-                                                                                                                </svg>
-                                                                                                        </a>
-                                                                                                </div>
-                                                                                        </div>
-                                                                                        <!-- End Look Dropdown -->
-                                                                                </div>
-                                                                        </div>
-                                                                        <!-- End Look Dropdown -->
-
-                                                                        <!-- Look Dropdown -->
-                                                                        <div class="qlu8i ekxon absolute">
-                                                                                <div
-                                                                                        class="hs-dropdown [--auto-close:inside] [--trigger:hover] relative inline-flex">
-                                                                                        <!-- Look Button Icon -->
-                                                                                        <button id="hs-pro-shpdcl2d3"
-                                                                                                type="button"
-                                                                                                class="group rowji ey6m2 focus:outline-hidden"
-                                                                                                aria-haspopup="menu"
-                                                                                                aria-expanded="false"
-                                                                                                aria-label="Dropdown">
-                                                                                                <span
-                                                                                                        class="relative flex">
-                                                                                                        <span
-                                                                                                                class="baj5e absolute inline-flex fp3m4 kghwt aqyoh y1afu"></span>
-                                                                                                        <span
-                                                                                                                class="relative inline-flex kghwt b9gop aqyoh"></span>
-                                                                                                        <span
-                                                                                                                class="et50x">Look
-                                                                                                                Dot</span>
-                                                                                                </span>
-                                                                                        </button>
-                                                                                        <!-- End Look Button Icon -->
-
-                                                                                        <!-- Look Dropdown -->
-                                                                                        <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 v7yyc hidden wzd7f aqyoh rsdjd rxmp4 er6t7 poi4v before:absolute before:-top-2.5 before:start-0 before:w-full before:h-3 dark:bg-neutral-900 dark:border-neutral-700"
-                                                                                                role="menu"
-                                                                                                aria-orientation="vertical"
-                                                                                                aria-labelledby="hs-pro-shpdcl2d3"
-                                                                                                tabindex="-1">
-                                                                                                <div
-                                                                                                        class="vyel6 aqyoh er6t7 dark:bg-neutral-900">
-                                                                                                        <a class="oze3y flex items-center n9hej pb094 cq7a3 focus:outline-hidden f6db7 dark:bg-neutral-900 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                                                                                                                href="https://www.preline.co/pro/shop/product-detail.html#">
-                                                                                                                <div
-                                                                                                                        class="hlt95">
-                                                                                                                        <span
-                                                                                                                                class="block w4xo0 c9jt8 dark:text-neutral-200">
-                                                                                                                                Tencel
-                                                                                                                                Cotton
-                                                                                                                                Trousers
-                                                                                                                        </span>
-                                                                                                                        <p
-                                                                                                                                class="rwavo xs2f2 jy5gh dark:text-neutral-500">
-                                                                                                                                Men's
-                                                                                                                                Trousers
-                                                                                                                        </p>
-                                                                                                                        <p
-                                                                                                                                class="sikx1 w4xo0 c9jt8 dark:text-neutral-200">
-                                                                                                                                $49
-                                                                                                                        </p>
-                                                                                                                </div>
-                                                                                                                <svg class="e731n b9gop c9jt8 dark:text-neutral-200"
-                                                                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                                                                        width="24"
-                                                                                                                        height="24"
-                                                                                                                        viewBox="0 0 24 24"
-                                                                                                                        fill="none"
-                                                                                                                        stroke="currentColor"
-                                                                                                                        stroke-width="2"
-                                                                                                                        stroke-linecap="round"
-                                                                                                                        stroke-linejoin="round">
-                                                                                                                        <path
-                                                                                                                                d="m9 18 6-6-6-6">
-                                                                                                                        </path>
-                                                                                                                </svg>
-                                                                                                        </a>
-                                                                                                </div>
-                                                                                        </div>
-                                                                                        <!-- End Look Dropdown -->
-                                                                                </div>
-                                                                        </div>
-                                                                        <!-- End Look Dropdown -->
-
-                                                                        <div
-                                                                                class="group-hover:translate-y-0 r3hb5 ufjzp absolute mq18k e33ca vyel6">
-                                                                                <button type="button"
-                                                                                        class="gdxvw f2l40 w-full inline-flex jkwm1 items-center b1nd2 w4xo0 sikx1 pb094 rsdjd lnk45 aqyoh c9jt8 hj07t nzmya disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden d16zw dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-700"
-                                                                                        data-hs-overlay="#hs-pro-shvilm"
-                                                                                        aria-expanded="false">
-                                                                                        View details
-                                                                                </button>
-                                                                        </div>
-                                                                </div>
-                                                                <!-- End Card -->
-                                                        </div>
-
-                                                        <div class="hs-carousel-slide c44he eoh5b n93cb active"
-                                                                style="width: 438.667px;">
-                                                                <!-- Card -->
-                                                                <div class="hzazi relative group overflow-hidden">
-                                                                        <img class="w-full hzazi x1s1r f4yn1 er6t7 dark:bg-neutral-800"
-                                                                                src={% static 'images/photo-1708443683198-a2b77a54c36e' %} alt="Product Image">
-
-                                                                        <!-- Look Dropdown -->
-                                                                        <div class="qtfnk itqnp absolute">
-                                                                                <div
-                                                                                        class="hs-dropdown [--auto-close:inside] [--trigger:hover] relative inline-flex">
-                                                                                        <!-- Look Button Icon -->
-                                                                                        <button id="hs-pro-shpdcl3d1"
-                                                                                                type="button"
-                                                                                                class="group rowji ey6m2 focus:outline-hidden"
-                                                                                                aria-haspopup="menu"
-                                                                                                aria-expanded="false"
-                                                                                                aria-label="Dropdown">
-                                                                                                <span
-                                                                                                        class="relative flex">
-                                                                                                        <span
-                                                                                                                class="baj5e absolute inline-flex fp3m4 kghwt aqyoh y1afu"></span>
-                                                                                                        <span
-                                                                                                                class="relative inline-flex kghwt b9gop aqyoh"></span>
-                                                                                                        <span
-                                                                                                                class="et50x">Look
-                                                                                                                Dot</span>
-                                                                                                </span>
-                                                                                        </button>
-                                                                                        <!-- End Look Button Icon -->
-
-                                                                                        <!-- Look Dropdown -->
-                                                                                        <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 v7yyc hidden wzd7f aqyoh rsdjd rxmp4 er6t7 poi4v before:absolute before:-top-2.5 before:start-0 before:w-full before:h-3 dark:bg-neutral-900 dark:border-neutral-700"
-                                                                                                role="menu"
-                                                                                                aria-orientation="vertical"
-                                                                                                aria-labelledby="hs-pro-shpdcl3d1"
-                                                                                                tabindex="-1">
-                                                                                                <div
-                                                                                                        class="vyel6 aqyoh er6t7 dark:bg-neutral-900">
-                                                                                                        <a class="oze3y flex items-center n9hej pb094 cq7a3 focus:outline-hidden f6db7 dark:bg-neutral-900 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                                                                                                                href="https://www.preline.co/pro/shop/product-detail.html#">
-                                                                                                                <div
-                                                                                                                        class="hlt95">
-                                                                                                                        <span
-                                                                                                                                class="block w4xo0 c9jt8 dark:text-neutral-200">
-                                                                                                                                Cotton
-                                                                                                                                Printed
-                                                                                                                                T-Shirt
-                                                                                                                        </span>
-                                                                                                                        <p
-                                                                                                                                class="rwavo xs2f2 jy5gh dark:text-neutral-500">
-                                                                                                                                Men's
-                                                                                                                                T-Shirts
-                                                                                                                        </p>
-                                                                                                                        <p
-                                                                                                                                class="sikx1 w4xo0 c9jt8 dark:text-neutral-200">
-                                                                                                                                $35
-                                                                                                                        </p>
-                                                                                                                </div>
-                                                                                                                <svg class="e731n b9gop c9jt8 dark:text-neutral-200"
-                                                                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                                                                        width="24"
-                                                                                                                        height="24"
-                                                                                                                        viewBox="0 0 24 24"
-                                                                                                                        fill="none"
-                                                                                                                        stroke="currentColor"
-                                                                                                                        stroke-width="2"
-                                                                                                                        stroke-linecap="round"
-                                                                                                                        stroke-linejoin="round">
-                                                                                                                        <path
-                                                                                                                                d="m9 18 6-6-6-6">
-                                                                                                                        </path>
-                                                                                                                </svg>
-                                                                                                        </a>
-                                                                                                </div>
-                                                                                        </div>
-                                                                                        <!-- End Look Dropdown -->
-                                                                                </div>
-                                                                        </div>
-                                                                        <!-- End Look Dropdown -->
-
-                                                                        <!-- Look Dropdown -->
-                                                                        <div class="k0fab f9gtg absolute">
-                                                                                <div
-                                                                                        class="hs-dropdown [--auto-close:inside] [--trigger:hover] relative inline-flex">
-                                                                                        <!-- Look Button Icon -->
-                                                                                        <button id="hs-pro-shpdcl3d2"
-                                                                                                type="button"
-                                                                                                class="group rowji ey6m2 focus:outline-hidden"
-                                                                                                aria-haspopup="menu"
-                                                                                                aria-expanded="false"
-                                                                                                aria-label="Dropdown">
-                                                                                                <span
-                                                                                                        class="relative flex">
-                                                                                                        <span
-                                                                                                                class="baj5e absolute inline-flex fp3m4 kghwt aqyoh y1afu"></span>
-                                                                                                        <span
-                                                                                                                class="relative inline-flex kghwt b9gop aqyoh"></span>
-                                                                                                        <span
-                                                                                                                class="et50x">Look
-                                                                                                                Dot</span>
-                                                                                                </span>
-                                                                                        </button>
-                                                                                        <!-- End Look Button Icon -->
-
-                                                                                        <!-- Look Dropdown -->
-                                                                                        <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 v7yyc hidden wzd7f aqyoh rsdjd rxmp4 er6t7 poi4v before:absolute before:-top-2.5 before:start-0 before:w-full before:h-3 dark:bg-neutral-900 dark:border-neutral-700"
-                                                                                                role="menu"
-                                                                                                aria-orientation="vertical"
-                                                                                                aria-labelledby="hs-pro-shpdcl3d2"
-                                                                                                tabindex="-1">
-                                                                                                <div
-                                                                                                        class="vyel6 aqyoh er6t7 dark:bg-neutral-900">
-                                                                                                        <a class="oze3y flex items-center n9hej pb094 cq7a3 focus:outline-hidden f6db7 dark:bg-neutral-900 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                                                                                                                href="https://www.preline.co/pro/shop/product-detail.html#">
-                                                                                                                <div
-                                                                                                                        class="hlt95">
-                                                                                                                        <span
-                                                                                                                                class="block w4xo0 c9jt8 dark:text-neutral-200">
-                                                                                                                                Regular-fit
-                                                                                                                                Pleated
-                                                                                                                                Trousers
-                                                                                                                        </span>
-                                                                                                                        <p
-                                                                                                                                class="rwavo xs2f2 jy5gh dark:text-neutral-500">
-                                                                                                                                Men's
-                                                                                                                                Trousers
-                                                                                                                        </p>
-                                                                                                                        <p
-                                                                                                                                class="sikx1 w4xo0 c9jt8 dark:text-neutral-200">
-                                                                                                                                $99
-                                                                                                                        </p>
-                                                                                                                </div>
-                                                                                                                <svg class="e731n b9gop c9jt8 dark:text-neutral-200"
-                                                                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                                                                        width="24"
-                                                                                                                        height="24"
-                                                                                                                        viewBox="0 0 24 24"
-                                                                                                                        fill="none"
-                                                                                                                        stroke="currentColor"
-                                                                                                                        stroke-width="2"
-                                                                                                                        stroke-linecap="round"
-                                                                                                                        stroke-linejoin="round">
-                                                                                                                        <path
-                                                                                                                                d="m9 18 6-6-6-6">
-                                                                                                                        </path>
-                                                                                                                </svg>
-                                                                                                        </a>
-                                                                                                </div>
-                                                                                        </div>
-                                                                                        <!-- End Look Dropdown -->
-                                                                                </div>
-                                                                        </div>
-                                                                        <!-- End Look Dropdown -->
-
-                                                                        <!-- Look Dropdown -->
-                                                                        <div class="wbqt5 zg2t8 absolute">
-                                                                                <div
-                                                                                        class="hs-dropdown [--auto-close:inside] [--trigger:hover] relative inline-flex">
-                                                                                        <!-- Look Button Icon -->
-                                                                                        <button id="hs-pro-shpdcl3d3"
-                                                                                                type="button"
-                                                                                                class="group rowji ey6m2 focus:outline-hidden"
-                                                                                                aria-haspopup="menu"
-                                                                                                aria-expanded="false"
-                                                                                                aria-label="Dropdown">
-                                                                                                <span
-                                                                                                        class="relative flex">
-                                                                                                        <span
-                                                                                                                class="baj5e absolute inline-flex fp3m4 kghwt aqyoh y1afu"></span>
-                                                                                                        <span
-                                                                                                                class="relative inline-flex kghwt b9gop aqyoh"></span>
-                                                                                                        <span
-                                                                                                                class="et50x">Look
-                                                                                                                Dot</span>
-                                                                                                </span>
-                                                                                        </button>
-                                                                                        <!-- End Look Button Icon -->
-
-                                                                                        <!-- Look Dropdown -->
-                                                                                        <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 v7yyc hidden wzd7f aqyoh rsdjd rxmp4 er6t7 poi4v before:absolute before:-top-2.5 before:start-0 before:w-full before:h-3 dark:bg-neutral-900 dark:border-neutral-700"
-                                                                                                role="menu"
-                                                                                                aria-orientation="vertical"
-                                                                                                aria-labelledby="hs-pro-shpdcl3d3"
-                                                                                                tabindex="-1">
-                                                                                                <div
-                                                                                                        class="vyel6 aqyoh er6t7 dark:bg-neutral-900">
-                                                                                                        <a class="oze3y flex items-center n9hej pb094 cq7a3 focus:outline-hidden f6db7 dark:bg-neutral-900 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                                                                                                                href="https://www.preline.co/pro/shop/product-detail.html#">
-                                                                                                                <div
-                                                                                                                        class="hlt95">
-                                                                                                                        <span
-                                                                                                                                class="block w4xo0 c9jt8 dark:text-neutral-200">
-                                                                                                                                Soft
-                                                                                                                                Visor
-                                                                                                                                Cap
-                                                                                                                        </span>
-                                                                                                                        <p
-                                                                                                                                class="rwavo xs2f2 jy5gh dark:text-neutral-500">
-                                                                                                                                Men's
-                                                                                                                                Accessories
-                                                                                                                        </p>
-                                                                                                                        <p
-                                                                                                                                class="sikx1 w4xo0 c9jt8 dark:text-neutral-200">
-                                                                                                                                $29
-                                                                                                                        </p>
-                                                                                                                </div>
-                                                                                                                <svg class="e731n b9gop c9jt8 dark:text-neutral-200"
-                                                                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                                                                        width="24"
-                                                                                                                        height="24"
-                                                                                                                        viewBox="0 0 24 24"
-                                                                                                                        fill="none"
-                                                                                                                        stroke="currentColor"
-                                                                                                                        stroke-width="2"
-                                                                                                                        stroke-linecap="round"
-                                                                                                                        stroke-linejoin="round">
-                                                                                                                        <path
-                                                                                                                                d="m9 18 6-6-6-6">
-                                                                                                                        </path>
-                                                                                                                </svg>
-                                                                                                        </a>
-                                                                                                </div>
-                                                                                        </div>
-                                                                                        <!-- End Look Dropdown -->
-                                                                                </div>
-                                                                        </div>
-                                                                        <!-- End Look Dropdown -->
-
-                                                                        <!-- Look Dropdown -->
-                                                                        <div class="jsc8m fg1ya absolute">
-                                                                                <div
-                                                                                        class="hs-dropdown [--auto-close:inside] [--trigger:hover] relative inline-flex">
-                                                                                        <!-- Look Button Icon -->
-                                                                                        <button id="hs-pro-shpdcl3d4"
-                                                                                                type="button"
-                                                                                                class="group rowji ey6m2 focus:outline-hidden"
-                                                                                                aria-haspopup="menu"
-                                                                                                aria-expanded="false"
-                                                                                                aria-label="Dropdown">
-                                                                                                <span
-                                                                                                        class="relative flex">
-                                                                                                        <span
-                                                                                                                class="baj5e absolute inline-flex fp3m4 kghwt aqyoh y1afu"></span>
-                                                                                                        <span
-                                                                                                                class="relative inline-flex kghwt b9gop aqyoh"></span>
-                                                                                                        <span
-                                                                                                                class="et50x">Look
-                                                                                                                Dot</span>
-                                                                                                </span>
-                                                                                        </button>
-                                                                                        <!-- End Look Button Icon -->
-
-                                                                                        <!-- Look Dropdown -->
-                                                                                        <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 v7yyc hidden wzd7f aqyoh rsdjd rxmp4 er6t7 poi4v before:absolute before:-top-2.5 before:start-0 before:w-full before:h-3 dark:bg-neutral-900 dark:border-neutral-700"
-                                                                                                role="menu"
-                                                                                                aria-orientation="vertical"
-                                                                                                aria-labelledby="hs-pro-shpdcl3d4"
-                                                                                                tabindex="-1">
-                                                                                                <div
-                                                                                                        class="vyel6 aqyoh er6t7 dark:bg-neutral-900">
-                                                                                                        <a class="oze3y flex items-center n9hej pb094 cq7a3 focus:outline-hidden f6db7 dark:bg-neutral-900 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                                                                                                                href="https://www.preline.co/pro/shop/product-detail.html#">
-                                                                                                                <div
-                                                                                                                        class="hlt95">
-                                                                                                                        <span
-                                                                                                                                class="block w4xo0 c9jt8 dark:text-neutral-200">
-                                                                                                                                Made
-                                                                                                                                in
-                                                                                                                                USA
-                                                                                                                                990v6
-                                                                                                                        </span>
-                                                                                                                        <p
-                                                                                                                                class="rwavo xs2f2 jy5gh dark:text-neutral-500">
-                                                                                                                                Men's
-                                                                                                                                Shoes
-                                                                                                                        </p>
-                                                                                                                        <p
-                                                                                                                                class="sikx1 w4xo0 c9jt8 dark:text-neutral-200">
-                                                                                                                                $199
-                                                                                                                        </p>
-                                                                                                                </div>
-                                                                                                                <svg class="e731n b9gop c9jt8 dark:text-neutral-200"
-                                                                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                                                                        width="24"
-                                                                                                                        height="24"
-                                                                                                                        viewBox="0 0 24 24"
-                                                                                                                        fill="none"
-                                                                                                                        stroke="currentColor"
-                                                                                                                        stroke-width="2"
-                                                                                                                        stroke-linecap="round"
-                                                                                                                        stroke-linejoin="round">
-                                                                                                                        <path
-                                                                                                                                d="m9 18 6-6-6-6">
-                                                                                                                        </path>
-                                                                                                                </svg>
-                                                                                                        </a>
-                                                                                                </div>
-                                                                                        </div>
-                                                                                        <!-- End Look Dropdown -->
-                                                                                </div>
-                                                                        </div>
-                                                                        <!-- End Look Dropdown -->
-
-                                                                        <div
-                                                                                class="group-hover:translate-y-0 r3hb5 ufjzp absolute mq18k e33ca vyel6">
-                                                                                <button type="button"
-                                                                                        class="gdxvw f2l40 w-full inline-flex jkwm1 items-center b1nd2 w4xo0 sikx1 pb094 rsdjd lnk45 aqyoh c9jt8 hj07t nzmya disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden d16zw dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-700"
-                                                                                        data-hs-overlay="#hs-pro-shvilm"
-                                                                                        aria-expanded="false">
-                                                                                        View details
-                                                                                </button>
-                                                                        </div>
-                                                                </div>
-                                                                <!-- End Card -->
-                                                        </div>
+                                                        {% endfor %}
                                                 </div>
                                         </div>
                                 </div>
@@ -2105,7 +1472,9 @@
                 <!-- End Slider -->
         </div>
         <!-- End Complete the Look -->
+        {% endif %}
 
+        {% if related_products %}
         <!-- You May Also Like This -->
         <div class="bdgsd jqiho w-full ehc3u fglch xf1r4 ids43 mx-auto">
                 <!-- Header -->
@@ -2133,15 +1502,20 @@
                                         <div
                                                 class="hs-carousel w-full flex sbso4 q1glq b22kl i6bn4 overflow-x-auto ndnt5 y0qzi bpysz jog11 basss bxgd5 k0qok dark:[&amp;::-webkit-scrollbar-track]:bg-neutral-700 dark:[&amp;::-webkit-scrollbar-thumb]:bg-neutral-200">
                                                 <div class="hs-carousel-body flex flex-nowrap oeanj mx4xe">
-                                                        <div class="hs-carousel-slide c44he eoh5b n93cb active"
-                                                                style="width: 329px;">
+                                                        {% for rel_product in related_products %}
+                                                        <div class="hs-carousel-slide c44he eoh5b n93cb {% if forloop.first %}active{% endif %}">
                                                                 <!-- Card -->
                                                                 <div class=" group relative">
                                                                         <div class="relative">
                                                                                 <a class="block er6t7 focus:outline-hidden"
-                                                                                        href="https://www.preline.co/pro/shop/product-detail.html">
+                                                                                        href="{% url 'shop:product_detail' rel_product.slug %}">
+                                                                                        {% if rel_product.images.first %}
                                                                                         <img class="f4yn1 er6t7 dark:bg-neutral-800"
-                                                                                                src={% static 'images/photo-1699593022913-7068606059c8(1)' %} alt="Product Image">
+                                                                                                src="{{ rel_product.images.first.image.url }}" alt="{{ rel_product.name }}">
+                                                                                        {% else %}
+                                                                                        <img class="f4yn1 er6t7 dark:bg-neutral-800"
+                                                                                                src="{% static 'images/placeholder.png' %}" alt="Placeholder">
+                                                                                        {% endif %}
                                                                                 </a>
 
                                                                                 <!-- Add to Favorites -->
@@ -2169,41 +1543,24 @@
                                                                                         </button>
                                                                                 </div>
                                                                                 <!-- End Add to Favorites -->
-
-                                                                                <!-- Badge Group -->
-                                                                                <div
-                                                                                        class="absolute fuv09 gihcw kmove z47ts gxxgf">
-                                                                                        <div
-                                                                                                class="flex flex-col jon87">
-                                                                                                <p>
-                                                                                                        <span
-                                                                                                                class="ga1u8 u4i8k mx6w2 aqyoh sikx1 xs2f2 c9jt8 kghwt hj07t dark:bg-neutral-900 dark:text-neutral-200">
-                                                                                                                🔥
-                                                                                                                Trending
-                                                                                                        </span>
-                                                                                                </p>
-                                                                                        </div>
-                                                                                </div>
-                                                                                <!-- End Badge Group -->
                                                                         </div>
 
                                                                         <a class="after:z-1 after:absolute after:inset-0"
-                                                                                href="https://www.preline.co/pro/shop/product-detail.html"></a>
+                                                                                href="{% url 'shop:product_detail' rel_product.slug %}"></a>
 
                                                                         <div class="f5e2w">
                                                                                 <span
                                                                                         class="block w4xo0 cve4m c9jt8 dark:text-neutral-200">
-                                                                                        Nike SB Zoom Blazer Mid
-                                                                                        Electric
+                                                                                        {{ rel_product.name }}
                                                                                 </span>
                                                                                 <p
                                                                                         class="ja90s w4xo0 jy5gh dark:text-neutral-400">
-                                                                                        Men's Shoes
+                                                                                        {{ rel_product.category.name|default:"General" }}
                                                                                 </p>
 
                                                                                 <p
                                                                                         class="rwavo sikx1 w4xo0 c9jt8 dark:text-neutral-200">
-                                                                                        $150
+                                                                                        ${{ rel_product.price }}
                                                                                 </p>
 
                                                                                 <!-- Review -->
@@ -2256,7 +1613,7 @@
                                                                                         </svg>
                                                                                         <span
                                                                                                 class="rbr78 xs2f2 c9jt8 dark:text-neutral-200">
-                                                                                                (2)
+                                                                                                ({{ rel_product.review_count|default:0 }})
                                                                                         </span>
                                                                                 </div>
                                                                                 <!-- End Review -->
@@ -2264,617 +1621,7 @@
                                                                 </div>
                                                                 <!-- End Card -->
                                                         </div>
-
-                                                        <div class="hs-carousel-slide c44he eoh5b n93cb active"
-                                                                style="width: 329px;">
-                                                                <!-- Card -->
-                                                                <div class=" group relative">
-                                                                        <div class="relative">
-                                                                                <a class="block er6t7 focus:outline-hidden"
-                                                                                        href="https://www.preline.co/pro/shop/product-detail.html">
-                                                                                        <img class="f4yn1 er6t7 dark:bg-neutral-800"
-                                                                                                src={% static 'images/photo-1708443683276-8a3eb30faef2' %} alt="Product Image">
-                                                                                </a>
-
-                                                                                <!-- Add to Favorites -->
-                                                                                <div
-                                                                                        class="absolute fuv09 kji94 wzd7f kmove mx6w2">
-                                                                                        <button type="button"
-                                                                                                class="odrp3 flex jkwm1 items-center n6i5x kghwt xs2f2 aqyoh rsdjd azddh c9jt8 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden">
-                                                                                                <svg class="e731n h6zia"
-                                                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                                                        width="24"
-                                                                                                        height="24"
-                                                                                                        viewBox="0 0 24 24"
-                                                                                                        fill="none"
-                                                                                                        stroke="currentColor"
-                                                                                                        stroke-width="2"
-                                                                                                        stroke-linecap="round"
-                                                                                                        stroke-linejoin="round">
-                                                                                                        <path
-                                                                                                                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z">
-                                                                                                        </path>
-                                                                                                </svg>
-                                                                                                <span class="et50x">Add
-                                                                                                        to
-                                                                                                        favorites</span>
-                                                                                        </button>
-                                                                                </div>
-                                                                                <!-- End Add to Favorites -->
-                                                                        </div>
-
-                                                                        <a class="after:z-1 after:absolute after:inset-0"
-                                                                                href="https://www.preline.co/pro/shop/product-detail.html"></a>
-
-                                                                        <div class="f5e2w">
-                                                                                <span
-                                                                                        class="block w4xo0 cve4m c9jt8 dark:text-neutral-200">
-                                                                                        Embroidered Hoodie
-                                                                                </span>
-                                                                                <p
-                                                                                        class="ja90s w4xo0 jy5gh dark:text-neutral-400">
-                                                                                        Men's Sweaters
-                                                                                </p>
-
-                                                                                <p
-                                                                                        class="rwavo sikx1 w4xo0 c9jt8 dark:text-neutral-200">
-                                                                                        $69
-                                                                                </p>
-
-                                                                                <!-- Review -->
-                                                                                <div
-                                                                                        class="wc6fu flex items-center hhi70">
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <span
-                                                                                                class="rbr78 xs2f2 c9jt8 dark:text-neutral-200">
-                                                                                                (234)
-                                                                                        </span>
-                                                                                </div>
-                                                                                <!-- End Review -->
-                                                                        </div>
-                                                                </div>
-                                                                <!-- End Card -->
-                                                        </div>
-
-                                                        <div class="hs-carousel-slide c44he eoh5b n93cb active"
-                                                                style="width: 329px;">
-                                                                <!-- Card -->
-                                                                <div class=" group relative">
-                                                                        <div class="relative">
-                                                                                <a class="block er6t7 focus:outline-hidden"
-                                                                                        href="https://www.preline.co/pro/shop/product-detail.html">
-                                                                                        <img class="f4yn1 er6t7 dark:bg-neutral-800"
-                                                                                                src={% static 'images/photo-1603218167744-4b6371f208c2(2)' %} alt="Product Image">
-                                                                                </a>
-
-                                                                                <!-- Add to Favorites -->
-                                                                                <div
-                                                                                        class="absolute fuv09 kji94 wzd7f kmove mx6w2">
-                                                                                        <button type="button"
-                                                                                                class="odrp3 flex jkwm1 items-center n6i5x kghwt xs2f2 aqyoh rsdjd azddh c9jt8 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden">
-                                                                                                <svg class="e731n h6zia"
-                                                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                                                        width="24"
-                                                                                                        height="24"
-                                                                                                        viewBox="0 0 24 24"
-                                                                                                        fill="none"
-                                                                                                        stroke="currentColor"
-                                                                                                        stroke-width="2"
-                                                                                                        stroke-linecap="round"
-                                                                                                        stroke-linejoin="round">
-                                                                                                        <path
-                                                                                                                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z">
-                                                                                                        </path>
-                                                                                                </svg>
-                                                                                                <span class="et50x">Add
-                                                                                                        to
-                                                                                                        favorites</span>
-                                                                                        </button>
-                                                                                </div>
-                                                                                <!-- End Add to Favorites -->
-                                                                        </div>
-
-                                                                        <a class="after:z-1 after:absolute after:inset-0"
-                                                                                href="https://www.preline.co/pro/shop/product-detail.html"></a>
-
-                                                                        <div class="f5e2w">
-                                                                                <span
-                                                                                        class="block w4xo0 cve4m c9jt8 dark:text-neutral-200">
-                                                                                        Mahabis Max Solo
-                                                                                </span>
-                                                                                <p
-                                                                                        class="ja90s w4xo0 jy5gh dark:text-neutral-400">
-                                                                                        Men's Shoes
-                                                                                </p>
-
-                                                                                <p
-                                                                                        class="rwavo sikx1 w4xo0 c9jt8 dark:text-neutral-200">
-                                                                                        $39
-                                                                                </p>
-
-                                                                                <!-- Review -->
-                                                                                <div
-                                                                                        class="wc6fu flex items-center hhi70">
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <span
-                                                                                                class="rbr78 xs2f2 c9jt8 dark:text-neutral-200">
-                                                                                                (6)
-                                                                                        </span>
-                                                                                </div>
-                                                                                <!-- End Review -->
-                                                                        </div>
-                                                                </div>
-                                                                <!-- End Card -->
-                                                        </div>
-
-                                                        <div class="hs-carousel-slide c44he eoh5b n93cb active"
-                                                                style="width: 329px;">
-                                                                <!-- Card -->
-                                                                <div class=" group relative">
-                                                                        <div class="relative">
-                                                                                <a class="block er6t7 focus:outline-hidden"
-                                                                                        href="https://www.preline.co/pro/shop/product-detail.html">
-                                                                                        <img class="f4yn1 er6t7 dark:bg-neutral-800"
-                                                                                                src={% static 'images/photo-1706550631034-8ef8fc9abfbd' %} alt="Product Image">
-                                                                                </a>
-
-                                                                                <!-- Add to Favorites -->
-                                                                                <div
-                                                                                        class="absolute fuv09 kji94 wzd7f kmove mx6w2">
-                                                                                        <button type="button"
-                                                                                                class="odrp3 flex jkwm1 items-center n6i5x kghwt xs2f2 aqyoh rsdjd azddh c9jt8 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden">
-                                                                                                <svg class="e731n h6zia"
-                                                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                                                        width="24"
-                                                                                                        height="24"
-                                                                                                        viewBox="0 0 24 24"
-                                                                                                        fill="none"
-                                                                                                        stroke="currentColor"
-                                                                                                        stroke-width="2"
-                                                                                                        stroke-linecap="round"
-                                                                                                        stroke-linejoin="round">
-                                                                                                        <path
-                                                                                                                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z">
-                                                                                                        </path>
-                                                                                                </svg>
-                                                                                                <span class="et50x">Add
-                                                                                                        to
-                                                                                                        favorites</span>
-                                                                                        </button>
-                                                                                </div>
-                                                                                <!-- End Add to Favorites -->
-                                                                        </div>
-
-                                                                        <a class="after:z-1 after:absolute after:inset-0"
-                                                                                href="https://www.preline.co/pro/shop/product-detail.html"></a>
-
-                                                                        <div class="f5e2w">
-                                                                                <span
-                                                                                        class="block w4xo0 cve4m c9jt8 dark:text-neutral-200">
-                                                                                        Nike Air Dunk Low SE
-                                                                                </span>
-                                                                                <p
-                                                                                        class="ja90s w4xo0 jy5gh dark:text-neutral-400">
-                                                                                        Men's Shoes
-                                                                                </p>
-
-                                                                                <p
-                                                                                        class="rwavo sikx1 w4xo0 c9jt8 dark:text-neutral-200">
-                                                                                        $40
-                                                                                </p>
-
-                                                                                <!-- Review -->
-                                                                                <div
-                                                                                        class="wc6fu flex items-center hhi70">
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <span
-                                                                                                class="rbr78 xs2f2 c9jt8 dark:text-neutral-200">({{ total_reviews }})</span>
-                                                                                </div>
-                                                                                <!-- End Review -->
-                                                                        </div>
-                                                                </div>
-                                                                <!-- End Card -->
-                                                        </div>
-
-                                                        <div class="hs-carousel-slide c44he eoh5b n93cb"
-                                                                style="width: 329px;">
-                                                                <!-- Card -->
-                                                                <div class=" group relative">
-                                                                        <div class="relative">
-                                                                                <a class="block er6t7 focus:outline-hidden"
-                                                                                        href="https://www.preline.co/pro/shop/product-detail.html">
-                                                                                        <img class="f4yn1 er6t7 dark:bg-neutral-800"
-                                                                                                src={% static 'images/photo-1506629082955-511b1aa562c8' %} alt="Product Image">
-                                                                                </a>
-
-                                                                                <!-- Add to Favorites -->
-                                                                                <div
-                                                                                        class="absolute fuv09 kji94 wzd7f kmove mx6w2">
-                                                                                        <button type="button"
-                                                                                                class="odrp3 flex jkwm1 items-center n6i5x kghwt xs2f2 aqyoh rsdjd azddh c9jt8 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden">
-                                                                                                <svg class="e731n h6zia"
-                                                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                                                        width="24"
-                                                                                                        height="24"
-                                                                                                        viewBox="0 0 24 24"
-                                                                                                        fill="none"
-                                                                                                        stroke="currentColor"
-                                                                                                        stroke-width="2"
-                                                                                                        stroke-linecap="round"
-                                                                                                        stroke-linejoin="round">
-                                                                                                        <path
-                                                                                                                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z">
-                                                                                                        </path>
-                                                                                                </svg>
-                                                                                                <span class="et50x">Add
-                                                                                                        to
-                                                                                                        favorites</span>
-                                                                                        </button>
-                                                                                </div>
-                                                                                <!-- End Add to Favorites -->
-
-                                                                                <!-- Badge Group -->
-                                                                                <div
-                                                                                        class="absolute fuv09 gihcw kmove z47ts gxxgf">
-                                                                                        <div
-                                                                                                class="flex flex-col jon87">
-                                                                                                <p>
-                                                                                                        <span
-                                                                                                                class="ga1u8 u4i8k mx6w2 aqyoh sikx1 xs2f2 c9jt8 kghwt hj07t dark:bg-neutral-900 dark:text-neutral-200">
-                                                                                                                🔥
-                                                                                                                Trending
-                                                                                                        </span>
-                                                                                                </p>
-                                                                                        </div>
-                                                                                </div>
-                                                                                <!-- End Badge Group -->
-                                                                        </div>
-
-                                                                        <a class="after:z-1 after:absolute after:inset-0"
-                                                                                href="https://www.preline.co/pro/shop/product-detail.html"></a>
-
-                                                                        <div class="f5e2w">
-                                                                                <span
-                                                                                        class="block w4xo0 cve4m c9jt8 dark:text-neutral-200">
-                                                                                        Nike Air Jordan 1 Mid SE
-                                                                                </span>
-                                                                                <p
-                                                                                        class="ja90s w4xo0 jy5gh dark:text-neutral-400">
-                                                                                        Men's Shoes
-                                                                                </p>
-
-                                                                                <p class="rwavo w4xo0">
-                                                                                        <span
-                                                                                                class="w4xo0 jy5gh dark:text-neutral-500">
-                                                                                                <s>$80</s>
-                                                                                        </span>
-                                                                                        <span class="w4xo0 jmzb2">
-                                                                                                $65
-                                                                                        </span>
-                                                                                </p>
-
-                                                                                <!-- Review -->
-                                                                                <div
-                                                                                        class="wc6fu flex items-center hhi70">
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <span
-                                                                                                class="rbr78 xs2f2 c9jt8 dark:text-neutral-200">({{ total_reviews }})</span>
-                                                                                </div>
-                                                                                <!-- End Review -->
-                                                                        </div>
-                                                                </div>
-                                                                <!-- End Card -->
-                                                        </div>
-
-                                                        <div class="hs-carousel-slide c44he eoh5b n93cb"
-                                                                style="width: 329px;">
-                                                                <!-- Card -->
-                                                                <div class=" group relative">
-                                                                        <div class="relative">
-                                                                                <a class="block er6t7 focus:outline-hidden"
-                                                                                        href="https://www.preline.co/pro/shop/product-detail.html">
-                                                                                        <img class="f4yn1 er6t7 dark:bg-neutral-800"
-                                                                                                src={% static 'images/photo-1606890542241-b848582fe5cd' %} alt="Product Image">
-                                                                                </a>
-
-                                                                                <!-- Add to Favorites -->
-                                                                                <div
-                                                                                        class="absolute fuv09 kji94 wzd7f kmove mx6w2">
-                                                                                        <button type="button"
-                                                                                                class="odrp3 flex jkwm1 items-center n6i5x kghwt xs2f2 aqyoh rsdjd azddh c9jt8 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden">
-                                                                                                <svg class="e731n h6zia"
-                                                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                                                        width="24"
-                                                                                                        height="24"
-                                                                                                        viewBox="0 0 24 24"
-                                                                                                        fill="none"
-                                                                                                        stroke="currentColor"
-                                                                                                        stroke-width="2"
-                                                                                                        stroke-linecap="round"
-                                                                                                        stroke-linejoin="round">
-                                                                                                        <path
-                                                                                                                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z">
-                                                                                                        </path>
-                                                                                                </svg>
-                                                                                                <span class="et50x">Add
-                                                                                                        to
-                                                                                                        favorites</span>
-                                                                                        </button>
-                                                                                </div>
-                                                                                <!-- End Add to Favorites -->
-
-                                                                                <!-- Badge Group -->
-                                                                                <div
-                                                                                        class="absolute fuv09 gihcw kmove z47ts gxxgf">
-                                                                                        <div
-                                                                                                class="flex flex-col jon87">
-                                                                                                <p>
-                                                                                                        <span
-                                                                                                                class="ga1u8 u4i8k mx6w2 aqyoh sikx1 xs2f2 c9jt8 kghwt hj07t dark:bg-neutral-900 dark:text-neutral-200">
-                                                                                                                🔥
-                                                                                                                Trending
-                                                                                                        </span>
-                                                                                                </p>
-                                                                                        </div>
-                                                                                </div>
-                                                                                <!-- End Badge Group -->
-                                                                        </div>
-
-                                                                        <a class="after:z-1 after:absolute after:inset-0"
-                                                                                href="https://www.preline.co/pro/shop/product-detail.html"></a>
-
-                                                                        <div class="f5e2w">
-                                                                                <span
-                                                                                        class="block w4xo0 cve4m c9jt8 dark:text-neutral-200">
-                                                                                        Nike Air Jordan 1 Mid SE
-                                                                                </span>
-                                                                                <p
-                                                                                        class="ja90s w4xo0 jy5gh dark:text-neutral-400">
-                                                                                        Men's Shoes
-                                                                                </p>
-
-                                                                                <p class="rwavo w4xo0">
-                                                                                        <span
-                                                                                                class="w4xo0 jy5gh dark:text-neutral-500">
-                                                                                                <s>$160</s>
-                                                                                        </span>
-                                                                                        <span class="w4xo0 jmzb2">
-                                                                                                $140
-                                                                                        </span>
-                                                                                </p>
-
-                                                                                <!-- Review -->
-                                                                                <div
-                                                                                        class="wc6fu flex items-center hhi70">
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <svg class="e731n mo9p3 c9jt8 dark:text-neutral-200"
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="16" height="16"
-                                                                                                fill="currentColor"
-                                                                                                viewBox="0 0 16 16">
-                                                                                                <path
-                                                                                                        d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z">
-                                                                                                </path>
-                                                                                        </svg>
-                                                                                        <span
-                                                                                                class="rbr78 xs2f2 c9jt8 dark:text-neutral-200">({{ total_reviews }})</span>
-                                                                                </div>
-                                                                                <!-- End Review -->
-                                                                        </div>
-                                                                </div>
-                                                                <!-- End Card -->
-                                                        </div>
+                                                        {% endfor %}
                                                 </div>
                                         </div>
                                 </div>
@@ -2907,6 +1654,9 @@
                         <!-- End Nav -->
                 </div>
                 <!-- End Slider -->
+        </div>
+        <!-- End You May Also Like This -->
+        {% endif %}
         </div>
         <!-- End You May Also Like This -->
 </main>

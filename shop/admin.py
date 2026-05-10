@@ -41,6 +41,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ['is_active', 'is_trending', 'category', 'brand']
     list_editable = ['price', 'stock', 'is_active', 'is_trending']
     prepopulated_fields = {'slug': ('name',)}
+    filter_horizontal = ['complementary_products', 'related_products']
     
     # 2. Add the images section to the bottom of the Product edit page
     inlines = [ProductImageInline, ProductVariantInline]

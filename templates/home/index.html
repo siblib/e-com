@@ -3348,7 +3348,7 @@
                                 {% for category in categories %}
                                 <!-- Item -->
                                 <a class="group relative block laign mubfu o2cfy dtief focus:outline-hidden"
-                                        href="{% if category.get_absolute_url %}{{ category.get_absolute_url }}{% else %}/category/{{ category.slug }}/{% endif %}">
+                                        href="{% url 'shop:shop_grid_categories' %}?category={{ category.slug }}">
 
                                         {% if category.image %}
                                         <!-- Dynamically loaded Category Image with Original Classes -->
@@ -3438,7 +3438,7 @@
                                                                         <div class=" group relative">
                                                                                 <div class="relative">
                                                                                         <a class="block er6t7 focus:outline-hidden"
-                                                                                                href="#">
+                                                                                                href="{% url 'shop:product_detail' product.slug %}">
                                                                                                 <!-- tag -->
 {% if product.images.all.0 %}
 <img class="f4yn1 er6t7 dark:bg-neutral-800"
@@ -3480,7 +3480,7 @@
                                                                                 </div>
 
                                                                                 <a class="after:z-1 after:absolute after:inset-0"
-                                                                                        href="#"></a>
+                                                                                        href="{% url 'shop:product_detail' product.slug %}"></a>
 
                                                                                         <div class="f5e2w">
                                                                                                 <span class="block w4xo0 cve4m c9jt8 dark:text-neutral-200">
@@ -3619,7 +3619,7 @@
                                         <!-- End Body -->
 
                                         <a class="after:absolute after:inset-0 after:z-10"
-                                                href="{% if top_cat.category.get_absolute_url %}{{ top_cat.category.get_absolute_url }}{% else %}#{% endif %}"></a>
+                                                href="{% url 'shop:shop_grid_categories' %}?category={{ top_cat.category.slug }}"></a>
                                 </div>
                                 <!-- End Card -->
                                 {% endfor %}
@@ -3725,7 +3725,7 @@
                                                                         style="width: 219.333px;">
                                                                         <!-- Item -->
                                                                         <a class="relative block group focus:outline-hidden"
-                                                                                href="{% url 'shop:products_by_brand' brand.slug %}">
+                                                                                href="{% url 'shop:shop_grid_categories' %}?brand={{ brand.slug }}">
                                                                                 <div class="overflow-hidden er6t7">
                                                                                         <img class="w-full xdkn9 x1s1r er6t7 group-hover:scale-105 group-focus:scale-105 oeanj ys1w3 resz6"
                                                                                                 src="{% if brand.image %}{{ brand.image.url }}{% else %}{% static 'images/placeholder-brand.jpg' %}{% endif %}"

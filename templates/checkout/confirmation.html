@@ -590,11 +590,11 @@
               </h2>
 
               <p class="rwavo w4xo0 jy5gh dark:text-neutral-500">
-                Your order etawx is <span class="cnneu c9jt8 dark:text-neutral-200">72813820</span>
+                Your order etawx is <span class="cnneu c9jt8 dark:text-neutral-200">#{{ order.order_number }}</span>
               </p>
 
               <p class="ja90s w4xo0 jy5gh dark:text-neutral-500">
-                An order confirmation has been sent to <span class="cnneu c9jt8 dark:text-neutral-200">jamescollins@site.so</span>
+                An order confirmation has been sent to <span class="cnneu c9jt8 dark:text-neutral-200">{{ order.guest_email }}</span>
               </p>
             </div>
 
@@ -644,7 +644,7 @@
                     </h5>
 
                     <p class="xs2f2 rr36x dark:text-neutral-600">
-                      5 Feb, 9:03
+                      {{ order.created_at|date:"j M, g:i a" }}
                     </p>
                   </div>
                 </div>
@@ -772,7 +772,7 @@
                   </div>
 
                   <div class="vrmqq">
-                    <span class="cnneu z4zqw c9jt8 dark:text-neutral-200">$229</span>
+                    <span class="cnneu z4zqw c9jt8 dark:text-neutral-200">${{ order.get_total }}</span>
                   </div>
                 </div>
                 <!-- End Item -->
@@ -835,7 +835,7 @@
 
                   <div class="vrmqq">
                     <span class="xs2f2 c9jt8 dark:text-neutral-200">USD</span>
-                    <span class="cnneu c9jt8 dark:text-neutral-200">$229</span>
+                    <span class="cnneu c9jt8 dark:text-neutral-200">${{ order.get_total }}</span>
                   </div>
                 </div>
                 <!-- End Item -->
@@ -848,105 +848,42 @@
           <div class="ndv3o kkoj7 yfv61 lnk45 exoz7 k4vh5 jwyse dark:border-neutral-700">
             <!-- Cart Items List -->
             <div class="space-y-5">
+              {% for item in order.items.all %}
               <!-- Item -->
               <div class=" flex p5sau">
                 <div class="relative">
-                  <img class="e731n fl6qw i5kts x1s1r f4yn1 pb094 dark:bg-neutral-700" src={% static 'images/photo-1699595749116-33a4a869503c' %} alt="Product Image">
+                  {% if item.product.images.first %}
+                    <img class="e731n fl6qw i5kts x1s1r f4yn1 pb094 dark:bg-neutral-700" src="{{ item.product.images.first.image.url }}" alt="{{ item.product.name }}">
+                  {% else %}
+                    <div class="e731n fl6qw i5kts x1s1r f4yn1 pb094 bg-gray-200 dark:bg-neutral-700"></div>
+                  {% endif %}
                 </div>
 
                 <div class="hlt95 flex flex-col">
                   <h4 class="w4xo0 c9jt8 dark:text-neutral-200">
-                    Nike Air Force 1
+                    {{ item.product.name }}
                   </h4>
 
                   <ul class="y18m4 space-y-1">
-                    <li class="xs2f2 jy5gh dark:text-neutral-500">
-                      Color: White
-                    </li>
-                    <li class="xs2f2 jy5gh dark:text-neutral-500">
-                      Size: M
-                    </li>
+                    {% if item.variant %}
+                      <li class="xs2f2 jy5gh dark:text-neutral-500">
+                        {{ item.variant.name }}
+                      </li>
+                    {% endif %}
                   </ul>
 
                   <p class="y18m4 xs2f2 jy5gh dark:text-neutral-500">
                     <span>Qty:</span>
-                    <span>1</span>
+                    <span>{{ item.quantity }}</span>
                   </p>
 
                   <span class="y18m4 w4xo0 c9jt8 dark:text-neutral-200">
-                    $150
+                    ${{ item.price_at_purchase }}
                   </span>
                 </div>
               </div>
               <!-- End Item -->
-
-              <!-- Item -->
-              <div class=" flex p5sau">
-                <div class="relative">
-                  <img class="e731n fl6qw i5kts x1s1r f4yn1 pb094 dark:bg-neutral-700" src={% static 'images/photo-1708443683334-1e41c52f33ac' %} alt="Product Image">
-                </div>
-
-                <div class="hlt95 flex flex-col">
-                  <h4 class="w4xo0 c9jt8 dark:text-neutral-200">
-                    Camo Blend Jacket
-                  </h4>
-
-                  <ul class="y18m4 space-y-1">
-                    <li class="xs2f2 jy5gh dark:text-neutral-500">
-                      Color: Camo
-                    </li>
-                    <li class="xs2f2 jy5gh dark:text-neutral-500">
-                      Size: M
-                    </li>
-                  </ul>
-
-                  <p class="y18m4 xs2f2 jy5gh dark:text-neutral-500">
-                    <span>Qty:</span>
-                    <span>1</span>
-                  </p>
-                  <span class="y18m4">
-                    <span class="w4xo0 jy5gh dark:text-neutral-500">
-                      <s>$60</s>
-                    </span>
-                    <span class="w4xo0 jmzb2">
-                      $40
-                    </span>
-                  </span>
-                </div>
-              </div>
-              <!-- End Item -->
-
-              <!-- Item -->
-              <div class=" flex p5sau">
-                <div class="relative">
-                  <img class="e731n fl6qw i5kts x1s1r f4yn1 pb094 dark:bg-neutral-700" src={% static 'images/photo-1603218183500-7e1d62c3c679' %} alt="Product Image">
-                </div>
-
-                <div class="hlt95 flex flex-col">
-                  <h4 class="w4xo0 c9jt8 dark:text-neutral-200">
-                    Mahabis Classic
-                  </h4>
-
-                  <ul class="y18m4 space-y-1">
-                    <li class="xs2f2 jy5gh dark:text-neutral-500">
-                      Color: White
-                    </li>
-                    <li class="xs2f2 jy5gh dark:text-neutral-500">
-                      Size: M
-                    </li>
-                  </ul>
-
-                  <p class="y18m4 xs2f2 jy5gh dark:text-neutral-500">
-                    <span>Qty:</span>
-                    <span>1</span>
-                  </p>
-
-                  <span class="y18m4 w4xo0 c9jt8 dark:text-neutral-200">
-                    $39
-                  </span>
-                </div>
-              </div>
-              <!-- End Item -->
+              {% endfor %}
             </div>
             <!-- End Cart Items List -->
           </div>

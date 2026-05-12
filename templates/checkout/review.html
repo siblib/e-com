@@ -617,7 +617,8 @@
   <main id="content" class="flex-1 flex flex-col">
     <div class="flex-1 w-full zckb3 fglch xf1r4 ids43 mx-auto">
       <!-- Grid -->
-      <div class="flex-1 ylm8n hjdn7 gkrui">
+      <form id="payment-form" method="POST" action="{% url 'shop:review_and_pay' %}" class="flex-1 ylm8n hjdn7 gkrui">
+        {% csrf_token %}
         <div class="jwaj0 ybp3s pbmh4 hzp86 y4gf2 cpbku md:w-full pqs96">
 
           <div class="space-y-5 l73lz w6mr2 fazzp lnk45 pg7n8 eclip dsn0x dark:border-neutral-700">
@@ -645,7 +646,7 @@
                 <div class="hlt95">
                   <!-- List -->
                   <ul>
-                    <li class="w4xo0 jy5gh dark:text-neutral-500">jamescollins@site.so</li>
+                    <li class="w4xo0 jy5gh dark:text-neutral-500">{{ guest_data.guest_email }}</li>
                   </ul>
                   <!-- End List -->
                 </div>
@@ -680,9 +681,9 @@
                 <div class="hlt95">
                   <!-- List -->
                   <ul>
-                    <li class="w4xo0 jy5gh dark:text-neutral-500">James Collins</li>
-                    <li class="w4xo0 jy5gh dark:text-neutral-500">280 Suzanne Throughway</li>
-                    <li class="w4xo0 jy5gh dark:text-neutral-500">New York, Breannabury, OR 45801, US</li>
+                    <li class="w4xo0 jy5gh dark:text-neutral-500">{{ guest_data.first_name }} {{ guest_data.last_name }}</li>
+                    <li class="w4xo0 jy5gh dark:text-neutral-500">{{ guest_data.address1 }}{% if guest_data.address2 %}, {{ guest_data.address2 }}{% endif %}</li>
+                    <li class="w4xo0 jy5gh dark:text-neutral-500">{{ guest_data.city }}, {{ guest_data.state }} {{ guest_data.zip_code }}, {{ guest_data.country }}</li>
                   </ul>
                   <!-- End List -->
                 </div>
@@ -917,8 +918,9 @@
 
               <!-- List -->
               <ul>
-                <li class="w4xo0 jy5gh dark:text-neutral-500">New York, 280 Suzanne Throughway</li>
-                <li class="w4xo0 jy5gh dark:text-neutral-500">Breannabury, OR 45801, US</li>
+                <li class="w4xo0 jy5gh dark:text-neutral-500">{{ guest_data.first_name }} {{ guest_data.last_name }}</li>
+                <li class="w4xo0 jy5gh dark:text-neutral-500">{{ guest_data.address1 }}{% if guest_data.address2 %}, {{ guest_data.address2 }}{% endif %}</li>
+                <li class="w4xo0 jy5gh dark:text-neutral-500">{{ guest_data.city }}, {{ guest_data.state }} {{ guest_data.zip_code }}, {{ guest_data.country }}</li>
               </ul>
               <!-- End List -->
             </div>
@@ -956,7 +958,7 @@
                       </div>
 
                       <div class="vrmqq">
-                        <span class="cnneu z4zqw c9jt8 dark:text-neutral-200">$229</span>
+                        <span class="cnneu z4zqw c9jt8 dark:text-neutral-200">${{ cart_data.total }}</span>
                       </div>
                     </div>
                     <!-- End Item -->
@@ -1049,7 +1051,7 @@
 
                       <div class="vrmqq">
                         <span class="xs2f2 c9jt8 dark:text-neutral-200">USD</span>
-                        <span class="cnneu c9jt8 dark:text-neutral-200">$229</span>
+                        <span class="cnneu c9jt8 dark:text-neutral-200">${{ cart_data.total }}</span>
                       </div>
                     </div>
                     <!-- End Item -->
@@ -1062,105 +1064,42 @@
               <div class="ndv3o kkoj7 yfv61 rxmp4 mr27n exoz7 k4vh5 jwyse dark:border-neutral-700">
                 <!-- Cart Items List -->
                 <div class="space-y-5">
+                  {% for item in cart_data.items %}
                   <!-- Item -->
                   <div class=" flex p5sau">
                     <div class="relative">
-                      <img class="e731n fl6qw i5kts x1s1r f4yn1 pb094 dark:bg-neutral-700" src={% static 'images/photo-1699595749116-33a4a869503c' %} alt="Product Image">
+                      {% if item.image_url %}
+                        <img class="e731n fl6qw i5kts x1s1r f4yn1 pb094 dark:bg-neutral-700" src="{{ item.image_url }}" alt="{{ item.product_name }}">
+                      {% else %}
+                        <div class="e731n fl6qw i5kts x1s1r f4yn1 pb094 bg-gray-200 dark:bg-neutral-700"></div>
+                      {% endif %}
                     </div>
 
                     <div class="hlt95 flex flex-col">
                       <h4 class="w4xo0 c9jt8 dark:text-neutral-200">
-                        Nike Air Force 1
+                        {{ item.product_name }}
                       </h4>
 
                       <ul class="y18m4 space-y-1">
-                        <li class="xs2f2 jy5gh dark:text-neutral-500">
-                          Color: White
-                        </li>
-                        <li class="xs2f2 jy5gh dark:text-neutral-500">
-                          Size: M
-                        </li>
+                        {% if item.variant %}
+                          <li class="xs2f2 jy5gh dark:text-neutral-500">
+                            {{ item.variant.name }}
+                          </li>
+                        {% endif %}
                       </ul>
 
                       <p class="y18m4 xs2f2 jy5gh dark:text-neutral-500">
                         <span>Qty:</span>
-                        <span>1</span>
+                        <span>{{ item.quantity }}</span>
                       </p>
 
                       <span class="y18m4 w4xo0 c9jt8 dark:text-neutral-200">
-                        $150
+                        ${{ item.subtotal }}
                       </span>
                     </div>
                   </div>
                   <!-- End Item -->
-
-                  <!-- Item -->
-                  <div class=" flex p5sau">
-                    <div class="relative">
-                      <img class="e731n fl6qw i5kts x1s1r f4yn1 pb094 dark:bg-neutral-700" src={% static 'images/photo-1708443683334-1e41c52f33ac' %} alt="Product Image">
-                    </div>
-
-                    <div class="hlt95 flex flex-col">
-                      <h4 class="w4xo0 c9jt8 dark:text-neutral-200">
-                        Camo Blend Jacket
-                      </h4>
-
-                      <ul class="y18m4 space-y-1">
-                        <li class="xs2f2 jy5gh dark:text-neutral-500">
-                          Color: Camo
-                        </li>
-                        <li class="xs2f2 jy5gh dark:text-neutral-500">
-                          Size: M
-                        </li>
-                      </ul>
-
-                      <p class="y18m4 xs2f2 jy5gh dark:text-neutral-500">
-                        <span>Qty:</span>
-                        <span>1</span>
-                      </p>
-                      <span class="y18m4">
-                        <span class="w4xo0 jy5gh dark:text-neutral-500">
-                          <s>$60</s>
-                        </span>
-                        <span class="w4xo0 jmzb2">
-                          $40
-                        </span>
-                      </span>
-                    </div>
-                  </div>
-                  <!-- End Item -->
-
-                  <!-- Item -->
-                  <div class=" flex p5sau">
-                    <div class="relative">
-                      <img class="e731n fl6qw i5kts x1s1r f4yn1 pb094 dark:bg-neutral-700" src={% static 'images/photo-1603218183500-7e1d62c3c679' %} alt="Product Image">
-                    </div>
-
-                    <div class="hlt95 flex flex-col">
-                      <h4 class="w4xo0 c9jt8 dark:text-neutral-200">
-                        Mahabis Classic
-                      </h4>
-
-                      <ul class="y18m4 space-y-1">
-                        <li class="xs2f2 jy5gh dark:text-neutral-500">
-                          Color: White
-                        </li>
-                        <li class="xs2f2 jy5gh dark:text-neutral-500">
-                          Size: M
-                        </li>
-                      </ul>
-
-                      <p class="y18m4 xs2f2 jy5gh dark:text-neutral-500">
-                        <span>Qty:</span>
-                        <span>1</span>
-                      </p>
-
-                      <span class="y18m4 w4xo0 c9jt8 dark:text-neutral-200">
-                        $39
-                      </span>
-                    </div>
-                  </div>
-                  <!-- End Item -->
+                  {% endfor %}
                 </div>
                 <!-- End Cart Items List -->
               </div>
@@ -1168,7 +1107,7 @@
           </div>
         </div>
         <!-- End Order Summary -->
-      </div>
+      </form>
       <!-- End Grid -->
     </div>
 
@@ -1233,12 +1172,12 @@
           <!-- End Col -->
 
           <div class="bkq6b flex smdr3">
-            <a class="s53ws f2l40 inline-flex jkwm1 items-center n6i5x w4xo0 sikx1 pb094 rsdjd azddh lgr79 kew0r gocsw disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden yveoa" href="https://www.preline.co/pro/shop/order-confirmation.html">
+            <button type="submit" form="payment-form" class="s53ws f2l40 inline-flex jkwm1 items-center n6i5x w4xo0 sikx1 pb094 rsdjd azddh lgr79 kew0r gocsw disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden yveoa">
               Continue
               <svg class="e731n h6zia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="m9 18 6-6-6-6"></path>
               </svg>
-            </a>
+            </button>
           </div>
           <!-- End Col -->
         </div>

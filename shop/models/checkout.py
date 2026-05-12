@@ -17,6 +17,10 @@ class Order(models.Model):
     shipping_address = models.ForeignKey('shop.Address', on_delete=models.SET_NULL, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    @property
+    def get_total(self):
+        return sum(item.price_at_purchase * item.quantity for item in self.items.all())
+
 class OrderItem(models.Model):
     order = models.ForeignKey('shop.Order', on_delete=models.CASCADE, related_name='items')
     product = models.ForeignKey('shop.Product', on_delete=models.SET_NULL, null=True)

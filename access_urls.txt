@@ -1,0 +1,140 @@
+# ============================================================
+# Access URLs for shop/urls.py
+# Base: http://0.0.0.0:8382/
+# Placeholder IDs used where required: product_id=1, slug="iphone17", brand_slug="example-brand", topic_id="shipping"
+# ============================================================
+
+# --- Home ---
+http://0.0.0.0:8382/
+    path('', home.index, name='home'),
+
+# --- Auth ---
+http://0.0.0.0:8382/login/
+    path('login/', auth.login_page, name='login'),
+
+http://0.0.0.0:8382/signup/
+    path('signup/', auth.create_account, name='signup'),
+
+http://0.0.0.0:8382/forgot-password/
+    path('forgot-password/', auth.forgot_password, name='forgot_password'),
+
+# --- Account ---
+http://0.0.0.0:8382/account/
+    path('account/', account.dashboard, name='account'),
+
+http://0.0.0.0:8382/account/profile/
+    path('account/profile/', account.personal_info, name='personal_info'),
+
+http://0.0.0.0:8382/account/addresses/
+    path('account/addresses/', account.addresses, name='addresses'),
+
+http://0.0.0.0:8382/account/favorites/
+    path('account/favorites/', account.favorites, name='favorites'),
+
+http://0.0.0.0:8382/account/orders/
+    path('account/orders/', account.my_orders, name='my_orders'),
+
+http://0.0.0.0:8382/account/orders/details/
+    path('account/orders/details/', account.order_details, name='order_details'),
+
+http://0.0.0.0:8382/account/payment/
+    path('account/payment/', account.payment_methods, name='payment_methods'),
+
+http://0.0.0.0:8382/account/returns/
+    path('account/returns/', account.account_returns, name='account_returns'),
+
+# --- Products (Browsing) ---
+http://0.0.0.0:8382/shop/
+    path('shop/', products.grid, name='shop_grid'),
+
+http://0.0.0.0:8382/shop/hero/
+    path('shop/hero/', products.grid_hero, name='shop_grid_hero'),
+
+http://0.0.0.0:8382/shop/categories/
+    path('shop/categories/', products.grid_with_categories, name='shop_grid_categories'),
+
+http://0.0.0.0:8382/shop/mini-categories/
+    path('shop/mini-categories/', products.grid_mini_categories, name='shop_grid_mini'),
+
+http://0.0.0.0:8382/shop/sidebar/
+    path('shop/sidebar/', products.grid_sidebar, name='shop_grid_sidebar'),
+
+# --- Brands ---
+http://0.0.0.0:8382/brands/example-brand/
+    path('brands/<slug:brand_slug>/', products.products_by_brand, name='products_by_brand'),
+
+# --- Product Detail Pages ---
+http://0.0.0.0:8382/product/iphone17/
+    path('product/<slug:slug>/', products.product_detail, name='product_detail'),
+
+http://0.0.0.0:8382/product/1/sticky/
+    path('product/<int:product_id>/sticky/', products.product_sticky_sidebar, name='product_sticky_sidebar'),
+
+http://0.0.0.0:8382/product/1/slider/
+    path('product/<int:product_id>/slider/', products.product_gallery_slider, name='product_gallery_slider'),
+
+http://0.0.0.0:8382/product/1/review/
+    path('product/<int:product_id>/review/', products.write_review, name='write_review'),
+
+# --- Categories ---
+http://0.0.0.0:8382/categories/
+    path('categories/', products.categories, name='categories'),
+
+http://0.0.0.0:8382/categories/sidebar/
+    path('categories/sidebar/', products.categories_sidebar, name='categories_sidebar'),
+
+# --- Compare ---
+http://0.0.0.0:8382/compare/
+    path('compare/', products.compare, name='compare'),
+
+# --- Cart ---
+http://0.0.0.0:8382/cart/
+    path('cart/', cart.index, name='cart'),
+
+http://0.0.0.0:8382/cart/empty/
+    path('cart/empty/', cart.empty_cart, name='empty_cart'),
+
+# --- Checkout ---
+http://0.0.0.0:8382/checkout/start/
+    path('checkout/start/', checkout.checkout_options, name='checkout_options'),
+
+http://0.0.0.0:8382/checkout/guest/
+    path('checkout/guest/', checkout.checkout_guest, name='checkout_guest'),
+
+http://0.0.0.0:8382/checkout/member/
+    path('checkout/member/', checkout.checkout_member, name='checkout_member'),
+
+http://0.0.0.0:8382/checkout/review/
+    path('checkout/review/', checkout.review_and_pay, name='review_and_pay'),
+
+http://0.0.0.0:8382/checkout/payment/
+    path('checkout/payment/', checkout.payment, name='payment'),
+
+http://0.0.0.0:8382/checkout/confirmation/
+    path('checkout/confirmation/', checkout.order_confirmation, name='order_confirmation'),
+
+# --- Order Status ---
+http://0.0.0.0:8382/order-status/
+    path('order-status/', checkout.order_status, name='order_status'),
+
+http://0.0.0.0:8382/order-checkup/
+    path('order-checkup/', checkout.order_checkup, name='order_checkup'),
+
+# --- Support ---
+http://0.0.0.0:8382/help/
+    path('help/', support.help_center, name='help'),
+
+http://0.0.0.0:8382/help/shipping/
+    path('help/<slug:topic_id>/', support.help_topic, name='help_topic'),
+
+http://0.0.0.0:8382/stores/
+    path('stores/', support.our_stores, name='stores'),
+
+http://0.0.0.0:8382/returns/
+    path('returns/', support.returns, name='returns'),
+
+http://0.0.0.0:8382/gift-cards/
+    path('gift-cards/', support.gift_cards, name='gift_cards'),
+
+http://0.0.0.0:8382/newsletter/
+    path('newsletter/', support.newsletter, name='newsletter'),

@@ -288,21 +288,19 @@
                                                 {% endif %}
 
                                                 <div class="m3a60 flex g27d7">
-                                                        <select
-                                                                class="brrnv srbq1 ep58o inline-block lnk45 pb094 w4xo0 c9jt8 cursor-pointer nzmya o0e5q o0e5q m5fuw d16zw disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-300 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                                                                <option selected="">1</option>
-                                                                <option>2</option>
-                                                                <option>3</option>
-                                                                <option>4</option>
-                                                                <option>5</option>
-                                                                <option>6</option>
-                                                                <option>7</option>
-                                                                <option>8</option>
-                                                                <option>9</option>
-                                                                <option>10</option>
-                                                        </select>
+                                                        <!-- Input Number -->
+                                                        <div class="shrink-0 brrnv inline-flex items-center border lnk45 pb094 w4xo0 c9jt8 nzmya o0e5q m5fuw d16zw dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-300" style="width: 5.5rem;">
+                                                                <button type="button" class="cart-detail-dec shrink-0 flex justify-center items-center cursor-pointer focus:outline-hidden px-1.5" aria-label="Decrease quantity">
+                                                                        <svg class="shrink-0 size-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path></svg>
+                                                                </button>
+                                                                <input class="grow p-0 bg-transparent border-0 text-center focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none dark:text-white" style="-moz-appearance: textfield; width: 2rem;" type="number" aria-roledescription="Number field" value="1" min="1" id="product-quantity">
+                                                                <button type="button" class="cart-detail-inc shrink-0 flex justify-center items-center cursor-pointer focus:outline-hidden px-1.5" aria-label="Increase quantity">
+                                                                        <svg class="shrink-0 size-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+                                                                </button>
+                                                        </div>
+                                                        <!-- End Input Number -->
 
-                                                        <button type="button"
+                                                        <button type="button" id="add-to-cart-btn" data-product-id="{{ product.id }}"
                                                                 class="brrnv fglch w-full inline-flex jkwm1 items-center n9hej w4xo0 sikx1 pb094 rsdjd azddh y73k3 kew0r xengx disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden xo3eb dark:bg-white dark:text-neutral-800 dark:hover:bg-neutral-200 dark:focus:bg-neutral-200">
                                                                 Add to cart
                                                         </button>

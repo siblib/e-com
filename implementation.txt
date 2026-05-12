@@ -1,0 +1,50 @@
+Implement Dynamic Add to Cart Functionality
+This plan details the steps to replace the static cart features with a robust, session-based cart system in Django, complete with dynamic JavaScript interaction for a seamless user experience.
+
+Goal Description
+The objective is to implement a hybrid cart management strategy using Django sessions (allowing guest users to use the cart) and upgrade the frontend with a dynamic "Add to Cart" flow. This involves building API endpoints, updating the product_detail.html template, and creating the JavaScript logic to interact with the off-canvas cart panel (#hs-pro-shco).
+
+Proposed Changes
+Backend (Django)
+We will introduce cart models and REST-like endpoints to manage the cart state.
+
+[NEW] shop/models/cart.py
+Create Cart model with session_id (CharField), user (ForeignKey, null=True), created_at, updated_at.
+Create CartItem model with cart (ForeignKey), product (ForeignKey), variant (ForeignKey to ProductVariant, null=True), quantity (IntegerField).
+Add properties to calculate item subtotal and cart total.
+[MODIFY] shop/models/__init__.py
+Import Cart and CartItem to ensure Django detects the new models.
+[NEW] shop/views/cart.py
+get_cart(request): Retrieve the cart based on session ID.
+add_to_cart(request): POST endpoint to add a product (and variant) to the cart, or increment quantity if it exists.
+update_cart_item(request): POST endpoint to modify quantity of a specific cart item.
+remove_from_cart(request): POST endpoint to delete an item from the cart.
+[MODIFY] shop/urls.py
+Map the API endpoints defined in shop/views/cart.py (e.g., /api/cart/, /api/cart/add/, /api/cart/update/, /api/cart/remove/).
+Frontend (Templates & JS)
+We will transition the static cart UI to a dynamic state driven by our new API.
+
+[MODIFY] templates/products/product_detail.html
+Replace the static <select> dropdown for quantity with a dynamic number input (including + and - buttons) as requested.
+Update the "Add to cart" <button> to trigger our JS logic, passing the current product.id, selected variant, and quantity.
+Give the variant-form inputs identifiable data-variant-id attributes to accurately capture the selected variant when adding to the cart.
+[MODIFY] templates/base.html
+Include the new cart.js file.
+Update the hardcoded #hs-pro-shco cart off-canvas elements to act as a dynamic container, allowing JS to inject cart items based on the API response.
+Add an ID to the cart badge in the header so we can dynamically update the total item count.
+[NEW] static/js/cart.js
+Create a CartManager class or utility functions to handle API requests (fetchCart, addToCart, updateQuantity, removeItem).
+Implement the UI rendering logic (renderCartOffcanvas, updateCartBadge) to reflect the current cart state without page reloads.
+Add event listeners for the "Add to cart" button and variant selection changes.
+Verification Plan
+Automated/Manual Verification
+Run migrations for the new Cart models (python manage.py makemigrations and python manage.py migrate).
+Navigate to the product detail page and test the new +/- quantity buttons.
+Click "Add to Cart" and verify the off-canvas panel opens and displays the added item with correct price and variant details.
+Verify the header cart badge updates accordingly.
+Adjust quantity from within the off-canvas panel and ensure the subtotal updates correctly.
+Remove an item from the off-canvas panel and verify it vanishes from the UI and backend.
+Test with an incognito browser window to confirm session-based guest carts function properly.
+IMPORTANT
+
+Since we are adding new Cart and CartItem models, we will need to run migrations. Do you approve this data model and API structure?

@@ -61,6 +61,12 @@ urlpatterns = [
     # --- ADD THIS NEW LINE ---
     path('cart/empty/', cart.empty_cart, name='empty_cart'),     
     
+    # --- Cart API ---
+    path('api/cart/', cart.api_cart, name='api_cart'),
+    path('api/cart/add/', cart.api_add_to_cart, name='api_add_to_cart'),
+    path('api/cart/update/', cart.api_update_cart_item, name='api_update_cart_item'),
+    path('api/cart/remove/', cart.api_remove_from_cart, name='api_remove_from_cart'),
+    
     # ... (checkout paths below) ...    
       # --- Checkout Variations ---
     # 1. The Options Page (Entry point for not-logged-in users)

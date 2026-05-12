@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Commerce Development Workflow</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="sequential_setup.css">
+</head>
+<body>
+<header class="top-bar">
+  <div class="top-bar-left">
+    <h1>🛒 E-Commerce Workflow</h1>
+    <span class="badge" id="progressBadge">0 / 0</span>
+  </div>
+  <div class="top-bar-right">
+    <div class="progress-ring-wrap">
+      <svg class="progress-ring" width="44" height="44"><circle class="progress-ring__bg" cx="22" cy="22" r="18"/><circle class="progress-ring__fg" id="progressCircle" cx="22" cy="22" r="18"/></svg>
+      <span class="progress-pct" id="progressPct">0%</span>
+    </div>
+    <button class="btn btn-outline" id="btnCollapseAll">Collapse All</button>
+    <button class="btn btn-outline" id="btnExpandAll">Expand All</button>
+    <button class="btn btn-primary" id="btnEditMode">✏️ Edit Mode</button>
+  </div>
+</header>
+
+<div class="filters" id="filters">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="completed">✅ Completed</button>
+  <button class="filter-btn" data-filter="active">🔵 Active</button>
+  <button class="filter-btn" data-filter="pending">⏳ Pending</button>
+</div>
+
+<main class="pipeline" id="pipeline"></main>
+
+<div class="legend">
+  <span><i class="dot dot--completed"></i> Completed</span>
+  <span><i class="dot dot--active"></i> Active</span>
+  <span><i class="dot dot--pending"></i> Pending</span>
+</div>
+
+<script src="sequential_setup.js"></script>
+</body>
+</html>
